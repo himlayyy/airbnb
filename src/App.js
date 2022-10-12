@@ -19,7 +19,7 @@ function App() {
      
     <div className="App">
       <Header />
-      <Navbar />
+      {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />}>
             Home
