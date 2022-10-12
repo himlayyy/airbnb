@@ -8,7 +8,6 @@ import Page2 from "./pages/page2/Page2";
 import './App.css';
 
 
-import AppRouter from './components/approuter/AppRouter';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
