@@ -1,0 +1,103 @@
+.search{
+    display:flex;
+    /* height:36px; 
+    width:360px; */
+    /* padding:0px 20px 0px 10px; */
+    padding-left: 10px;
+    /* padding-right: 20px;      */
+    align-items:center;
+    border:1px solid rgb(242, 242, 242);
+    border-radius:40px;
+    box-shadow:0 2px 4px rgba(0,0,0,0.18);
+}
+.searchItem{
+    /* height:36px; */
+    background-color:white;
+    border:none;
+    height:inherit;
+    /* outline:none; */
+    padding-left:12px;
+    padding-right:12px;
+    /* margin-left:15px; */
+    cursor:pointer;
+   
+    font-size:14px;
+    font-weight:bold;
+    /* border-right:4px solid rgb(242, 242, 242); */
+    
+}
+/* .searchItem:first-child{
+    padding-left:16px;
+} */
+.searchItem:last-child{
+    height:inherit;
+    background-color:white;
+    /* width:1px; */
+}
+button.searchItem:nth-of-type(3) {
+    border: none;
+    font-weight: normal;
+}
+.searchItem{
+    display:flex;
+    flex-direction:row;
+}
+.searchTab {
+    margin: 0px 8px;
+    padding:0px 0px 0px 0px;
+    position:relative;
+    display: block;
+}
+.searchTab button{
+    border:none;
+    padding:0px;
+    background:transparent;
+    font-weight: normal;
+    font-size: 16px;
+}
+.searchTab:after{
+    content:"";
+    position:absolute;
+    width:100%;
+    transform:    scaleX(0);
+    height:2px;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color:var(--black-hover2);
+    transform-origin: center;
+    transition:
+    transform 0.25s ease-out;
+}
+.searchTab:hover:after{
+    transform:scaleX(1);    
+}
+/* .searchTab:active:after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:2px;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color:var(--black-hover2);  
+} */
+.clickedTab:after{
+    content:"";
+    position:absolute;
+    width:100%;
+    height:2px;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color:var(--black-hover2);
+    /* transform-origin: center; */
+}
+.searchButton{
+    /* margin-right:15px; */
+    padding:0px 1px 0px 0px;
+    /* color:rgb(255, 56, 92); */
+    color:var(--airbnb-color);
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-right: none;
+}
+
+

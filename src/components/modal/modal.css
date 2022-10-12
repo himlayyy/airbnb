@@ -1,0 +1,81 @@
+.modalOverlay{    
+    position:fixed;
+    display:grid;
+    width:100%;
+    height:100%;
+    left:0px;
+    top:0px;
+    z-index:100;
+    border-radius:0px;
+    background-color:rgb(12 13 13 / 80%)    !important;
+    place-items:center;
+    border-radius: 0  !important;
+    padding:0px
+}
+.modalContainer {
+    display: flex;
+    flex-direction: column;
+    background-color:white;
+    border-radius:7px;
+    flex: 1;
+    width: 75vw;
+    height: 75vh;
+    border: 1px solid black;
+    padding:20px;   
+}
+.modalContainer button {
+    width: fit-content;
+    height: auto;
+    background-color:transparent;
+    padding: 0px;
+    margin: 0px;
+    border: none;
+}
+.modalSection{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 11px;
+    padding: 10px;
+    padding-left: 0px;
+}
+.modalOptions{
+    overflow-y: auto;
+}
+.modalTabs{
+    border-bottom: 1px solid var(--bg-grey);
+
+}
+.modalOption{
+    border-radius:4px;
+    width: calc(25% - 20px);
+    display:block;
+    box-sizing:border-box;
+
+}
+.modalOption:hover{
+    background-color: var(--grey-hover4);
+}
+.modalOption input[type="radio"]{
+    opacity:0; 
+    position:fixed;
+    width:0;
+} 
+.modalOption-item{
+    padding:10px 20px;
+box-sizing: border-box;
+}  
+.modalOption input[type="radio"]:checked + .modalOption-item{
+    border:1px solid black;
+    border-radius: 8px;
+
+}
+.modalContainer .buttonBottom{
+    align-self:flex-end;
+    border: 1px solid black;
+    padding:10px;
+}
+
+/* label input[type="radio"]:checked + div {
+    background-color: pink;
+} */
+

@@ -1,0 +1,98 @@
+.destinationItem{
+    margin:20px 20px 20px 0px; 
+    flex-grow:1; 
+    box-sizing:border-box;
+    /* border:1px solid; */
+    /* height:300px; */
+    flex-basis:250px;
+    min-width:250px;
+    
+}
+.destinationGal{
+    position:relative;
+    margin-bottom:12px;
+    /* display:flex; */
+}
+.destinationImg{
+    border-radius: 8px;
+    border: 1px solid white;    
+    width:100% ;   
+    height:100%;
+    object-fit:cover;
+
+}
+.galBtns{    
+    position:absolute;
+   
+    top:10px;
+    right:5px;  
+}
+.galBtn{
+    background:transparent;
+    border:none;
+}
+.heartBtn{
+    font-size:32px;
+    fill:rgba(0, 0, 0, 0.5);
+    stroke:#FFFFFF;
+    stroke-width:1px;
+}
+.leftBtn{
+    position:absolute;
+    left:10px;
+    z-index:2;
+}
+.rightBtn{
+    position:absolute;
+    right:10px;
+    z-index:2;
+}
+
+.slick-dots{
+    position:absolute;
+    bottom:5px!important;
+}
+.slick-dots li button::before {
+    font-size: 16px;
+    color:#fff!important;
+    opacity: 0.7;
+  }
+
+  .slick-dots li.slick-active button::before {
+    color: white!important;
+    opacity: 1;
+  }
+.destinationDetails{
+    display:grid;
+    grid-template-rows: repeat(3, 1fr);
+    gap:2px 0px;
+}
+.destination details > *{
+    font-size:15px;
+}
+
+.destinationHeader{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.destinationName a{
+    text-decoration: none;
+    font-weight: bold;
+    color:rgb(37,40,54);
+}
+.destinationName:hover{
+    cursor: pointer;
+}
+.destinationRating{
+    display:flex;
+    padding-top: 1px;
+    justify-content: center;
+}
+.destinationDistance, .destinationAvailability{
+    color:rgb(115,116,119);
+}
+
+
+
+

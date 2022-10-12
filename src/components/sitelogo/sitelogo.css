@@ -1,0 +1,8 @@
+.siteLogo{
+    display: flex;
+    align-items:center;
+}
+.logo{
+    color:var(--airbnb-color);
+    fill:var(--airbnb-color);
+}

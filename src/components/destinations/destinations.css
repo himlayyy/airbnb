@@ -1,0 +1,4 @@
+.destinationItems{
+    display: flex;
+    flex-wrap: wrap;
+}

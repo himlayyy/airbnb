@@ -1,38 +1,65 @@
-.App {
-  text-align: center;
+@import url('https://rsms.me/inter/inter.css');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
+:root{
+  --airbnb-color:#FF385C;
+  --black-hover2: rgb(34,34,34);
+  --border-grey: rgb(224, 224, 224);
+  --bg-grey:rgb(235, 235, 235);
+  --dark-grey:rgb(231,231,231);
+  --grey-hover1:#FFFFFF;
+  --grey-hover2: rgb(221, 221,221);
+  --grey-hover3:rgb(235, 235, 235);
+  --grey-hover4:rgb(247, 247, 247);
+  --white:rgb(255,255,255);
+}
+html,body, button { font-family: "Inter","Montserrat", sans-serif;
+font-weight:regular }
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+body::-webkit-scrollbar {
+  width: 12px;               /* width of the entire scrollbar */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body::-webkit-scrollbar-track {
+  background: orange;        /* color of the tracking area */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+body::-webkit-scrollbar-thumb {
+  background-color: blue;    /* color of the scroll thumb */
+  border-radius: 20px;       /* roundness of the scroll thumb */
+  border: 3px solid orange;  /* creates padding around scroll thumb */
 }
-
-.App-header {
+/* .App {
   background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  max-width:1024px; 
+  padding: 30px 80px;
+} */
+.max-width{
+  max-width: 1024px;
 }
-
-.App-link {
-  color: #61dafb;
+.page-padding{
+  padding:30px 80px;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.body-text{
+font-size:15px;
+}
+.center{
+  margin:auto;
+}
+.bold-text{
+  font-weight:bold;
+}
+.light-text{
+  font-weight:light;
+}
+.vertical-separator{
+  box-sizing:border-box;
+  background-color:rgb(221,221,221);
+  width:1px;
+  padding:12px 0px;
+}
+.pointer{
+  cursor:pointer;
 }

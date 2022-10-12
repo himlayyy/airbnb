@@ -1,0 +1,14 @@
+footer{
+    margin:20px 0px;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+.footerCol{
+    display:flex;
+    flex-direction:column;
+}
+.footerCol > *{
+    padding-top:10px;
+    font-size: 12px;
+}
