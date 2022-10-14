@@ -1,14 +1,18 @@
-import React, { useState, useEffect, useRef, useSuspense, Suspense } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useSuspense,
+  Suspense,
+} from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
 import whyDidYouRender from "@welldone-software/why-did-you-render";
 
-
 // import List from "../list/List.jsx";
-
 
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
@@ -37,7 +41,6 @@ function ExpandedSearch({ activeBtn }) {
   const [continent, setContinent] = useState("region/asia");
   const [country, setCountry] = useState("");
 
-  
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -52,11 +55,11 @@ function ExpandedSearch({ activeBtn }) {
     pets: 0,
   });
 
-  const [query, setQuery] =  useState({
-    "destination":"",
-    "startDate": dates.startDate,
-    "endDate": dates.endDate,
-    "guests" : guests,
+  const [query, setQuery] = useState({
+    destination: "",
+    startDate: dates.startDate,
+    endDate: dates.endDate,
+    guests: guests,
   });
 
   // const whereRef = useOutsideClick(() => {
@@ -69,9 +72,9 @@ function ExpandedSearch({ activeBtn }) {
   //   setOpenWho((openWho) => !openWho);
   // });
 
-const getCountry = (e) =>{
-  setCountry(e.targetValue)
-}
+  const getCountry = (e) => {
+    setCountry(e.targetValue);
+  };
 
   const guestOptions = [
     { type: "Adults", info: "Ages 13 and above" },
@@ -79,6 +82,20 @@ const getCountry = (e) =>{
     { type: "Infants", info: "Under 2" },
     { type: "Pets", info: "Support pets" },
   ];
+
+  const formatGuests = () => {
+    const filtered = Object.entries(guests).filter((a) => a[1] !== 0);
+
+    if (filtered.length !== 0) {
+      filtered.forEach((val) => {
+        val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
+      });
+      const string = filtered.map((val) => val.join(" ")).join();
+      return string;
+    } else {
+      return "Add guests";
+    }
+  };
 
   const handleSetGuests = (opt, op) => {
     setGuests((prev) => {
@@ -89,18 +106,18 @@ const getCountry = (e) =>{
     });
   };
 
-  const handleCountry = (props) =>{
+  const handleCountry = (props) => {
     console.log(props);
     setCountry(props);
-  }
+  };
 
-  useEffect(() =>{
+  useEffect(() => {
     console.log(`staysClicked ${staysClicked} expClicked ${expClicked}`);
-  },[staysClicked, expClicked])
+  }, [staysClicked, expClicked]);
 
-useEffect(() => {
-  console.log(`openWhere: ${openWhere}`);
-},[openWhere]);
+  useEffect(() => {
+    console.log(`openWhere: ${openWhere}`);
+  }, [openWhere]);
 
   // whyDidYouRender(React, {
   //   onlyLogs: true,
@@ -110,11 +127,8 @@ useEffect(() => {
   // });
   return (
     <>
-    
       <div className={`expandedSearch ${activeBtn === null ? "hide" : ""}`}>
-        {/* <div className="guest">
-          Active btn: {`${activeBtn} staysClicked ${staysClicked} expClicked ${expClicked}`}
-        </div> */}
+
         {/* <div>{countries}</div> */}
         <div className="searchTabs">
           <span
@@ -124,7 +138,6 @@ useEffect(() => {
               setStaysClicked(!staysClicked);
             }}
           >
-            {/* <button className={`${active === "btn1" ? "clickedTab" : ""}`} */}
             <button className={`${active === "btn1" ? "clickedTab" : null}`}>
               Stays
             </button>
@@ -132,7 +145,6 @@ useEffect(() => {
           <span
             className="searchTab searchItem"
             onClick={() => {
-              // setTabClicked(!tabClicked);
               if (active !== "btn2") {
                 setExpClicked(!expClicked);
                 setActive("btn2");
@@ -144,8 +156,6 @@ useEffect(() => {
           <span
             className="searchTab searchItem"
             onClick={() => {
-              // setTabClicked(!tabClicked);
-              // setGuestsClicked(!guestsClicked);
               setActive("btn3");
             }}
           >
@@ -153,14 +163,14 @@ useEffect(() => {
           </span>
         </div>
       </div>
-      {/* {tabClicked && ( */}
       {tabClicked && (
         <div className="searchOptionsContainer">
           <div className="searchOptions">
-            {/* <div className={`destination searchOption pointer ${staysClicked ? 'activeTab' : ''}`}> */}
-            <div className={`destination searchOption pointer ${active === "btn1" ? "activeTab" : ""
+            <div
+              className={`destination searchOption pointer ${
+                active === "btn1" ? "activeTab" : ""
               }`}
-              onClick={() => setOpenWhere(!openWhere)}>
+            >
               <label htmlFor="stayDestination">Where</label>
               <input
                 type="text"
@@ -168,144 +178,165 @@ useEffect(() => {
                 id="stayDestination"
                 placeholder="Search destinations"
                 value={country}
+                onClick={() => setOpenWhere(!openWhere)}
               />
               {openWhere && (
                 <>
-                  <div className="tabPopout popOutContent staysSelectorContainer"
-                    onClick={() => console.log(`From tabPopOut openWhere : ${openWhere}`)}
-                    // ref={whereRef} 
+                  <div
+                    className="tabPopout popOutContent staysSelectorContainer"
+                    onClick={() =>
+                      console.log(`From tabPopOut openWhere : ${openWhere}`)
+                    }
+                    // ref={whereRef}
                   >
                     <div className="popOutColumn continents">
                       <span
                         className="continent"
                         onClick={(e) => {
-                          e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`);setContinent("region/asia")}}
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("region/asia");
+                        }}
                       >
                         Asia
                       </span>
                       <span
                         className="continent"
-                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/africa")}}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("region/africa");
+                        }}
                       >
                         Africa
                       </span>
                       <span
                         className="continent"
-                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/europe")}}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("region/europe");
+                        }}
                       >
                         Europe
                       </span>
                       <span
                         className="continent"
-                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); 
-                          setContinent("subregion/north%20america")
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("subregion/north%20america");
                         }}
                       >
                         North America
                       </span>
                       <span
                         className="continent"
-                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/oceania")}}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("region/oceania");
+                        }}
                       >
                         Oceania
                       </span>
                       <span
                         className="continent"
-                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); 
-                          setContinent("subregion/south%20america")
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          console.log(
+                            `From continent openWhere : ${openWhere}`
+                          );
+                          setContinent("subregion/south%20america");
                         }}
                       >
                         South America
                       </span>
                     </div>
                     <div className="popOutColumn popOutScroll countries">
-                     {/* Hello! */}
+                      {/* Hello! */}
 
-                      {continent !== "" ?    
-                    (<Suspense fallback={
-                      <div>Loading</div>
-                    }>
-                    
-                    <List
-                      endpoint={continent}
-                        fields={"?fields=name"}
-                        itemClass={"country"}
-                        callback= {handleCountry}
-                        />
-                        </Suspense>) : null} 
+                      {continent !== "" ? (
+                        <Suspense fallback={<div>Loading</div>}>
+                          <List
+                            endpoint={continent}
+                            fields={"?fields=name"}
+                            itemClass={"country"}
+                            callback={handleCountry}
+                          />
+                        </Suspense>
+                      ) : null}
                     </div>
                   </div>
                 </>
               )}
             </div>
-                        {/* {continent !== "" ?    
-                    (<List
-                      endpoint={continent}
-                        fields={"?fields=name"}
-                        itemClass={"country"}
-                        callback= {handleCountry}
-                        />) : null}                 */}
             <div className="dates searchOption pointer">
-              
-                          
-              
-              {active === "btn2" ?
-             
-              (<>
-              <div
-                className={`date ${active === "btn2" ? "activeTab" : null}`}
-                onClick={() => setOpenWhen(!openWhen)}
-              >
-                <div className="checkIn">
-                  <label htmlFor="checkInDate">Dates</label>
-                  <input
-                    type="text"
-                    name=""
-                    id="checkInDate"
-                    placeholder="Add dates"
-                    value={format(dates[0].startDate, "MMM d")}
-                    className="bold-text"
-                  />
-                </div>
-              </div>
-              </>) :
-               (<>
-                <div
-                  className={`date ${active === "btn2" ? "activeTab" : null}`}
-                  onClick={() => setOpenWhen(!openWhen)}
-                >
-                  <div className="checkIn">
-                    <label htmlFor="checkInDate">Check in</label>
-                    <input
-                      type="text"
-                      name=""
-                      id="checkInDate"
-                      placeholder="Add dates"
-                      value={format(dates[0].startDate, "MMM d")}
-                      className="bold-text"
-                    />
-                  </div>
-                </div>
-                <div className="date">
-                  <div className="checkOut">
-                    <label htmlFor="checkOutDate">Check out</label>
-                    <input
-                      type="text"
-                      name="checkOutDate"
-                      id="checkOutDate"
-                      placeholder="Add dates"
-                      value={format(dates[0].endDate, "MMM d")}
-                      className="bold-text"
-                      />
-                  </div>
-                </div>
-                </>)
-              }
-              {openWhen && (
+              {active === "btn2" ? (
                 <>
                   <div
-                    className="tabPopout popOutContent dateSelectorContainer"
+                    className={`date ${active === "btn2" ? "activeTab" : null}`}
                   >
+                    <div className="checkIn">
+                      <label htmlFor="checkInDate">Dates</label>
+                      <input
+                        type="text"
+                        name=""
+                        id="checkInDate"
+                        placeholder="Add dates"
+                        value={format(dates[0].startDate, "MMM d")}
+                        // className="bold-text"
+                        onClick={() => setOpenWhen(!openWhen)}
+                      />
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div
+                    className={`date ${active === "btn2" ? "activeTab" : null}`}
+                  >
+                    <div className="checkIn">
+                      <label htmlFor="checkInDate">Check in</label>
+                      <input
+                        type="text"
+                        name=""
+                        id="checkInDate"
+                        placeholder="Add dates"
+                        value={format(dates[0].startDate, "MMM d")}
+                        onClick={() => setOpenWhen(!openWhen)}
+                        // className="bold-text"
+                      />
+                    </div>
+                  </div>
+                  <div className="date">
+                    <div className="checkOut">
+                      <label htmlFor="checkOutDate">Check out</label>
+                      <input
+                        type="text"
+                        name="checkOutDate"
+                        id="checkOutDate"
+                        placeholder="Add dates"
+                        value={format(dates[0].endDate, "MMM d")}
+                        // className="bold-text"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+              {openWhen && (
+                <>
+                  <div className="tabPopout popOutContent dateSelectorContainer">
                     <DateRange
                       editableDateInputs={true}
                       onChange={(item) => setDates([item.selection])}
@@ -316,35 +347,32 @@ useEffect(() => {
                 </>
               )}
             </div>
-            
-            
+
             <div
               className={`guests searchOption pointer ${
                 active === "btn3" ? "activeTab" : ""
               }`}
-             
             >
-              <div className="guestPickerContainer"  onClick={() => setOpenWho(!openWho)}>
+              <div
+                className="guestPickerContainer"
+                onClick={() => setOpenWho(!openWho)}
+              >
                 <label htmlFor="guestPicker">Who</label>
                 <input
                   type="text"
                   name="guestPicker"
                   id="guest"
-                  placeholder="Add guests"
+                  // placeholder= {formatGuests()}
+                  value={formatGuests()}
                 />
               </div>
-              <div className="searchItem searchOption searchButton pointer" onClick={(()=> console.log("hello"))}>
-              <IoSearchSharp size={"1.5em"} />
+              <div
+                className="searchItem searchOption searchButton pointer"
+                onClick={() => console.log("hello")}
+              >
+                <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
-                </div>
-
-                {/* <span className="searchspan pointer"> */}
-                {/* <div className="searchspanContents"> */}
-                {/* <button className="searchItem searchOption searchButton pointer"> */}
-                
-                {/* </button> */}
-                {/* </div> */}
-                {/* </span> */}
+              </div>
 
               {openWho && (
                 <>
@@ -353,10 +381,8 @@ useEffect(() => {
                     // ref={whoRef}
                   >
                     {
-                      // let vals = Object.values(guests);
                       guestOptions.map((option, index) => {
                         let opt = option.type.toLowerCase();
-                        console.log(opt);
                         return (
                           <div className="popOutRow">
                             <div className="guest">
