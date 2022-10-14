@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useSuspense, Suspense } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import {useNavigate} from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
@@ -33,9 +34,10 @@ function ExpandedSearch({ activeBtn }) {
   const [expClicked, setExpClicked] = useState(false);
   const [guestsClicked, setGuestsClicked] = useState(false);
 
-  const [continent, setContinent] = useState("");
+  const [continent, setContinent] = useState("region/asia");
   const [country, setCountry] = useState("");
 
+  
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -50,15 +52,22 @@ function ExpandedSearch({ activeBtn }) {
     pets: 0,
   });
 
-  const whereRef = useOutsideClick(() => {
-    setOpenWhere((openWhere) => !openWhere);
+  const [query, setQuery] =  useState({
+    "destination":"",
+    "startDate": dates.startDate,
+    "endDate": dates.endDate,
+    "guests" : guests,
   });
-  const whenRef = useOutsideClick(() => {
-    setOpenWhen((openWhen) => !openWhen);
-  });
-  const whoRef = useOutsideClick(() => {
-    setOpenWho((openWho) => !openWho);
-  });
+
+  // const whereRef = useOutsideClick(() => {
+  //   setOpenWhere((openWhere) => !openWhere);
+  // });
+  // const whenRef = useOutsideClick(() => {
+  //   setOpenWhen((openWhen) => !openWhen);
+  // });
+  // const whoRef = useOutsideClick(() => {
+  //   setOpenWho((openWho) => !openWho);
+  // });
 
 const getCountry = (e) =>{
   setCountry(e.targetValue)
@@ -89,6 +98,10 @@ const getCountry = (e) =>{
     console.log(`staysClicked ${staysClicked} expClicked ${expClicked}`);
   },[staysClicked, expClicked])
 
+useEffect(() => {
+  console.log(`openWhere: ${openWhere}`);
+},[openWhere]);
+
   // whyDidYouRender(React, {
   //   onlyLogs: true,
   //   titleColor: "green",
@@ -97,6 +110,7 @@ const getCountry = (e) =>{
   // });
   return (
     <>
+    
       <div className={`expandedSearch ${activeBtn === null ? "hide" : ""}`}>
         {/* <div className="guest">
           Active btn: {`${activeBtn} staysClicked ${staysClicked} expClicked ${expClicked}`}
@@ -144,12 +158,9 @@ const getCountry = (e) =>{
         <div className="searchOptionsContainer">
           <div className="searchOptions">
             {/* <div className={`destination searchOption pointer ${staysClicked ? 'activeTab' : ''}`}> */}
-            <div
-              className={`destination searchOption pointer ${
-                active === "btn1" ? "activeTab" : ""
+            <div className={`destination searchOption pointer ${active === "btn1" ? "activeTab" : ""
               }`}
-              onClick={() => setOpenWhere(!openWhere)}
-            >
+              onClick={() => setOpenWhere(!openWhere)}>
               <label htmlFor="stayDestination">Where</label>
               <input
                 type="text"
@@ -160,72 +171,80 @@ const getCountry = (e) =>{
               />
               {openWhere && (
                 <>
-                  <div
-                    className="tabPopout popOutContent staysSelectorContainer"
-                    ref={whereRef}
+                  <div className="tabPopout popOutContent staysSelectorContainer"
+                    onClick={() => console.log(`From tabPopOut openWhere : ${openWhere}`)}
+                    // ref={whereRef} 
                   >
                     <div className="popOutColumn continents">
                       <span
                         className="continent"
-                        onClick={() => setContinent("region/asia")}
+                        onClick={(e) => {
+                          e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`);setContinent("region/asia")}}
                       >
                         Asia
                       </span>
                       <span
                         className="continent"
-                        onClick={() => setContinent("region/africa")}
+                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/africa")}}
                       >
                         Africa
                       </span>
                       <span
                         className="continent"
-                        onClick={() => setContinent("region/europe")}
+                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/europe")}}
                       >
                         Europe
                       </span>
                       <span
                         className="continent"
-                        onClick={() =>
+                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); 
                           setContinent("subregion/north%20america")
-                        }
+                        }}
                       >
                         North America
                       </span>
                       <span
                         className="continent"
-                        onClick={() => setContinent("region/oceania")}
+                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); setContinent("region/oceania")}}
                       >
                         Oceania
                       </span>
                       <span
                         className="continent"
-                        onClick={() =>
+                        onClick={(e) => {e.stopPropagation();console.log(`From continent openWhere : ${openWhere}`); 
                           setContinent("subregion/south%20america")
-                        }
+                        }}
                       >
                         South America
                       </span>
                     </div>
                     <div className="popOutColumn popOutScroll countries">
-                     
-                    {continent !== "" ?                    
-                      <Suspense  fallback={<div>Loading</div>}>
-                        <List
-                        endpoint={continent}
-                          fields={"?fields=name"}
-                          // containerClass={"popOutColumn popOutScroll countries"}
-                          itemClass={"country"}
-                          callback= {handleCountry}
-                          />
-                      </Suspense>
-                    : null}
+                     {/* Hello! */}
+
+                      {continent !== "" ?    
+                    (<Suspense fallback={
+                      <div>Loading</div>
+                    }>
+                    
+                    <List
+                      endpoint={continent}
+                        fields={"?fields=name"}
+                        itemClass={"country"}
+                        callback= {handleCountry}
+                        />
+                        </Suspense>) : null} 
                     </div>
-                  
                   </div>
                 </>
               )}
             </div>
-
+                        {/* {continent !== "" ?    
+                    (<List
+                      endpoint={continent}
+                        fields={"?fields=name"}
+                        itemClass={"country"}
+                        callback= {handleCountry}
+                        />) : null}                 */}
             <div className="dates searchOption pointer">
               
                           
@@ -303,9 +322,9 @@ const getCountry = (e) =>{
               className={`guests searchOption pointer ${
                 active === "btn3" ? "activeTab" : ""
               }`}
-              onClick={() => setOpenWho(!openWho)}
+             
             >
-              <div className="guestPickerContainer">
+              <div className="guestPickerContainer"  onClick={() => setOpenWho(!openWho)}>
                 <label htmlFor="guestPicker">Who</label>
                 <input
                   type="text"
@@ -314,15 +333,18 @@ const getCountry = (e) =>{
                   placeholder="Add guests"
                 />
               </div>
-              <div className="searchItem searchOption searchButton pointer">
+              <div className="searchItem searchOption searchButton pointer" onClick={(()=> console.log("hello"))}>
+              <IoSearchSharp size={"1.5em"} />
+                <span className="body-text">Search</span>
+                </div>
+
                 {/* <span className="searchspan pointer"> */}
                 {/* <div className="searchspanContents"> */}
-
-                <IoSearchSharp size={"1.5em"} />
-                <span className="body-text">Search</span>
+                {/* <button className="searchItem searchOption searchButton pointer"> */}
+                
+                {/* </button> */}
                 {/* </div> */}
                 {/* </span> */}
-              </div>
 
               {openWho && (
                 <>
