@@ -6,7 +6,11 @@
 /* .filterIcon{
     transform:rotate(90deg);
 } */
-
+.filter{
+    text-align:center;
+    display:grid;
+    place-items: center;
+}
 .filterButton{
     background:transparent;
     border:1px solid rgb(242, 242, 242);
