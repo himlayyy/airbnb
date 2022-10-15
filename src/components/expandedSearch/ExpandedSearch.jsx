@@ -62,6 +62,8 @@ function ExpandedSearch({ activeBtn }) {
     guests: guests,
   });
 
+  const navigate = useNavigate();
+
   // const whereRef = useOutsideClick(() => {
   //   setOpenWhere((openWhere) => !openWhere);
   // });
@@ -110,6 +112,10 @@ function ExpandedSearch({ activeBtn }) {
     console.log(props);
     setCountry(props);
   };
+  
+  const search = () => {
+    navigate("/search", {state:{country} });
+  }
 
   useEffect(() => {
     console.log(`staysClicked ${staysClicked} expClicked ${expClicked}`);
@@ -368,7 +374,8 @@ function ExpandedSearch({ activeBtn }) {
               </div>
               <div
                 className="searchItem searchOption searchButton pointer"
-                onClick={() => console.log("hello")}
+                onClick={(e) =>{ e.stopPropagation(); search()}}
+
               >
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
