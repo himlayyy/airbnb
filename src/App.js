@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<Home />}>
             Home
           </Route>
-          <Route path="/s" element={<SearchResult />}>
+          <Route path="/search" element={<SearchResult />}>
             Page 2
           </Route>
           <Route path="/page-2" element={<Page2 />}>

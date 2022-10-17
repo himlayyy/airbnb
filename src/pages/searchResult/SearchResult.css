@@ -1,3 +1,23 @@
+
+
+.searchResultContainer{
+    padding-left:30px;
+    padding-right:30px;
+    height:90vh;
+    /* overflow-y:hidden; */
+}
 .searchResult{
     background: yellow;
+    display: flex;
+    flex-direction: row;
+}
+.searchResult .destinations{
+    width:40vw;
+}
+.searchResult .map{
+    width:60vw;
+}
+.destinations .container{
+    height:90vh;
+    overflow-y:scroll;
 }

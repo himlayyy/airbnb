@@ -13,7 +13,7 @@ function Home() {
         {/* <StayScroller /> */}
        {/* <Destinations/> */}
       </div>
-        <HomeFooter/>
+        {/* <HomeFooter/> */}
     </>
   );
 }

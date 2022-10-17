@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { GeoContextProvider } from "./context/Geolocation";
-
+import 'mapbox-gl/dist/mapbox-gl.css';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 
