@@ -122,7 +122,7 @@
 } */
 .tabPopout {
   position: absolute;
-  top: 140px;
+  top: 170px;
   border: 1px solid var(--border-grey);
   border-radius: 10px;
   z-index: 100;
