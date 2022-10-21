@@ -1,5 +1,5 @@
 // so ang flow is:
-
+import axios from "axios";
 
 export const countryCurrency = (data, delimiter, parserProp) => {
     // let temp = [];
@@ -95,6 +95,15 @@ export const countryCurrency = (data, delimiter, parserProp) => {
     return final;
 };
 
-// export const formatRadioOption = (array, ) =>{
-
-// }
+export const  generateOptions = async (country) =>{
+    let res = await axios
+        .get(
+          `https://restcountries.com/v3.1/name/${country}?fields=latlng`
+        )
+        .then((res) => res.data[0].latlng)
+         .catch((err) =>{
+            console.log("ERR");
+            console.log(err);
+          })
+    return res;
+};

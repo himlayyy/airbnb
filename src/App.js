@@ -21,15 +21,9 @@ function App() {
       <Header />
       {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Home />}>
-            Home
-          </Route>
-          <Route path="/search" element={<SearchResult />}>
-            Page 2
-          </Route>
-          <Route path="/page-2" element={<Page2 />}>
-            Page 3
-          </Route>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<SearchResult />}/>
+          <Route path="/page-2" element={<Page2 />} />
         </Routes>
     </div>
   );
