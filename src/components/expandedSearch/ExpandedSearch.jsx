@@ -2,26 +2,24 @@ import React, {
   useState,
   useEffect,
   useRef,
-  useSuspense,
   Suspense,
 } from "react";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import axios from "axios";
 
-import whyDidYouRender from "@welldone-software/why-did-you-render";
 
 // import List from "../list/List.jsx";
 
 import { DateRange } from "react-date-range";
 import { format } from "date-fns";
-import { IoNuclearOutline, IoSearchSharp } from "react-icons/io5";
+import { IoSearchSharp } from "react-icons/io5";
 import { BiMinus, BiPlus } from "react-icons/bi";
 
 import "./expandedsearch.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
+
 const List = React.lazy(() => import("../list/List.jsx"));
 
 function ExpandedSearch({ activeBtn }) {
@@ -41,6 +39,10 @@ function ExpandedSearch({ activeBtn }) {
   const [continent, setContinent] = useState("region/asia");
   const [country, setCountry] = useState("");
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const [searchClicked, setSearchClicked] = useState(false);
+
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
@@ -57,10 +59,16 @@ function ExpandedSearch({ activeBtn }) {
 
   const [query, setQuery] = useState({
     destination: "",
-    startDate: dates.startDate,
-    endDate: dates.endDate,
-    guests: guests,
+    dates: {},
+    guests: {},
   });
+
+  // const [query, setQuery] = useState({
+  //   destination: "",
+  //   startDate: dates.startDate,
+  //   endDate: dates.endDate,
+  //   guests: Object.entries(guests).filter((a) => a[1] !== 0),
+  // });
 
   const navigate = useNavigate();
 
@@ -85,14 +93,21 @@ function ExpandedSearch({ activeBtn }) {
     { type: "Pets", info: "Support pets" },
   ];
 
-  const formatGuests = () => {
-    const filtered = Object.entries(guests).filter((a) => a[1] !== 0);
+  const filterGuests = (obj) => Object.entries(obj).filter((a) => a[1] !== 0);
+
+  const capitalizeGuests = (arr) => {
+    arr.forEach((val) => {
+      val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
+    });
+    const string = arr.map((val) => val.join(" ")).join();
+    return string;
+  }
+
+  const formatGuests = () => {   
+    const filtered = filterGuests(guests);
 
     if (filtered.length !== 0) {
-      filtered.forEach((val) => {
-        val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
-      });
-      const string = filtered.map((val) => val.join(" ")).join();
+      const string = capitalizeGuests(filtered);
       return string;
     } else {
       return "Add guests";
@@ -109,12 +124,16 @@ function ExpandedSearch({ activeBtn }) {
   };
 
   const handleCountry = (props) => {
-    console.log(props);
     setCountry(props);
   };
   
   const search = () => {
-    navigate("/search", {state:{country} });
+    setQuery({destination: country,
+      startDate: dates[0].startDate,
+      endDate: dates[0].endDate,
+      guests: (Object.fromEntries(Object.entries(guests).filter(([key, val]) => val !== 0)))});
+    // setSearchParams({country:country, datas:dates, guets:guests});
+    navigate("/search", {state:{country:country, startDate:dates[0].startDate, endDate:dates[0].endDate, guests:Object.fromEntries(filterGuests(guests)) } });
   }
 
   useEffect(() => {
@@ -122,8 +141,16 @@ function ExpandedSearch({ activeBtn }) {
   }, [staysClicked, expClicked]);
 
   useEffect(() => {
-    console.log(`openWhere: ${openWhere}`);
-  }, [openWhere]);
+    if(searchClicked){
+    // setQuery({destination: country,
+    //   startDate: dates[0].startDate,
+    //   endDate: dates[0].endDate,
+    //   guests: (Object.fromEntries(Object.entries(guests).filter(([key, val]) => val !== 0)))});
+      console.log(query);}
+  },[searchClicked, query]);
+    
+       
+  // }, [searchClicked]);
 
   // whyDidYouRender(React, {
   //   onlyLogs: true,
@@ -135,7 +162,7 @@ function ExpandedSearch({ activeBtn }) {
     <>
       <div className={`expandedSearch ${activeBtn === null ? "hide" : ""}`}>
 
-        {/* <div>{countries}</div> */}
+        
         <div className="searchTabs">
           <span
             className="searchTab searchItem"
@@ -169,6 +196,7 @@ function ExpandedSearch({ activeBtn }) {
           </span>
         </div>
       </div>
+      {query.destinations}
       {tabClicked && (
         <div className="searchOptionsContainer">
           <div className="searchOptions">
@@ -374,9 +402,11 @@ function ExpandedSearch({ activeBtn }) {
               </div>
               <div
                 className="searchItem searchOption searchButton pointer"
-                onClick={(e) =>{ e.stopPropagation(); search()}}
-
-              >
+                onClick={(e) =>{ 
+                  e.stopPropagation();                  
+                  search();
+                }
+                }>
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
               </div>
