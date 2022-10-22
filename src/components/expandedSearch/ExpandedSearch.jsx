@@ -3,9 +3,11 @@ import React, {
   useEffect,
   useRef,
   Suspense,
+  useContext
 } from "react";
+import { SearchContext } from "../../context/SearchContext";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams, Navigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 
@@ -23,8 +25,6 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 const List = React.lazy(() => import("../list/List.jsx"));
 
 function ExpandedSearch({ activeBtn }) {
-  // const [open, setOpen] = useState(false);
-
   const [tabClicked, setTabClicked] = useState(true);
   const [active, setActive] = useState(activeBtn);
 
@@ -37,6 +37,12 @@ function ExpandedSearch({ activeBtn }) {
   const [guestsClicked, setGuestsClicked] = useState(false);
 
   const [continent, setContinent] = useState("region/asia");
+
+  const [toSearch, setToSearch] = useState(false);
+
+  const {searchContext, updateSearchContext} = useContext(SearchContext);
+  // const {contextCountry, contextDates, contextGuests} = context;
+
   const [country, setCountry] = useState("");
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -63,24 +69,7 @@ function ExpandedSearch({ activeBtn }) {
     guests: {},
   });
 
-  // const [query, setQuery] = useState({
-  //   destination: "",
-  //   startDate: dates.startDate,
-  //   endDate: dates.endDate,
-  //   guests: Object.entries(guests).filter((a) => a[1] !== 0),
-  // });
-
   const navigate = useNavigate();
-
-  // const whereRef = useOutsideClick(() => {
-  //   setOpenWhere((openWhere) => !openWhere);
-  // });
-  // const whenRef = useOutsideClick(() => {
-  //   setOpenWhen((openWhen) => !openWhen);
-  // });
-  // const whoRef = useOutsideClick(() => {
-  //   setOpenWho((openWho) => !openWho);
-  // });
 
   const getCountry = (e) => {
     setCountry(e.targetValue);
@@ -93,7 +82,7 @@ function ExpandedSearch({ activeBtn }) {
     { type: "Pets", info: "Support pets" },
   ];
 
-  const filterGuests = (obj) => Object.entries(obj).filter((a) => a[1] !== 0);
+  const filterGuests = () => Object.entries(guests).filter((a) => a[1] !== 0);
 
   const capitalizeGuests = (arr) => {
     arr.forEach((val) => {
@@ -104,7 +93,7 @@ function ExpandedSearch({ activeBtn }) {
   }
 
   const formatGuests = () => {   
-    const filtered = filterGuests(guests);
+    const filtered = filterGuests();
 
     if (filtered.length !== 0) {
       const string = capitalizeGuests(filtered);
@@ -113,7 +102,7 @@ function ExpandedSearch({ activeBtn }) {
       return "Add guests";
     }
   };
-
+ 
   const handleSetGuests = (opt, op) => {
     setGuests((prev) => {
       return {
@@ -121,19 +110,16 @@ function ExpandedSearch({ activeBtn }) {
         [opt]: op === "m" ? guests[opt] - 1 : guests[opt] + 1,
       };
     });
+    updateSearchContext("guests", Object.fromEntries(filterGuests()));
   };
 
   const handleCountry = (props) => {
     setCountry(props);
+    updateSearchContext("country",props);
   };
   
   const search = () => {
-    setQuery({destination: country,
-      startDate: dates[0].startDate,
-      endDate: dates[0].endDate,
-      guests: (Object.fromEntries(Object.entries(guests).filter(([key, val]) => val !== 0)))});
-    // setSearchParams({country:country, datas:dates, guets:guests});
-    navigate("/search", {state:{country:country, startDate:dates[0].startDate, endDate:dates[0].endDate, guests:Object.fromEntries(filterGuests(guests)) } });
+    navigate("/search")
   }
 
   useEffect(() => {
@@ -142,27 +128,12 @@ function ExpandedSearch({ activeBtn }) {
 
   useEffect(() => {
     if(searchClicked){
-    // setQuery({destination: country,
-    //   startDate: dates[0].startDate,
-    //   endDate: dates[0].endDate,
-    //   guests: (Object.fromEntries(Object.entries(guests).filter(([key, val]) => val !== 0)))});
       console.log(query);}
-  },[searchClicked, query]);
-    
-       
-  // }, [searchClicked]);
+  },[searchClicked, query]);  
 
-  // whyDidYouRender(React, {
-  //   onlyLogs: true,
-  //   titleColor: "green",
-  //   diffNameColor: "aqua",
-  //   trackAllPureComponents: true
-  // });
-  return (
+    return (
     <>
       <div className={`expandedSearch ${activeBtn === null ? "hide" : ""}`}>
-
-        
         <div className="searchTabs">
           <span
             className="searchTab searchItem"
@@ -373,7 +344,11 @@ function ExpandedSearch({ activeBtn }) {
                   <div className="tabPopout popOutContent dateSelectorContainer">
                     <DateRange
                       editableDateInputs={true}
-                      onChange={(item) => setDates([item.selection])}
+                      onChange={(item) => {
+                        setDates([item.selection]);
+                        updateSearchContext("dates", {startDate:dates[0].startDate, endDate:dates[0].endDate})
+                      
+                      }}
                       moveRangeOnFirstSelection={false}
                       ranges={dates}
                     />
@@ -405,6 +380,7 @@ function ExpandedSearch({ activeBtn }) {
                 onClick={(e) =>{ 
                   e.stopPropagation();                  
                   search();
+                  // setToSearch(true);
                 }
                 }>
                 <IoSearchSharp size={"1.5em"} />
