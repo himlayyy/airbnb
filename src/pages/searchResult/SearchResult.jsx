@@ -1,16 +1,15 @@
 import React from "react";
-import {useState, useEffect, Suspense} from "react";
+import {useState, useEffect, Suspense, useContext} from "react";
 import {  useSearchParams, useLocation } from "react-router-dom";
 import Destinations from "../../components/destinations/Destinations";
 import StayFilter from "../../components/stayFilter/StayFilter";
 import {HiMap} from "react-icons/hi";
 import {FaMapMarker} from "react-icons/fa";
 import axios from "axios";
-// import Map from "../../components/map/Map";
 import Map, {Marker} from "react-map-gl";
 import "./searchResult.css";
 import {generateOptions} from "../../helpers/helpers";
-// import { accessToken } from "mapbox-gl";
+import {SearchContext} from "../../context/SearchContext";
 
 const mapboxAccessToken =
   "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsOWIxOHZlazAxNTMzdW84aDNhYWFweHAifQ.1PTEHwG13mwLValeNyq2Kg";
@@ -19,13 +18,12 @@ function SearchResult() {
   const [viewState, setViewState] = useState({
     latitude:0,
     longitude:0,
-    zoom:5
+    zoom:13
   });
-  const locationData = useLocation();
-  const [country, setCountry] = useState(locationData.state.country);
-  // const [location, setLocation] = useState(location.state);
-  // const {destination, dates, guests} = useLocation();
 
+  const searchData = useContext(SearchContext);
+  const {country, dates, guests} = searchData.search;
+  
   useEffect(() =>{
     const getCoordinates = async (country) => {
       const endpoint = `https://restcountries.com/v3.1/name/${country}?fields=latlng`;
@@ -46,14 +44,14 @@ function SearchResult() {
     });
   },[country]);
 
-  // setViewState(Object.values(res[0])[0]))
-  return (
+   return (
     <>
       <div className="searchResultContainer">
         <div className="searchResult ">
           <div className="destinations">
             <div className="header">
-              <p>Over 1,000 homes in {country} {viewState.latitude} {viewState.longitude} </p>
+              
+              <p>Over 1,000 homes in {country} Latitude:{viewState.latitude} Longitude:{viewState.longitude}</p>
               <StayFilter />
             </div>
             <div className="container">
@@ -76,7 +74,6 @@ function SearchResult() {
                 />
               </Map >           
             </Suspense>
-
           </div>
         </div>
       </div>
