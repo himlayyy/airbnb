@@ -6,30 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
 function HomeFooter() {
-  // src\components\homeFooter\HomeFooter.jsx
-  const{ geoContext} = useContext(GeoContext);
-  // const {geoState, setGeoState} = useState({});
-  // const {geolocation, callback} = geoContext;
-
-  // console.log(geolocation)
-
-  // const {geolocation, loading, error} = fetch("https://api.ipify.org?format=jsonp&callback=getip");
-  // const [details, setDetails] = useState(null);
-
-  // const {data, loading, error} = useFetch("http://ip-api.com/json/?fields=status,message,country,countryCode,region,regionName,city,zip,lat,lon,timezone,isp,org,as,query");
-
-//   useEffect(() => {
-// setGeoState({...geoContext});
-// console.log(geoState)
-//   }, [])
-
-//   useEffect(() =>{    
-//     const update = (val) => {
-//       setGeoState((prevVal) =>( {...prevVal, ...val}));
-
-//     };
-//     console.log(geoState)
-//   }, [geoContext])
+  const{ geoContext} = useContext(GeoContext);  
 
  return (
     
