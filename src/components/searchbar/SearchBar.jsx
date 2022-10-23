@@ -20,9 +20,9 @@ function SearchBar({setSearchTab}) {
         }}
       />       */}
       <button className="staysGroup searchItem" onClick={() =>setSearchTab("btn1")}>Anywhere</button>
-      <span className="vertical-separator"></span>
+      <hr/>
       <button className="experiencesGroup searchItem" onClick={() =>setSearchTab("btn2")}>Any week</button>
-      <span className="vertical-separator"></span>
+      <hr/>
       
       <button className="onlineExperiences searchItem"  onClick={() =>setSearchTab("btn3")}>Add guests</button>
       <button className="searchButton searchItem">

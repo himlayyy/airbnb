@@ -7,7 +7,7 @@
     /* overflow-y:hidden; */
 }
 .searchResult{
-    background: yellow;
+    gap:5px;
     display: flex;
     flex-direction: row;
 }

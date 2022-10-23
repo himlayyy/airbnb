@@ -2,13 +2,13 @@ import React from "react";
 import {useState, useEffect, Suspense, useContext} from "react";
 import {  useSearchParams, useLocation } from "react-router-dom";
 import Destinations from "../../components/destinations/Destinations";
+import StayScroller from "../../components/stayScroller/StayScroller";
 import StayFilter from "../../components/stayFilter/StayFilter";
-import {HiMap} from "react-icons/hi";
-import {FaMapMarker} from "react-icons/fa";
+
 import axios from "axios";
 import Map, {Marker} from "react-map-gl";
 import "./searchResult.css";
-import {generateOptions} from "../../helpers/helpers";
+
 import {SearchContext} from "../../context/SearchContext";
 
 const mapboxAccessToken =
@@ -46,6 +46,7 @@ function SearchResult() {
 
    return (
     <>
+    <StayScroller />
       <div className="searchResultContainer">
         <div className="searchResult ">
           <div className="destinations">

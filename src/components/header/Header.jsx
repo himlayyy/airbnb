@@ -21,7 +21,7 @@ function Header() {
   return (
     <div className="header page-padding">
       <Link to="/">
-      <SiteLogo />
+      <SiteLogo className="hide1120"/>
       </Link>
       <div className="headerCenter">
         {active === null ? (

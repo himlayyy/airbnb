@@ -77,7 +77,36 @@ function StayScroller() {
     slidesToShow: 15,
     slidesToScroll: 3,
     prevArrow: <PrevArrow />,
-    nextArrow: <NextArrow />
+    nextArrow: <NextArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 13,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      }
+      ,
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 10,
+          slidesToScroll: 3,
+          initialSlide: 1
+        }
+      }
+      ,
+      {
+        breakpoint: 481,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 3
+        }
+      }
+    ]
+
   };
 
   const menuItems = [
