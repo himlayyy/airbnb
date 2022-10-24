@@ -63,3 +63,135 @@ font-size:15px;
 .pointer{
   cursor:pointer;
 }
+
+@media (max-width: 743px){
+  .page-padding{
+    padding: 14px 24px 0px;
+  }
+}
+@media (max-width: 743px){
+  .page-padding{
+    padding: 14px 24px 0px;
+  }
+  a[href="/"]{
+    display: none;
+  }
+  .rightHeaderGroup{
+    display:none;
+  }
+  .headerCenter{
+    width:100%;
+    display:flex;
+    flex-direction:column;  
+  }
+  .search{
+    width:100%;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+/*     align-items: baseline; */
+  }
+  .searchSection {
+  flex-direction: column;
+  display: flex;
+    gap:2px;
+    padding:5px 0px;
+  }
+  
+  .searchPrompt{
+    padding-left: 10px;
+  }
+  .searchItems{
+    display:flex;
+    flex-direction: row;
+  }
+  .searchItem{
+    font-size:12px;    
+    font-weight:normal;    
+  }  
+  .searchButton svg:first-child{
+    color:black;
+     -webkit-filter: invert(-0.25); /* safari 6.0 - 9.0 */
+          /*! filter: invert(100%); */
+  }
+  .searchOptionsContainer{
+    width:100%;
+  }
+  .searchOptions{
+    width:100%;
+    flex-direction:column;
+    align-items:flex-start;
+  } 
+
+  .homeFooter{
+    display:none;
+  } 
+
+  /* HERER */
+  .searchOptionsContainer{
+    width:inherit;    
+    flex-basis: 100%;
+  }
+  .searchOptions{
+    flex-direction:column;
+    align-items:flex-start;
+    gap: 10px;
+    padding: 10px 5px;
+  }
+  .searchOption{
+    width: 100%;
+  }
+  .destination,
+  .dates,
+  .guests{
+    padding:0px;
+  }
+  .destination > * {
+    padding-left:20px;
+  }
+  .destination:first-child{
+    padding-top:5px;
+  }
+  .destination :last-child{
+    padding-bottom:5px;
+  }
+  .guests > *{
+    padding-left:20px;
+  }
+  .guests:first-child{
+    padding-top: 5px;
+   }
+  .guests:last-child{
+    padding-bottom:5px;
+  }
+  .guests.searchOption{
+    flex-direction:column;
+  }  
+  .tabPopout{
+    position:unset;
+    height:min-content
+  }
+}
+/* end Header */
+
+/*  Logo styles*/
+@media (max-width: 1129px){
+  .siteLogo svg:last-child{
+    display:none;
+  }
+}
+/* Logo styles end */
+
+
+@media (min-width: 744px){
+  .page-padding{
+    padding:0px 40px;
+  }
+  .searchItems{
+    display: flex;
+    flex-direction: row;
+  }
+  .searchPrompt{
+    display:none;    
+  }
+
+}
