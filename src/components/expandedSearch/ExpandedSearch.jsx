@@ -287,6 +287,7 @@ function ExpandedSearch({ activeBtn }) {
               )}
             </div>
             <div className="dates searchOption pointer">
+              
               {active === "btn2" ? (
                 <>
                   <div
@@ -339,6 +340,7 @@ function ExpandedSearch({ activeBtn }) {
                   </div>
                 </>
               )}
+              </div>
               {openWhen && (
                 <>
                   <div className="tabPopout popOutContent dateSelectorContainer">
@@ -355,7 +357,7 @@ function ExpandedSearch({ activeBtn }) {
                   </div>
                 </>
               )}
-            </div>
+              
 
             <div
               className={`guests searchOption pointer ${
@@ -375,7 +377,7 @@ function ExpandedSearch({ activeBtn }) {
                   value={formatGuests()}
                 />
               </div>
-              <div
+              {/* <div
                 className="searchItem searchOption searchButton pointer"
                 onClick={(e) =>{ 
                   e.stopPropagation();                  
@@ -385,7 +387,7 @@ function ExpandedSearch({ activeBtn }) {
                 }>
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
-              </div>
+              </div> */}
 
               {openWho && (
                 <>
@@ -426,6 +428,18 @@ function ExpandedSearch({ activeBtn }) {
                   </div>
                 </>
               )}
+              <div
+                className="searchItem searchOption searchButton pointer"
+                onClick={(e) =>{ 
+                  e.stopPropagation();                  
+                  search();
+                  // setToSearch(true);
+                }
+                }>
+                <IoSearchSharp size={"1.5em"} />
+                <span className="body-text">Search</span>
+              </div>
+
             </div>
           </div>
         </div>
