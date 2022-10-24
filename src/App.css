@@ -173,6 +173,13 @@ font-size:15px;
   
   .dateSelectorContainer{
     padding-bottom:10px;
+    padding-bottom: 0px;
+    width:80vw;
+    margin:auto;   
+    background-color:pink;
+  }
+  .rdrMonth{
+    padding:0 0 10px 0px;
   }
   .staysSelectorContainer,  
   .guestSelectorContainer{
@@ -185,6 +192,68 @@ font-size:15px;
   .searchItem.searchOption.searchButton{
     padding:10px;
   }
+   .staysSelectorContainer{
+    height:150px;
+  }
+
+  /* guestPicker mobile styles */
+  .guests.searchOption.pointer:hover{
+    background-color: transparent;
+  }
+  .guestPickerContainer{
+      margin-bottom:5px;    
+      padding-left:0px;
+      border-radius:40px;
+  }
+  .guestPickerContainer:hover{    
+    background-color: var(--grey-hover2);
+  }
+  .guestPickerContainer label,
+  .guestPickerContainer input{
+    padding-left:20px;
+  }
+  .guestPickerContainer label{ 
+    border-radius: 40px 40px 0 0;
+    padding-top:15px;
+  }
+  .guestPickerContainer input{
+    border-radius: 0 0 40px 40px;
+    padding-bottom: 10px;
+  }
+
+  /* Search page mobile styles */
+  .searchOptions .destination.searchOption{
+    border-radius:40px;
+  }
+  .searchOptions .destination.searchOption input{
+    border-radius: 0 0 40px 40px;
+  }
+  .searchResult{
+    gap:0px;
+    display:block;
+    height: inherit;
+  }
+  .searchResult > *{
+    display:block;
+    width:inherit;
+  }  
+  .searchResult .map{
+    /*! display:none; */
+    height: 100%;
+    width: 100%;
+  }
+  .searchResult .destinations{
+    width:100vw;
+    padding:0px;
+    position:fixed;
+    bottom:0;
+    left: 0;
+    right: 0;
+  }
+  .searchResult .destinations .container{
+    display:none;   
+  }
+  
 }
 /* end Header */
 
