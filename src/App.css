@@ -126,7 +126,7 @@ font-size:15px;
     display:none;
   } 
 
-  /* HERER */
+  /* Expanded search styles */
   .searchOptionsContainer{
     width:inherit;    
     flex-basis: 100%;
@@ -169,6 +169,21 @@ font-size:15px;
   .tabPopout{
     position:unset;
     height:min-content
+  }
+  
+  .dateSelectorContainer{
+    padding-bottom:10px;
+  }
+  .staysSelectorContainer,  
+  .guestSelectorContainer{
+    background: pink;
+    margin-top: 5px;
+  }
+  .guestSelectorContainer{
+    margin-bottom:7px;
+  }
+  .searchItem.searchOption.searchButton{
+    padding:10px;
   }
 }
 /* end Header */
