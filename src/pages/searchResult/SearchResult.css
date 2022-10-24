@@ -9,7 +9,7 @@
 .searchResult{
     gap:5px;
     display: flex;
-    flex-direction: row;
+    flex-direction: row-reverse;
 }
 .searchResult .destinations{
     width:40vw;

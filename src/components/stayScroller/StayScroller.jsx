@@ -62,7 +62,7 @@ function PrevArrow(props) {
       }}
       onClick={onClick}
       >
-       {/* <CgChevronLeftO /> */}
+       <CgChevronLeftO />
        </div>
       </>
   );

@@ -49,18 +49,10 @@ function SearchResult() {
     <StayScroller />
       <div className="searchResultContainer">
         <div className="searchResult ">
-          <div className="destinations">
-            <div className="header">
-              
-              <p>Over 1,000 homes in {country} Latitude:{viewState.latitude} Longitude:{viewState.longitude}</p>
-              <StayFilter />
-            </div>
-            <div className="container">
-              {/* <Destinations /> */}
-            </div>
-          </div>
+          
           <div className="map">
-            <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
+            <div className="temp">Map</div>
+            {/* <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
             <Map
              {...viewState}
             //  onMove={evt => setViewState(evt.viewState)}
@@ -74,8 +66,20 @@ function SearchResult() {
                 color="red" 
                 />
               </Map >           
-            </Suspense>
+            </Suspense> */}
           </div>
+
+          <div className="destinations">
+            <div className="header">
+              
+              <p>Over 1,000 homes in {country} {`${viewState.latitude}, ${viewState.longitude}`} </p>
+              <StayFilter />
+            </div>
+            <div className="container">
+              {/* <Destinations /> */}
+            </div>
+          </div>
+
         </div>
       </div>
     </>
