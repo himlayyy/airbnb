@@ -64,9 +64,23 @@ font-size:15px;
   cursor:pointer;
 }
 
-@media (max-width: 743px){
-  .page-padding{
-    padding: 14px 24px 0px;
+@media (max-width:345px){
+  .searchSection .searchItems{
+    display:none;
+  }
+}
+
+@media (max-width:381px){
+ 
+  .dates.searchOption{
+    flex-direction: column;
+  }
+}@media (max-width:381px){
+  .dates{
+    background-color:white;
+  }
+  .dates.searchOption{
+    flex-direction: column;
   }
 }
 @media (max-width: 743px){
@@ -136,6 +150,8 @@ font-size:15px;
     align-items:flex-start;
     gap: 10px;
     padding: 10px 5px;
+    margin-right:0px;
+    width: auto;
   }
   .searchOption{
     width: 100%;
@@ -144,6 +160,13 @@ font-size:15px;
   .dates,
   .guests{
     padding:0px;
+  }
+  .destination.searchOption,
+  .guests.searchOption{
+    width:100%;
+  }
+  .dates.searchOption{
+    flex:1 1 0;
   }
   .destination > * {
     padding-left:20px;
@@ -172,18 +195,15 @@ font-size:15px;
   }
   
   .dateSelectorContainer{
-    padding-bottom:10px;
     padding-bottom: 0px;
     width:80vw;
     margin:auto;   
-    background-color:pink;
   }
   .rdrMonth{
     padding:0 0 10px 0px;
   }
   .staysSelectorContainer,  
   .guestSelectorContainer{
-    background: pink;
     margin-top: 5px;
   }
   .guestSelectorContainer{
@@ -253,7 +273,26 @@ font-size:15px;
   .searchResult .destinations .container{
     display:none;   
   }
-  
+  .popOutRow{
+    margin-left:0px;
+  }
+
+  .staysSelectorContainer{
+    grid-template-columns: repeat(2, 50%);
+     gap: 0px;
+    }  
+    .dates .date{
+      flex: 1 1 0;
+    }
+   
+    .checkIn input,
+    .checkOut input{
+      min-width:0;    
+    }
+    .rdrMonth {
+    padding: 0 0 10px 0px;
+    margin:auto;  
+    }
 }
 /* end Header */
 
