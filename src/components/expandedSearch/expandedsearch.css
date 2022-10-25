@@ -70,6 +70,11 @@
   flex-direction: column;
   padding: 10px;
 }
+.dates .date, 
+.dates .null {
+  flex: 1 1 0;
+  min-width: 0;
+}
 .date:hover,
 .searchOption.guests:hover {
   background-color: var(--grey-hover2);
@@ -136,6 +141,10 @@
   grid-template-columns: repeat(2, max-content);
   height: 300px;
 }
+.popOutColumn{
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 .popOutColumn > * {
   background-color: white;
@@ -149,6 +158,7 @@
   gap: 1px;
   text-align: left;
   overflow: auto;
+  overflow-x: hidden;
   border: none;
 }
 .popOutColumn > *:hover {
@@ -162,7 +172,7 @@
   padding-left: 5px;
   border-color: var(--border-grey);
   overflow: auto;
-}
+  }
 .popOutScroll > * {
   margin-right: 10px;
 }
@@ -194,6 +204,9 @@
     border-bottom: 1px solid var(--border-grey);
     gap:10px;
     margin:0px 15px;
+}
+.popOutRow:last-of-type{
+  border: none;
 }
 .guest {
     display: flex;
