@@ -12,6 +12,12 @@ import Home from "../../pages/home/Home";
 function Header() {
   const [active, setActive] = useState(null);
 
+  const [activeBtn, setActiveBtn] = useState(null);
+  const [staysClicked, setStaysClicked] = useState(false);
+  const [expClicked, setExpClicked] = useState(false);
+  const [guestsClicked, setGuestsClicked] = useState(false);
+
+
   const navigate = useNavigate();
 
   const activeCallback = (optionName) => {
@@ -19,6 +25,8 @@ function Header() {
   };
 
   return (
+    <>
+    <div className="headerContainer">
     <div className="header page-padding">
       <Link to="/">
       <SiteLogo className="hide1120"/>
@@ -30,12 +38,56 @@ function Header() {
           </>
         ) : (
           <>
-            <ExpandedSearch activeBtn={active} />
+            <div className={`expandedSearch ${active === null ? "hide" : ""}`}>
+        <div className="searchTabs">
+          <span
+            className="searchTab searchItem"
+            onClick={() => {
+              setActiveBtn("btn1");
+              setStaysClicked(!staysClicked);
+            }}
+          >
+            <button className={`${active === "btn1" ? "clickedTab" : null}`}>
+              Stays
+            </button>
+          </span>
+          <span
+            className="searchTab searchItem"
+            onClick={() => {
+              if (active !== "btn2") {
+                setExpClicked(!expClicked);
+                setActiveBtn("btn2");
+              }
+            }}
+          >
+            <button>Experiences</button>
+          </span>
+          <span
+            className="searchTab searchItem"
+            onClick={() => {
+              setActiveBtn("btn3");
+            }}
+          >
+            <button>Online Experiences</button>
+          </span>
+        </div>
+      </div>
           </>
         )}
       </div>
+
+      
         <AccountToggle />
+
     </div>
+    {active !== null ?
+
+    (<ExpandedSearch active={activeBtn}/>)
+    : 
+    ""
+    }
+    </div>
+        </>
   );
 }
 
