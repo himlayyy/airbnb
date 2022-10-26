@@ -24,17 +24,16 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 
 const List = React.lazy(() => import("../list/List.jsx"));
 
-function ExpandedSearch({ activeBtn }) {
-  const [tabClicked, setTabClicked] = useState(true);
-  const [active, setActive] = useState(activeBtn);
+// function ExpandedSearch() {
+
+function ExpandedSearch({ active}) {
+  const [tabClicked, setTabClicked] = useState(true);  
 
   const [openWhere, setOpenWhere] = useState(false);
   const [openWhen, setOpenWhen] = useState(false);
   const [openWho, setOpenWho] = useState(false);
 
-  const [staysClicked, setStaysClicked] = useState(false);
-  const [expClicked, setExpClicked] = useState(false);
-  const [guestsClicked, setGuestsClicked] = useState(false);
+
 
   const [continent, setContinent] = useState("region/asia");
 
@@ -123,50 +122,12 @@ function ExpandedSearch({ activeBtn }) {
   }
 
   useEffect(() => {
-    console.log(`staysClicked ${staysClicked} expClicked ${expClicked}`);
-  }, [staysClicked, expClicked]);
-
-  useEffect(() => {
     if(searchClicked){
       console.log(query);}
   },[searchClicked, query]);  
 
     return (
     <>
-      <div className={`expandedSearch ${activeBtn === null ? "hide" : ""}`}>
-        <div className="searchTabs">
-          <span
-            className="searchTab searchItem"
-            onClick={() => {
-              setActive("btn1");
-              setStaysClicked(!staysClicked);
-            }}
-          >
-            <button className={`${active === "btn1" ? "clickedTab" : null}`}>
-              Stays
-            </button>
-          </span>
-          <span
-            className="searchTab searchItem"
-            onClick={() => {
-              if (active !== "btn2") {
-                setExpClicked(!expClicked);
-                setActive("btn2");
-              }
-            }}
-          >
-            <button>Experiences</button>
-          </span>
-          <span
-            className="searchTab searchItem"
-            onClick={() => {
-              setActive("btn3");
-            }}
-          >
-            <button>Online Experiences</button>
-          </span>
-        </div>
-      </div>
       {query.destinations}
       {tabClicked && (
         <div className="searchOptionsContainer">
@@ -376,18 +337,7 @@ function ExpandedSearch({ activeBtn }) {
                   // placeholder= {formatGuests()}
                   value={formatGuests()}
                 />
-              </div>
-              {/* <div
-                className="searchItem searchOption searchButton pointer"
-                onClick={(e) =>{ 
-                  e.stopPropagation();                  
-                  search();
-                  // setToSearch(true);
-                }
-                }>
-                <IoSearchSharp size={"1.5em"} />
-                <span className="body-text">Search</span>
-              </div> */}
+              </div>             
 
               {openWho && (
                 <>
