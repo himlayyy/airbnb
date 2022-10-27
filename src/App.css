@@ -14,7 +14,7 @@
   --white:rgb(255,255,255);
 }
 html,body, button { font-family: "Inter","Montserrat", sans-serif;
-font-weight:regular }
+}
 @supports (font-variation-settings: normal) {
   html { font-family: 'Inter var', sans-serif; }
 }
