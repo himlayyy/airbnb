@@ -3,13 +3,18 @@ import React, {
   useEffect,
   useRef,
   Suspense,
-  useContext
+  useContext,
 } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import useOutsideClick from "../../hooks/useOutsideClick";
 import { useNavigate, useSearchParams, Navigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
+import {
+  capitalizeGuests,
+  formatGuests,
+  filterGuests,
+} from "../../helpers/helpers";
 
 // import List from "../list/List.jsx";
 
@@ -26,27 +31,26 @@ const List = React.lazy(() => import("../list/List.jsx"));
 
 // function ExpandedSearch() {
 
-function ExpandedSearch({ active}) {
-  const [tabClicked, setTabClicked] = useState(true);  
+function ExpandedSearch({ active }) {
+  const [tabClicked, setTabClicked] = useState(true);
 
   const [openWhere, setOpenWhere] = useState(false);
   const [openWhen, setOpenWhen] = useState(false);
   const [openWho, setOpenWho] = useState(false);
 
-
-
   const [continent, setContinent] = useState("region/asia");
 
-  const [toSearch, setToSearch] = useState(false);
+  // const [toSearch, setToSearch] = useState(false);
 
-  const {searchContext, updateSearchContext} = useContext(SearchContext);
-  // const {contextCountry, contextDates, contextGuests} = context;
+  const { updateSearchContext } = useContext(SearchContext);
+
+  // const {datesString} = searchContext.search;
 
   const [country, setCountry] = useState("");
 
-  const [searchParams, setSearchParams] = useSearchParams();
+  // const [searchParams, setSearchParams] = useSearchParams();
 
-  const [searchClicked, setSearchClicked] = useState(false);
+  // const [searchClicked, setSearchClicked] = useState(false);
 
   const [dates, setDates] = useState([
     {
@@ -81,27 +85,6 @@ function ExpandedSearch({ active}) {
     { type: "Pets", info: "Support pets" },
   ];
 
-  const filterGuests = () => Object.entries(guests).filter((a) => a[1] !== 0);
-
-  const capitalizeGuests = (arr) => {
-    arr.forEach((val) => {
-      val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
-    });
-    const string = arr.map((val) => val.join(" ")).join();
-    return string;
-  }
-
-  const formatGuests = () => {   
-    const filtered = filterGuests();
-
-    if (filtered.length !== 0) {
-      const string = capitalizeGuests(filtered);
-      return string;
-    } else {
-      return "Add guests";
-    }
-  };
- 
   const handleSetGuests = (opt, op) => {
     setGuests((prev) => {
       return {
@@ -109,24 +92,20 @@ function ExpandedSearch({ active}) {
         [opt]: op === "m" ? guests[opt] - 1 : guests[opt] + 1,
       };
     });
-    updateSearchContext("guests", Object.fromEntries(filterGuests()));
+    updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
+    updateSearchContext("guestsString", formatGuests(guests));
   };
 
   const handleCountry = (props) => {
     setCountry(props);
-    updateSearchContext("country",props);
+    updateSearchContext("country", props);
   };
-  
-  const search = () => {
-    navigate("/search")
-  }
 
-  useEffect(() => {
-    if(searchClicked){
-      console.log(query);}
-  },[searchClicked, query]);  
+  const goSearch = () => {
+    navigate("/search");
+  };
 
-    return (
+  return (
     <>
       {query.destinations}
       {tabClicked && (
@@ -230,8 +209,7 @@ function ExpandedSearch({ active}) {
                       </span>
                     </div>
                     <div className="popOutColumn popOutScroll countries">
-                      {/* Hello! */}
-
+                      {/* Start here */}
                       {continent !== "" ? (
                         <Suspense fallback={<div>Loading</div>}>
                           <List
@@ -248,7 +226,6 @@ function ExpandedSearch({ active}) {
               )}
             </div>
             <div className="dates searchOption pointer">
-              
               {active === "btn2" ? (
                 <>
                   <div
@@ -262,7 +239,6 @@ function ExpandedSearch({ active}) {
                         id="checkInDate"
                         placeholder="Add dates"
                         value={format(dates[0].startDate, "MMM d")}
-                        // className="bold-text"
                         onClick={() => setOpenWhen(!openWhen)}
                       />
                     </div>
@@ -277,12 +253,11 @@ function ExpandedSearch({ active}) {
                       <label htmlFor="checkInDate">Check in</label>
                       <input
                         type="text"
-                        name=""
+                        name="checkInDate"
                         id="checkInDate"
                         placeholder="Add dates"
                         value={format(dates[0].startDate, "MMM d")}
                         onClick={() => setOpenWhen(!openWhen)}
-                        // className="bold-text"
                       />
                     </div>
                   </div>
@@ -295,30 +270,34 @@ function ExpandedSearch({ active}) {
                         id="checkOutDate"
                         placeholder="Add dates"
                         value={format(dates[0].endDate, "MMM d")}
-                        // className="bold-text"
                       />
                     </div>
                   </div>
                 </>
               )}
-              </div>
-              {openWhen && (
-                <>
-                  <div className="tabPopout popOutContent dateSelectorContainer">
-                    <DateRange
-                      editableDateInputs={true}
-                      onChange={(item) => {
-                        setDates([item.selection]);
-                        updateSearchContext("dates", {startDate:dates[0].startDate, endDate:dates[0].endDate})
-                      
-                      }}
-                      moveRangeOnFirstSelection={false}
-                      ranges={dates}
-                    />
-                  </div>
-                </>
-              )}
-              
+            </div>
+            {openWhen && (
+              <>
+                <div className="tabPopout popOutContent dateSelectorContainer">
+                  <DateRange
+                    editableDateInputs={true}
+                    onChange={(item) => {
+                      setDates([item.selection]);
+                      updateSearchContext("dates", {
+                        startDate: dates[0].startDate,
+                        endDate: dates[0].endDate,
+                      });
+                      updateSearchContext("datesString", {
+                        start: format(dates[0].startDate, "MMM d"),
+                        end: format(dates[0].endDate, "MMM d"),
+                      });
+                    }}
+                    moveRangeOnFirstSelection={false}
+                    ranges={dates}
+                  />
+                </div>
+              </>
+            )}
 
             <div
               className={`guests searchOption pointer ${
@@ -334,10 +313,10 @@ function ExpandedSearch({ active}) {
                   type="text"
                   name="guestPicker"
                   id="guest"
-                  // placeholder= {formatGuests()}
-                  value={formatGuests()}
+                  placeholder="Add guests"
+                  value={formatGuests(guests)}
                 />
-              </div>             
+              </div>
 
               {openWho && (
                 <>
@@ -345,51 +324,47 @@ function ExpandedSearch({ active}) {
                     className="guestSelectorContainer popOutContent tabPopout"
                     // ref={whoRef}
                   >
-                    {
-                      guestOptions.map((option, index) => {
-                        let opt = option.type.toLowerCase();
-                        return (
-                          <div className="popOutRow">
-                            <div className="guest">
-                              <span className="guestType">{option.type}</span>
-                              <span className="guestInfo">{option.info}</span>
-                            </div>
-
-                            <div className="guestBtns">
-                              <button
-                                className="minus"
-                                disabled={guests[opt] === 0}
-                                onClick={() => handleSetGuests(opt, "m")}
-                              >
-                                <BiMinus size={"1.5em"} />
-                              </button>
-                              <span>{guests[opt]}</span>
-                              <button
-                                className="plus"
-                                onClick={() => handleSetGuests(opt, "p")}
-                              >
-                                <BiPlus size={"1.5em"} />
-                              </button>
-                            </div>
+                    {guestOptions.map((option, index) => {
+                      let opt = option.type.toLowerCase();
+                      return (
+                        <div className="popOutRow">
+                          <div className="guest">
+                            <span className="guestType">{option.type}</span>
+                            <span className="guestInfo">{option.info}</span>
                           </div>
-                        );
-                      })
-                    }
+
+                          <div className="guestBtns">
+                            <button
+                              className="minus"
+                              disabled={guests[opt] === 0}
+                              onClick={() => handleSetGuests(opt, "m")}
+                            >
+                              <BiMinus size={"1.5em"} />
+                            </button>
+                            <span>{guests[opt]}</span>
+                            <button
+                              className="plus"
+                              onClick={() => handleSetGuests(opt, "p")}
+                            >
+                              <BiPlus size={"1.5em"} />
+                            </button>
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
                 </>
               )}
               <div
                 className="searchItem searchOption searchButton pointer"
-                onClick={(e) =>{ 
-                  e.stopPropagation();                  
-                  search();
-                  // setToSearch(true);
-                }
-                }>
+                onClick={(e) => {
+                  e.stopPropagation();
+                  goSearch();
+                }}
+              >
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
               </div>
-
             </div>
           </div>
         </div>
