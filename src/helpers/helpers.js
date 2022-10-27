@@ -107,3 +107,32 @@ export const  generateOptions = async (country) =>{
           })
     return res;
 };
+
+export const capitalizeGuests = (arr) => {
+    arr.forEach((val) => {
+      val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
+    });
+    const string = arr.map((val) => val.join(" ")).join();
+    return string;
+};
+
+export const filterGuests = (obj) => {
+    return Object.entries(obj).filter((a) => a[1] !== 0)
+};
+
+export const formatGuests = (obj) => {   
+    const filtered = filterGuests(obj);
+
+    if (filtered.length !== 0) {
+      const string = capitalizeGuests(filtered);
+      return string;
+    } 
+    else {
+      return "Add guests";
+    };
+};
+
+export const stringifyGuests = (obj) =>{
+    const string = formatGuests(obj);
+    return string;
+};
