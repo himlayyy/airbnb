@@ -1,14 +1,21 @@
-.stay{
+/* .stay{
     display: grid; 
     grid-template-columns: 94% 6%; 
-    gap: 2px 0px;    
-}/* .slider{
+    gap: 2px 0px;     */
+/* .slider{
     display:flex;
     flex-direction: column;
     align-items: center;
 } */
+.stay{
+  display:flex;
+  flex-direction:row;
+  gap:10px;
+}
+
 .sliderContainer{
     padding:0 30px 0 28px;
+    min-width:0;
 }
 .slides{
     display:flex;
