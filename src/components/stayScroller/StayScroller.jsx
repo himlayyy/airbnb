@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 // import "slick-carousel/slick/slick.css";
 // import "slick-carousel/slick/slick-theme.css";
+// import { v4 as uuidv4 } from 'uuid';
 import "./stayscroller.css";
 import StayFilter from "../stayFilter/StayFilter";
 
@@ -182,7 +183,9 @@ function StayScroller() {
               const Icon = menuIcons[idx];
               return (
                 <>
-                  <div className="slideItem">
+                  <div className="slideItem"
+                  key={idx}
+                  >
                     <Icon className="slideIcon" size={'1.5em'}/>
                     <p className="slideTitle">{menuItem}</p>
                   </div>
