@@ -46,7 +46,8 @@ function SearchResult() {
 
    return (
     <>
-    <StayScroller />
+    <div className="searchPage page-padding">
+      <StayScroller />
       <div className="searchResultContainer">
         <div className="searchResult ">
           
@@ -82,6 +83,7 @@ function SearchResult() {
 
         </div>
       </div>
+    </div>
     </>
   );
 }
