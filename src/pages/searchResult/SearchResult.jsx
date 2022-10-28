@@ -12,7 +12,7 @@ import "./searchResult.css";
 import {SearchContext} from "../../context/SearchContext";
 
 const mapboxAccessToken =
-  "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsOWIxOHZlazAxNTMzdW84aDNhYWFweHAifQ.1PTEHwG13mwLValeNyq2Kg";
+  process.env.REACT_APP_MAPBOX_KEY;
 
 function SearchResult() {
   const [viewState, setViewState] = useState({
@@ -21,8 +21,8 @@ function SearchResult() {
     zoom:13
   });
 
-  const searchData = useContext(SearchContext);
-  const {country, dates, guests} = searchData.search;
+  const {search} = useContext(SearchContext);
+  const {country, dates, guests} = search;
   
   useEffect(() =>{
     const getCoordinates = async (country) => {
@@ -37,10 +37,10 @@ function SearchResult() {
     
     };
     getCoordinates(country).then(res=> {
-      let [lat, long] = Object.values(res[0])[0];
+      let [lat, long] = Object.values(res[0])[2];
       console.log(lat, long);
       setViewState({latitude:lat, longitude:long});
-    console.log(viewState);
+      console.log(viewState);
     });
   },[country]);
 
@@ -52,7 +52,7 @@ function SearchResult() {
           
           <div className="map">
             <div className="temp">Map</div>
-            {/* <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
+            <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
             <Map
              {...viewState}
             //  onMove={evt => setViewState(evt.viewState)}
@@ -66,7 +66,7 @@ function SearchResult() {
                 color="red" 
                 />
               </Map >           
-            </Suspense> */}
+            </Suspense>
           </div>
 
           <div className="destinations">
