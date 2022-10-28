@@ -75,35 +75,84 @@ function StayScroller() {
     // dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 15,
+    slidesToShow: 17,
     slidesToScroll: 3,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 14,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 1050,
         settings: {
           slidesToShow: 13,
           slidesToScroll: 3,
           infinite: true,
           dots: true
         }
-      }
-      ,
+      },
       {
-        breakpoint: 769,
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 12,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 11,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 800,
         settings: {
           slidesToShow: 10,
           slidesToScroll: 3,
           initialSlide: 1
         }
-      }
-      ,
+      },
       {
-        breakpoint: 481,
+        breakpoint: 700,
+        settings: {
+          slidesToShow: 9,
+          slidesToScroll: 9,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 8,
+          slidesToScroll: 8,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 500,
         settings: {
           slidesToShow: 5,
-          slidesToScroll: 3
+          slidesToScroll: 5,
+          initialSlide: 1
+        }
+      },
+      {
+        breakpoint: 400,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 4
         }
       }
     ]
@@ -161,6 +210,7 @@ function StayScroller() {
           <div className="slideItem">
             <Icon className="slideIcon" />
             <p className="slideTitle">{menuItem}</p>
+            <p>{idx}</p>
           </div>
         </>
       );
