@@ -327,7 +327,8 @@ function ExpandedSearch({ active }) {
                     {guestOptions.map((option, index) => {
                       let opt = option.type.toLowerCase();
                       return (
-                        <div className="popOutRow">
+                        <div className="popOutRow"
+                        key={index}>
                           <div className="guest">
                             <span className="guestType">{option.type}</span>
                             <span className="guestInfo">{option.info}</span>
