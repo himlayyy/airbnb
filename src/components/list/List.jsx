@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import useFetch from "../../hooks/useFetch";
+import { v4 as uuidv4 } from 'uuid';
 import axios from "axios";
 
 function List(props) {
@@ -31,8 +32,8 @@ function List(props) {
         return(
           <span 
           className={itemClass} 
-          onClick = {(e) => {callback(e.target.innerText);
-          console.log(e.target.innerText)}}>{country}</span>
+          key={uuidv4()}
+          onClick = {(e) => callback(e.target.innerText)}>{country}</span>
         )
       })
       }
