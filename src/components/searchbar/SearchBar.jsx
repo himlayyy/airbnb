@@ -1,22 +1,17 @@
 import React, { useState, useEffect, useContext } from "react";
 
-
 import { SearchContext } from "../../context/SearchContext";
+
 import ExpandedSearch from "../expandedSearch/ExpandedSearch";
+import StayFilter from "../stayFilter/StayFilter";
+
 import { IoSearchCircleSharp } from "react-icons/io5";
 
 import "./searchbar.css";
 
-function SearchBar({ setSearchTab }) {
-  const [active, setActive] = useState(null);
-  const [onClick, setOnClick] = useState(false);
-  const [openExpanded, setOpenExpanded] = useState(false);
-
+function SearchBar({ setSearchTab}) {
   const {search} = useContext(SearchContext);
   const { country, datesString, guestsString} = search;
-
-  const [searchQuery, setSearchQuery] = useState("");
-  const [option, setOption] = useState("");
 
   useEffect(() =>{
     console.log("Context contents");
@@ -24,19 +19,14 @@ function SearchBar({ setSearchTab }) {
   },[])
 
   return (
-    <>
-      {openExpanded === true ? 
-        (
-          // <div>Expanded clicked! </div>
-          <ExpandedSearch active={"btn1"} />
-        ) 
-        : 
-        (
+    <>     
           <div className="search">
+            <StayFilter width="1.5 em"/>
             <div className="searchSection">
               <div
                 className="searchPrompt pointer"
-                onClick={() => setOpenExpanded(!openExpanded)}
+                onClick={() => {
+                  setSearchTab("btn1")}}              
               >
                 Where to?
               </div>
@@ -44,7 +34,9 @@ function SearchBar({ setSearchTab }) {
               <div className="searchItems">
                 <button
                   className="staysGroup searchItem"
-                  onClick={() => setSearchTab("btn1")}
+                  onClick={() => { 
+                    setSearchTab("btn1");
+                  }}
                 >
                   {country === null ? "Anywhere" : country}
                 </button>
@@ -63,7 +55,6 @@ function SearchBar({ setSearchTab }) {
                   onClick={() => setSearchTab("btn3")}
                 >
                   {guestsString === null ? "Add guests" : guestsString}
-                  
                 </button>
               </div>
             </div>
@@ -71,8 +62,6 @@ function SearchBar({ setSearchTab }) {
               <IoSearchCircleSharp size={"3em"} />
             </button>
           </div>
-        )
-      }
     </>
   );
 }
