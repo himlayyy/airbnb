@@ -125,106 +125,95 @@ function ExpandedSearch({ active }) {
                 value={country}
                 onClick={() => setOpenWhere(!openWhere)}
               />
-              {openWhere && (
-                <>
-                  <div
-                    className="tabPopout popOutContent staysSelectorContainer"
-                    onClick={() =>
-                      console.log(`From tabPopOut openWhere : ${openWhere}`)
-                    }
-                    // ref={whereRef}
-                  >
-                    <div className="popOutColumn continents">
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("region/asia");
-                        }}
-                      >
-                        Asia
-                      </span>
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("region/africa");
-                        }}
-                      >
-                        Africa
-                      </span>
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("region/europe");
-                        }}
-                      >
-                        Europe
-                      </span>
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("subregion/north%20america");
-                        }}
-                      >
-                        North America
-                      </span>
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("region/oceania");
-                        }}
-                      >
-                        Oceania
-                      </span>
-                      <span
-                        className="continent"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          console.log(
-                            `From continent openWhere : ${openWhere}`
-                          );
-                          setContinent("subregion/south%20america");
-                        }}
-                      >
-                        South America
-                      </span>
-                    </div>
-                    <div className="popOutColumn popOutScroll countries">
-                      {/* Start here */}
-                      {continent !== "" ? (
-                        <Suspense fallback={<div>Loading</div>}>
-                          <List
-                            endpoint={continent}
-                            fields={"?fields=name"}
-                            itemClass={"country"}
-                            callback={handleCountry}
-                          />
-                        </Suspense>
-                      ) : null}
-                    </div>
-                  </div>
-                </>
-              )}
             </div>
+            {openWhere && (
+              <>
+                <div
+                  className="tabPopout popOutContent staysSelectorContainer"
+                  onClick={() =>
+                    console.log(`From tabPopOut openWhere : ${openWhere}`)
+                  }
+                  // ref={whereRef}
+                >
+                  <div className="popOutColumn continents">
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("region/asia");
+                      }}
+                    >
+                      Asia
+                    </span>
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("region/africa");
+                      }}
+                    >
+                      Africa
+                    </span>
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("region/europe");
+                      }}
+                    >
+                      Europe
+                    </span>
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("subregion/north%20america");
+                      }}
+                    >
+                      North America
+                    </span>
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("region/oceania");
+                      }}
+                    >
+                      Oceania
+                    </span>
+                    <span
+                      className="continent"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        console.log(`From continent openWhere : ${openWhere}`);
+                        setContinent("subregion/south%20america");
+                      }}
+                    >
+                      South America
+                    </span>
+                  </div>
+                  <div className="popOutColumn popOutScroll countries">
+                    {/* Start here */}
+                    {continent !== "" ? (
+                      <Suspense fallback={<div>Loading</div>}>
+                        <List
+                          endpoint={continent}
+                          fields={"?fields=name"}
+                          itemClass={"country"}
+                          callback={handleCountry}
+                        />
+                      </Suspense>
+                    ) : null}
+                  </div>
+                </div>
+              </>
+            )}
+
             <div className="dates searchOption pointer">
               {active === "btn2" ? (
                 <>
@@ -270,6 +259,8 @@ function ExpandedSearch({ active }) {
                         id="checkOutDate"
                         placeholder="Add dates"
                         value={format(dates[0].endDate, "MMM d")}
+                        onClick={() => !openWhen && setOpenWhen(!openWhen)}
+                        // onClick={() => setOpenWhen(!openWhen)}
                       />
                     </div>
                   </div>
@@ -327,8 +318,7 @@ function ExpandedSearch({ active }) {
                     {guestOptions.map((option, index) => {
                       let opt = option.type.toLowerCase();
                       return (
-                        <div className="popOutRow"
-                        key={index}>
+                        <div className="popOutRow">
                           <div className="guest">
                             <span className="guestType">{option.type}</span>
                             <span className="guestInfo">{option.info}</span>
@@ -356,6 +346,7 @@ function ExpandedSearch({ active }) {
                   </div>
                 </>
               )}
+
               <div
                 className="searchItem searchOption searchButton pointer"
                 onClick={(e) => {
