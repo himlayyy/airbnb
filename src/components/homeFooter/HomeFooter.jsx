@@ -2,6 +2,10 @@ import React, { useState, useEffect, useContext } from "react";
 import "./homefooter.css";
 import { FiGlobe } from "react-icons/fi";
 import { GeoContext } from "../../context/Geolocation";
+
+import { IoSearchSharp, IoHeartOutline } from "react-icons/io5";
+import { MdAccountCircle } from "react-icons/md";
+
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
@@ -11,7 +15,7 @@ function HomeFooter() {
  return (
     
     <div className="page-padding homeFooter">
-      <div className="homeFooterContainer">
+      <div className="homeFooterContainer webFooter">
         <div className="footerGroup">
           <ul>
             <li>
@@ -52,6 +56,20 @@ function HomeFooter() {
 
       </div>
       
+      <div className="homeFooterContainer mobileFooter">
+        <button className="footerBtn">
+          <IoSearchSharp size={'1.5em'}/>
+          <span>Explore</span>
+        </button>
+        <button className="footerBtn" >
+          <IoHeartOutline size={'1.5em'}/>
+          <span>Wishlist</span>
+        </button>
+        <button className="footerBtn">
+          <MdAccountCircle size={'1.5em'} />
+          <span>Log In</span>
+        </button>
+      </div>
     </div>
   );
 }
