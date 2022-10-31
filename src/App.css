@@ -84,8 +84,14 @@ font-size:15px;
   }
 }
 @media (max-width: 743px){
+  .headerContainer{
+    border-bottom:0px;
+ }
   .page-padding{
     padding: 14px 24px 0px;
+  }
+  .header {
+    margin-top:0px;   
   }
   a[href="/"]{
     display: none;
@@ -97,6 +103,7 @@ font-size:15px;
     width:100%;
     display:flex;
     flex-direction:column;  
+    margin-bottom:0px;
   }
   .search{
     width:100%;
@@ -109,6 +116,7 @@ font-size:15px;
   display: flex;
     gap:2px;
     padding:5px 0px;
+    width: 100%;
   }
   
   .searchPrompt{
@@ -117,6 +125,8 @@ font-size:15px;
   .searchItems{
     display:flex;
     flex-direction: row;
+    justify-content: flex-start;
+    width:fit-content;
   }
   .searchItem{
     font-size:12px;    
@@ -136,9 +146,24 @@ font-size:15px;
     align-items:flex-start;
   } 
 
-  .homeFooter{
-    display:none;
-  } 
+  .search .filter .filterButton {
+    border:none;
+    justify-content: flex-end;
+
+    padding:0px;
+    padding-right: 10px;
+  }
+ .search .filter .filterButton svg {
+  padding:6px;
+   border:1px solid var(--border-grey) ;
+   border-radius:50%;
+   
+  }
+  .search .filter .filterButton span{
+    display: none;
+  }
+
+ 
 
   /* Expanded search styles */
   .searchOptionsContainer{
@@ -293,6 +318,33 @@ font-size:15px;
     padding: 0 0 10px 0px;
     margin:auto;  
     }
+    .guests.searchOption.activeTab{
+      background-color:var(--grey-bg3);
+      margin-bottom:0px;
+      padding-bottom:0px;
+      box-shadow:none;
+   }
+    .guests.searchOption.activeTab .guestPickerContainer{
+      background-color:white;
+    }
+    .guests.searchOption.activeTab:hover{
+      background-color:var(--grey-bg3) !important;
+    }
+    .home {
+      padding-top:0px;
+    }
+    .stay .filter{
+      display:none;
+    }
+  .webFooter{
+    display:none;
+  }
+  .page-padding.homeFooter{
+    padding-top:0px;
+  }
+  .mobileFooter{
+    gap:30px;
+  }
 }
 /* end Header */
 
@@ -306,6 +358,7 @@ font-size:15px;
 
 
 @media (min-width: 744px){
+  
   .page-padding{
     padding:0px 40px;
   }
@@ -316,5 +369,11 @@ font-size:15px;
   .searchPrompt{
     display:none;    
   }
-
+  .mobileFooter{
+    display:none;
+  }
+  .search .filter{
+    display:none;
+  }
+  
 }
