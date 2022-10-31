@@ -3,13 +3,13 @@ import "./stayfilter.css";
 
 import {CgOptions} from "react-icons/cg";
 
-function StayFilter(){
+function StayFilter({width="1.5 em"}){
     return(
         <div className="filter">
             <button className="filterButton">
-                <CgOptions className="filterIcon"/>
+                <CgOptions className="filterIcon" width={width}/>
                 
-                Filter
+                <span>Filter</span>
             </button>
         </div>
     )
