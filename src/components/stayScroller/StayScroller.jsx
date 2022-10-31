@@ -32,39 +32,48 @@ import {
 } from "react-icons/md";
 import { TbTent, TbSailboat } from "react-icons/tb";
 
+let slidesToShow;
 
 function NextArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick} = props;
 
   return (
-    <div
-      className={className}
-      style={{
-        ...style,
-        cursor:"pointer",
-        backgroundColor:"black"
-      }}
-      onClick={onClick}
-    />
+    <>
+ 
+      <div
+        className={className}
+        style={{
+          ...style,
+          cursor:"pointer",
+          backgroundColor:"black"
+        }}
+        onClick={onClick}
+        >
+          </div>
+  
+    </>
   );
 }
 
 function PrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { className, style, onClick, slideCount, currentSlide } = props;
 
   return (
     <>
-    <div
-      className={className}
-      style={{
-        ...style,
-        cursor:"pointer",
-        backgroundColor:"black"
-      }}
-      onClick={onClick}
-      >
-       <CgChevronLeftO />
-       </div>
+    {currentSlide !== slideCount - slidesToShow &&
+      (
+      <div
+        className={className}
+        style={{
+          ...style,
+          cursor:"pointer",
+          backgroundColor:"black"
+        }}
+        onClick={onClick}
+        >
+      </div>
+       )
+    }
       </>
   );
 }
@@ -202,27 +211,7 @@ function StayScroller() {
     GiWhiteTower,
   ];
 
-  const renderSlides = () => {
-    menuItems.map((menuItem, idx) => {
-      const Icon = menuIcons[idx];
-      return (
-        <>
-          <div className="slideItem">
-            <Icon className="slideIcon" />
-            <p className="slideTitle">{menuItem}</p>
-            <p>{idx}</p>
-          </div>
-        </>
-      );
-    });
-  };
-
-  // const renderSlides = () =>
-  // [1, 2, 3, 4, 5, 6, 7, 8].map(num => (
-  //   <div>
-  //     <h3>Slide {num}</h3>
-  //   </div>
-  // ));
+  
   return (
     
     <>
