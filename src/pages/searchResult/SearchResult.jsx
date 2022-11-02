@@ -20,9 +20,28 @@ function SearchResult() {
     longitude:0,
     zoom:13
   });
+  const [width,setWidth] = useState(window.innerWidth);
+
+  const [openDestinations, setOpenDestinations] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const {search} = useContext(SearchContext);
   const {country, dates, guests} = search;
+
+  useEffect(() =>{
+    const handleWindowResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleWindowResize);
+
+    if(width <= 743){
+      setIsMobile(true);
+    }
+    else{
+      setIsMobile(false);
+    }
+    console.log(isMobile);
+    console.log(width);
+
+  },[width])
   
   useEffect(() =>{
     const getCoordinates = async (country) => {
@@ -53,7 +72,7 @@ function SearchResult() {
           
           <div className="map">
             <div className="temp">Map</div>
-            <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
+            {/* <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
             <Map
              {...viewState}
             //  onMove={evt => setViewState(evt.viewState)}
@@ -67,20 +86,23 @@ function SearchResult() {
                 color="red" 
                 />
               </Map >           
-            </Suspense>
+            </Suspense> */}
           </div>
 
-          <div className="destinations">
+          <div className="destinations-results">
             <div className="header">
               
-              <p>Over 1,000 homes in {country} {`${viewState.latitude}, ${viewState.longitude}`} </p>
-              <StayFilter />
+              <button disabled={!isMobile} onClick={() => setOpenDestinations(!openDestinations)}>
+                Over 1,000 homes in {country} {`${viewState.latitude}, ${viewState.longitude}`} 
+              </button>
             </div>
-            <div className="container">
-              {/* <Destinations /> */}
-            </div>
+            {/* {(openDestinations) &&  */}
+            <div className={`destination-container ${openDestinations ? "open" : "close" }`}>
+              
+                <Destinations />
+             
+            </div>        
           </div>
-
         </div>
       </div>
     </div>
