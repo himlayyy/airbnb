@@ -3,7 +3,7 @@
 .searchResultContainer{
     /* padding-left:30px;
     padding-right:30px; */
-    height:90vh;
+    /* height: calc(100vh - 188px); */
     /* overflow-y:hidden; */
 }
 .searchResult{
@@ -11,13 +11,38 @@
     display: flex;
     flex-direction: row-reverse;
 }
-.searchResult .destinations{
+.searchResult .destinations-results{
     width:40vw;
+    background-color:white;
+}
+.searchResult .destinations-results .header{
+    margin-top:0px;
 }
 .searchResult .map{
     width:60vw;
 }
-.destinations .container{
-    height:90vh;
+.destinations-results {
+    /* height:90vh; */
+    /* overflow-y:scroll; */
+}
+.destination-container{
+    
     overflow-y:scroll;
+    /* display:none; */
+}
+.close{
+    display:none;
+}
+.open{
+    display:block;
+    height:calc(100vh - 150px);;
+}
+.open-destinations{
+    display:unset;
+}
+
+.mapboxgl-ctrl-bottom-left,
+.mapboxgl-ctrl-bottom-right{
+  position:absolute;
+  bottom:50px;
 }
