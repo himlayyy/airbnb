@@ -17,6 +17,7 @@
 }
 .searchResult .destinations-results .header{
     margin-top:0px;
+    margin-bottom:20px;
 }
 .searchResult .map{
     width:60vw;
@@ -25,11 +26,18 @@
     /* height:90vh; */
     /* overflow-y:scroll; */
 }
+.destinationItems{
+    height:100vh; 
+    overflow-y:scroll;
+  }
 .destination-container{
     
     overflow-y:scroll;
     /* display:none; */
 }
+.destinations-results .destinations .destinationItems .destinationItem:first-child{
+    margin-top:0px;
+  }
 .close{
     display:none;
 }
