@@ -190,6 +190,7 @@
 }
 
 .guestSelectorContainer {
+  width:300px;
     grid-template-columns: 1fr;
     grid-template-rows: repeat(4, 1fr);
     /* justify-content: center; */
@@ -218,6 +219,13 @@
     font-size: 12px;
     color:var(--grey-hover2);
 }
+.guestBtns{
+  display:flex;
+  flex-shrink:0;
+  flex-grow:0;
+  width:100%;
+  justify-content: space-between;
+}
 .guestBtns > * {
     padding: 10px;
 }
@@ -245,4 +253,7 @@
 .guestBtns .minus:hover:enabled{
   color:var(--black-hover2);
   border-color:var(--black-hover2);
+}
+.guestBtns span{
+  padding:0px;
 }
