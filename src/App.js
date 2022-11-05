@@ -4,6 +4,7 @@ import Header from "./components/header/Header";
 import Home from "./pages/home/Home";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Page2 from "./pages/page2/Page2";
+import Login from "./pages/login/Login";
 
 import './App.css';
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchResult />}/>
           <Route path="/page-2" element={<Page2 />} />
+          <Route path="/login" element={<Login/> } />
         </Routes>
     </div>
   );
