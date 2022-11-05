@@ -26,6 +26,10 @@ function Header() {
     setActive(!active);
     setActiveBtn(tab)
   };
+
+  const closeExpanded = () => {
+    setActive(null);
+  };
   // const promptClicked = () =>{
   //   setOpenExpanded(!openExpanded);
   // };
@@ -102,7 +106,7 @@ console.log(`closeSearch ${closeSearch} active ${active} activeBtn ${activeBtn} 
 
           <AccountToggle />
         </div>
-        {active !== null  && <ExpandedSearch active={activeBtn} /> }
+        {active !== null  && <ExpandedSearch active={activeBtn} closeExpanded={closeExpanded}/> }
       </div>
     </>
   );
