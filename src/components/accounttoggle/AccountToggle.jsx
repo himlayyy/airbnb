@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect, Suspense } from "react";
 import Modal from "../modal/Modal";
 import { countryCurrency } from "../../helpers/helpers";
 import { GeoContext} from "../../context/Geolocation";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
@@ -16,9 +17,11 @@ function AccountToggle() {
   const [loaded, setLoaded] = useState(false);
 
   const [modalOptions, setModalOptions] = useState();
-
+  
   // const countryCurrencyParser = countryCurrency;
   const {geoContext, updateContext} = useContext(GeoContext);
+
+  const navigate =  useNavigate();
 
   function Tab(name, options) {
     this.name = name;
@@ -149,10 +152,10 @@ function AccountToggle() {
         {clicked && (
           <div className="accountDetails">
             <>
-              <div className="accountSignUp accountToggleHover bold-text">
+              <div className="accountSignUp accountToggleHover bold-text" onClick={()=> navigate("/login")}>
                 Sign Up
               </div>
-              <div className="accountLogIn accountToggleHover">Log In </div>
+              <div className="accountLogIn accountToggleHover" onClick={()=> navigate("/login")}>Log In </div>
               <div className="thin-separator"></div>
               <div className="hostHome accountToggleHover">Host your home</div>
               <div className="hostExperience accountToggleHover">
