@@ -14,10 +14,7 @@
   border-radius: 40px;
   /* border: 1px solid black; */
   border: 1px solid var(--border-grey);
-  top: 85px;
   margin: auto;
-  left: 0;
-  right:0;
   margin-left:auto;
   margin-right:auto;
   width:fit-content;
@@ -33,6 +30,7 @@
   padding: 0px;
   background-color: var(--bg-grey);
   border-radius: 40px;
+  position:relative;
 }
 .searchOptions > * {
   display: flex;
@@ -127,7 +125,7 @@
 } */
 .tabPopout {
   position: absolute;
-  top: 170px;
+  top: 70px;
   border: 1px solid var(--border-grey);
   border-radius: 10px;
   z-index: 100;
@@ -180,6 +178,7 @@
   display: flex;
   /* padding-bottom: 50px; */
   height:fit-content;
+    left:174px;
 }
 .guestSelectorContainer {
     height: fit-content;
