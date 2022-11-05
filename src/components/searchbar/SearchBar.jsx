@@ -9,7 +9,7 @@ import { IoSearchCircleSharp } from "react-icons/io5";
 
 import "./searchbar.css";
 
-function SearchBar({ setSearchTab}) {
+function SearchBar({setSearchTab}) {
   const {search} = useContext(SearchContext);
   const { country, datesString, guestsString} = search;
 
