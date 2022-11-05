@@ -35,9 +35,9 @@
     overflow-y:scroll;
     /* display:none; */
 }
-.destinations-results .destinations .destinationItems .destinationItem:first-child{
+/* .destinations-results .destinations .destinationItems .destinationItem:first-child{
     margin-top:0px;
-  }
+  } */
 .close{
     display:none;
 }
