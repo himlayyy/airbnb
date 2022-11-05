@@ -10,6 +10,8 @@ import useOutsideClick from "../../hooks/useOutsideClick";
 import { useNavigate, useSearchParams, Navigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
+import List from "../list/List";
+
 import {
   capitalizeGuests,
   formatGuests,
@@ -27,11 +29,11 @@ import "./expandedsearch.css";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
-const List = React.lazy(() => import("../list/List.jsx"));
+// const List = React.lazy(() => import("../list/List.jsx"));
 
 // function ExpandedSearch() {
 
-function ExpandedSearch({ active }) {
+function ExpandedSearch({ active, closeExpanded}) {
   const [tabClicked, setTabClicked] = useState(true);
 
   const [openWhere, setOpenWhere] = useState(false);
@@ -51,6 +53,8 @@ function ExpandedSearch({ active }) {
   // const [searchParams, setSearchParams] = useSearchParams();
 
   // const [searchClicked, setSearchClicked] = useState(false);
+
+  
 
   const [dates, setDates] = useState([
     {
@@ -92,16 +96,38 @@ function ExpandedSearch({ active }) {
         [opt]: op === "m" ? guests[opt] - 1 : guests[opt] + 1,
       };
     });
-    updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
-    updateSearchContext("guestsString", formatGuests(guests));
+    // updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
+    // updateSearchContext("guestsString", formatGuests(guests));
   };
 
   const handleCountry = (props) => {
     setCountry(props);
-    updateSearchContext("country", props);
+    // updateSearchContext("country", props);
+    setOpenWhere(!openWhere);
   };
 
+  const closeTabPopout = () =>{
+    setOpenWhen(!openWhen);
+  }
+
+  const ref = useOutsideClick(closeTabPopout);
+ 
+
+  const updateContext = () =>{
+    updateSearchContext("country", country);
+    updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
+    updateSearchContext("guestsString", formatGuests(guests));
+    updateSearchContext("dates", {
+      startDate: dates[0].startDate,
+      endDate: dates[0].endDate,
+    });
+    updateSearchContext("datesString", {
+      start: format(dates[0].startDate, "MMM d"),
+      end: format(dates[0].endDate, "MMM d"),
+    });
+  }
   const goSearch = () => {
+    updateContext();
     navigate("/search");
   };
 
@@ -139,7 +165,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("region/asia");
                       }}
@@ -149,7 +175,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("region/africa");
                       }}
@@ -159,7 +185,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("region/europe");
                       }}
@@ -169,7 +195,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("subregion/north%20america");
                       }}
@@ -179,7 +205,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("region/oceania");
                       }}
@@ -189,7 +215,7 @@ function ExpandedSearch({ active }) {
                     <span
                       className="continent"
                       onClick={(e) => {
-                        e.stopPropagation();
+                        // e.stopPropagation();
                         console.log(`From continent openWhere : ${openWhere}`);
                         setContinent("subregion/south%20america");
                       }}
@@ -206,6 +232,7 @@ function ExpandedSearch({ active }) {
                           fields={"?fields=name"}
                           itemClass={"country"}
                           callback={handleCountry}
+                          
                         />
                       </Suspense>
                     ) : null}
@@ -269,22 +296,30 @@ function ExpandedSearch({ active }) {
             </div>
             {openWhen && (
               <>
-                <div className="tabPopout popOutContent dateSelectorContainer">
+                <div className="tabPopout popOutContent dateSelectorContainer"
+                
+                onClick={(e) => {
+                  e.stopPropagation();                  
+                  closeTabPopout();
+                }
+              }
+                >
                   <DateRange
                     editableDateInputs={true}
                     onChange={(item) => {
                       setDates([item.selection]);
-                      updateSearchContext("dates", {
-                        startDate: dates[0].startDate,
-                        endDate: dates[0].endDate,
-                      });
-                      updateSearchContext("datesString", {
-                        start: format(dates[0].startDate, "MMM d"),
-                        end: format(dates[0].endDate, "MMM d"),
-                      });
+                      // updateSearchContext("dates", {
+                      //   startDate: dates[0].startDate,
+                      //   endDate: dates[0].endDate,
+                      // });
+                      // updateSearchContext("datesString", {
+                      //   start: format(dates[0].startDate, "MMM d"),
+                      //   end: format(dates[0].endDate, "MMM d"),
+                      // });
                     }}
                     moveRangeOnFirstSelection={false}
                     ranges={dates}
+                    ref = {ref}
                   />
                 </div>
               </>
@@ -351,6 +386,7 @@ function ExpandedSearch({ active }) {
                 className="searchItem searchOption searchButton pointer"
                 onClick={(e) => {
                   e.stopPropagation();
+                  closeExpanded();                  
                   goSearch();
                 }}
               >
