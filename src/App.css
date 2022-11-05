@@ -294,12 +294,15 @@ font-size:15px;
     bottom:0;
     left: 0;
     right: 0;
+    border-top-right-radius:40px;
+    border-top-left-radius:40px;
   }
   .searchResultContainer .searchResult .header button{
     padding:20px;
     background:none;
     border:none;    
   }
+  
   /* .searchResult .destinations .container{
     display:none;   
   } */
@@ -358,7 +361,8 @@ font-size:15px;
     justify-content: center;
     border-top:1px solid var(--bg-grey);
     border-top-right-radius:20px;
-    border-top-left-radius:20px;    
+    border-top-left-radius:20px;  
+    margin-bottom:0px;  
   }
 
   .searchResult .destinations-results .header::before{
@@ -375,6 +379,13 @@ font-size:15px;
     background:none;
     border:none;    
     color:black;    
+  }
+  .destinations-results .destination-container .destinations .destinationItems{
+    height: unset;
+    overflow-y:unset;
+  }
+  .destination-container .destinations .destinationItems .destinationItem:first-child{
+    margin-top:20px;
   }
   /* .destination-container{
     height:100%;
