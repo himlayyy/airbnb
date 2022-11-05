@@ -96,12 +96,16 @@ function SearchResult() {
                 Over 1,000 homes in {country} {`${viewState.latitude}, ${viewState.longitude}`} 
               </button>
             </div>
-            {/* {(openDestinations) &&  */}
-            <div className={`destination-container ${openDestinations ? "open" : "close" }`}>
+            {isMobile ?
+              (<div className={`destination-container ${openDestinations ? "open" : "close" }`}>
+                
+                  <Destinations />
               
+              </div>) :
+              (
                 <Destinations />
-             
-            </div>        
+              ) 
+            }    
           </div>
         </div>
       </div>
