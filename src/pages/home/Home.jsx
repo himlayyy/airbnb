@@ -13,10 +13,10 @@ function Home() {
 
 
       <div className="home page-padding center">
-        {/* <StayScroller /> */}
-       {/* <Destinations/> */}
+        <StayScroller />
+       <Destinations/>
       </div>
-        {/* <HomeFooter/> */}
+        <HomeFooter/>
     </>
   );
 }
