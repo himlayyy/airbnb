@@ -13,11 +13,21 @@ function Destinations() {
                 <DestinationItem/>
                 <DestinationItem/>
                 <DestinationItem/>
-                {/* <DestinationItem/>
                 <DestinationItem/>
                 <DestinationItem/>
                 <DestinationItem/>
-                <DestinationItem/> */}
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
+                <DestinationItem/>
 
             </div>
         </div>
