@@ -26,10 +26,10 @@
     /* height:90vh; */
     /* overflow-y:scroll; */
 }
-.destinationItems{
-    height:100vh; 
-    overflow-y:scroll;
-  }
+.destinations-results .destinations .destinationItems{
+    height: 100vh;
+    overflow-y: scroll;
+}
 .destination-container{
     
     overflow-y:scroll;
