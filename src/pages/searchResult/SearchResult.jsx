@@ -72,7 +72,7 @@ function SearchResult() {
           
           <div className="map">
             <div className="temp">Map</div>
-            {/* <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
+            <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
             <Map
              {...viewState}
             //  onMove={evt => setViewState(evt.viewState)}
@@ -86,7 +86,7 @@ function SearchResult() {
                 color="red" 
                 />
               </Map >           
-            </Suspense> */}
+            </Suspense>
           </div>
 
           <div className="destinations-results">
