@@ -11,8 +11,6 @@ import {SearchContext} from "../../context/SearchContext";
 
 import "./searchresult.css";
 
-const mapboxAccessToken =
-  process.env.REACT_APP_MAPBOX_KEY;
 
 function SearchResult() {
   const [viewState, setViewState] = useState({
@@ -27,6 +25,9 @@ function SearchResult() {
 
   const {search} = useContext(SearchContext);
   const {country, dates, guests} = search;
+
+  const mapboxAccessToken =
+  process.env.REACT_APP_MAPBOX_KEY;
 
   useEffect(() =>{
     const handleWindowResize = () => setWidth(window.innerWidth);
