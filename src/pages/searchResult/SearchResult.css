@@ -1,56 +1,39 @@
-
-
-.searchResultContainer{
-    /* padding-left:30px;
-    padding-right:30px; */
-    /* height: calc(100vh - 188px); */
-    /* overflow-y:hidden; */
+.searchResult {
+  gap: 5px;
+  display: flex;
+  flex-direction: row-reverse;
 }
-.searchResult{
-    gap:5px;
-    display: flex;
-    flex-direction: row-reverse;
+.searchResult .destinations-results {
+  width: 40vw;
+  background-color: white;
 }
-.searchResult .destinations-results{
-    width:40vw;
-    background-color:white;
+.searchResult .destinations-results .header {
+  margin-top: 0px;
+  margin-bottom: 20px;
 }
-.searchResult .destinations-results .header{
-    margin-top:0px;
-    margin-bottom:20px;
-}
-.searchResult .map{
-    width:60vw;
-}
-.destinations-results {
-    /* height:90vh; */
-    /* overflow-y:scroll; */
-}
-.destinations-results .destinations .destinationItems{
-    height: 100vh;
-    overflow-y: scroll;
-  }
-.destination-container{
-    
-    overflow-y:scroll;
-    /* display:none; */
-}
-/* .destinations-results .destinations .destinationItems .destinationItem:first-child{
-    margin-top:0px;
-  } */
-.close{
-    display:none;
-}
-.open{
-    display:block;
-    height:calc(100vh - 150px);;
-}
-.open-destinations{
-    display:unset;
+.searchResult .map {
+  width: 60vw;
 }
 
+.destinations-results .destinations .destinationItems {
+  height: 100vh;
+  overflow-y: scroll;
+}
+.destination-container {
+  overflow-y: scroll;
+}
+.close {
+  display: none;
+}
+.open {
+  display: block;
+  height: calc(100vh - 150px);
+}
+.open-destinations {
+  display: unset;
+}
 .mapboxgl-ctrl-bottom-left,
-.mapboxgl-ctrl-bottom-right{
-  position:absolute;
-  bottom:50px;
+.mapboxgl-ctrl-bottom-right {
+  position: absolute;
+  bottom: 50px;
 }
