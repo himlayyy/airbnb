@@ -8,6 +8,7 @@ import StayFilter from "../../components/stayFilter/StayFilter";
 import axios from "axios";
 import Map, {Marker} from "react-map-gl";
 import {SearchContext} from "../../context/SearchContext";
+
 import "./searchresult.css";
 
 const mapboxAccessToken =
