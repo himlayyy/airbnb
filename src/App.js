@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Header from "./components/header/Header";
 // import Navbar from "./components/navbar/Navbar";
@@ -15,10 +15,6 @@ import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {
-
-  useEffect(() =>{
-    document.title = "Airbnb";
-  },[]);
   
   return (
      
