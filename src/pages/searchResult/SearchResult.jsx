@@ -28,7 +28,7 @@ function SearchResult() {
 
   // const mapboxAccessToken = process.env.REACT_APP_MAPBOX_KEY;
 
-  const mapboxAccessToken = pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsYWpoOG84ZDBkNTgzb3BqOGFtZmlxd2MifQ.l3c6CXayb4EtdxMHehsCOQ
+  const mapboxAccessToken = "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsYWpoOG84ZDBkNTgzb3BqOGFtZmlxd2MifQ.l3c6CXayb4EtdxMHehsCOQ"
  
   useEffect(() =>{
     const handleWindowResize = () => setWidth(window.innerWidth);
