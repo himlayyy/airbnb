@@ -26,9 +26,9 @@ function SearchResult() {
   const {search} = useContext(SearchContext);
   const {country, dates, guests} = search;
 
-  const mapboxAccessToken = process.env.REACT_APP_MAPBOX_KEY;
+  // const mapboxAccessToken = process.env.REACT_APP_MAPBOX_KEY;
 
-  // const mapboxAccessToken = "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsYWpoOG84ZDBkNTgzb3BqOGFtZmlxd2MifQ.l3c6CXayb4EtdxMHehsCOQ"
+  const mapboxAccessToken = "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsYWpoOG84ZDBkNTgzb3BqOGFtZmlxd2MifQ.l3c6CXayb4EtdxMHehsCOQ"
  
   useEffect(() =>{
     const handleWindowResize = () => setWidth(window.innerWidth);
@@ -68,12 +68,10 @@ function SearchResult() {
    return (
     <>
     <div className="searchPage page-padding">
-      {/* <StayScroller /> */}
       <div className="searchResultContainer">
         <div className="searchResult ">
           
           <div className="map">
-            {/* <div className="temp">Map</div> */}
             <Suspense fallback={<div style={{display:"grid", placeItems:"center"}}>Loading</div>}>
             <Map
              {...viewState}
@@ -97,6 +95,7 @@ function SearchResult() {
               <button disabled={!isMobile} onClick={() => setOpenDestinations(!openDestinations)}>
                 Over 1,000 homes in {country} {`${viewState.latitude}, ${viewState.longitude}`} 
               </button>
+              <StayFilter />
             </div>
             {isMobile ?
               (<div className={`destination-container ${openDestinations ? "open" : "close" }`}>
