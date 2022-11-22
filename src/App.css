@@ -23,13 +23,19 @@ html,body, button { font-family: "Inter","Montserrat", sans-serif;
 }
 
 ::-webkit-scrollbar-track {
-  background: orange;        /* color of the tracking area */
+  background: white;        /* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: blue;    /* color of the scroll thumb */
+  background-color: var(--bg-grey);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid orange;  /* creates padding around scroll thumb */
+  border: 3px solid var(--bg-grey);  /* creates padding around scroll thumb */
+}
+html,
+.destinationItems,
+.modalSection.modalOptions{
+  scrollbar-color: var(--border-grey) white;
+  scrollbar-width:thin;
 }
 /* .App {
   background-color: #282c34;
@@ -84,6 +90,9 @@ font-size:15px;
   }
 }
 @media (max-width: 743px){
+  .siteLogo.pointer{
+    display:none;
+  }
   .headerContainer{
     border-bottom:0px;
  }
@@ -93,9 +102,9 @@ font-size:15px;
   .header {
     margin-top:0px;   
   }
-  a[href="/"]{
+  /* a[href="/"]{
     display: none;
-  }
+  } */
   .rightHeaderGroup{
     display:none;
   }
@@ -104,6 +113,7 @@ font-size:15px;
     display:flex;
     flex-direction:column;  
     margin-bottom:0px;
+    position:relative;
   }
   .search{
     width:100%;
@@ -166,9 +176,16 @@ font-size:15px;
  
 
   /* Expanded search styles */
+  .expandedSearch .searchTabs span:nth-child(3){
+    display:none;
+  }
   .searchOptionsContainer{
     width:inherit;    
     flex-basis: 100%;
+    border-radius:30px;
+    position:absolute;
+    width:100%;
+    z-index:100;
   }
   .searchOptions{
     flex-direction:column;
@@ -177,9 +194,18 @@ font-size:15px;
     padding: 10px 5px;
     margin-right:0px;
     width: auto;
+    height:100%;
+    border-radius:inherit;
   }
   .searchOption{
     width: 100%;
+    border-radius:30px;
+  }
+  .dateSelectorContainer,
+  .guestSelectorContainer,
+  .staysSelectorContainer{
+    width:90svw;
+    border-radius:30px;
   }
   .destination,
   .dates,
@@ -246,7 +272,7 @@ font-size:15px;
     background-color: transparent;
   }
   .guestPickerContainer{
-      margin-bottom:5px;    
+    margin-bottom:10px;   
       padding-left:0px;
       border-radius:40px;
   }
@@ -267,6 +293,10 @@ font-size:15px;
   }
 
   /* Search page mobile styles */
+  .searchPage.page-padding{
+    padding-left:0px;
+    padding-right:0px;
+  }
   .searchOptions .destination.searchOption{
     border-radius:40px;
   }
@@ -283,9 +313,17 @@ font-size:15px;
     width:inherit;
   }  
   .searchResult .map{
-    /*! display:none; */
-    height: 100%;
+    height: calc(100% - 130px);
     width: 100%;
+    position:absolute;
+    box-sizing: border-box;
+  }
+  .mapboxgl-canvas{
+    height:inherit !important;
+  }
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right{
+    z-index:0!important;
   }
   .searchResult .destinations-results{
     width:100%;
@@ -386,6 +424,15 @@ font-size:15px;
   }
   .destination-container .destinations .destinationItems .destinationItem:first-child{
     margin-top:20px;
+  }
+  .open{
+    height:40vh;
+  }
+  .searchResult .destinations-results .destination-container .destinations .destinationItems .destinationItem{
+    margin:20px;
+  }
+  .destinationItem:last-child{
+    margin-bottom:80px;
   }
   /* .destination-container{
     height:100%;

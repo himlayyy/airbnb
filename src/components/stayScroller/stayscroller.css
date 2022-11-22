@@ -26,12 +26,10 @@
     flex-direction: column;
     align-items: center;
  
-    padding:10px 10px 0 10px;
+    padding:5px 10px 0 10px;
     margin: 5px;
     /* border:1px solid black; */
 }
-
-
 .slideIcon{
     color:rgb(205,205,205);
 }
@@ -40,6 +38,7 @@
     position:relative;
     font-size:12px;
     text-align:center;
+    margin:6px;
 }
 .slideItem:hover > *{
     color:black;
@@ -60,7 +59,13 @@
   }
 
 
-.slick-prev:before,
+/* .slick-prev:before,
 .slick-next:before{
     color:black;
-}
+} */
+.slick-arrow{
+    background-color:#ffff !important;
+  }
+  .slick-arrow::before{
+    color:black !important;
+  }

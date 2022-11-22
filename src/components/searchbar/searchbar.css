@@ -92,7 +92,6 @@ align-items: center;
 }
 .searchTabs .buttonTop{
     background-color:white;
-    border:1px solid black;
-    padding:0px;
-    border-radius:50%;  
+    border:none;
+   padding:0px;
 }
