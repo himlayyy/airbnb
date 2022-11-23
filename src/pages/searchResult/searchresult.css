@@ -8,7 +8,7 @@
   background-color: white;
 }
 .searchResult .destinations-results .header {
-  margin-top: 0px;
+  align-items: center;
   margin-bottom: 20px;
 }
 .searchResult .map {

@@ -1,0 +1,15 @@
+.searchTabs .buttonTop{
+  border:none;
+}
+.searchResult .map{
+  border:none;
+}
+@media (max-width: 743px){
+  .searchPage.page-padding{
+/*     background-color:pink; */
+   border-top:1px solid black;
+   border-color: var(--bg-grey);
+  padding:0px;
+  }
+
+}

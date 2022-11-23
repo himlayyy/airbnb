@@ -157,7 +157,7 @@ font-size:15px;
   } 
 
   .search .filter .filterButton {
-    border:none;
+    border:none !important;
     justify-content: flex-end;
 
     padding:0px;
@@ -340,6 +340,10 @@ font-size:15px;
     background:none;
     border:none;    
   }
+  .searchResult .destinations-results .header .filter{
+    display:none;
+  }
+
   
   /* .searchResult .destinations .container{
     display:none;   
