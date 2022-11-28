@@ -1,10 +1,8 @@
 // so ang flow is:
 import axios from "axios";
 
-export const countryCurrency = (data, delimiter, parserProp) => {
-    // let temp = [];
-    // temp = data.slice(0, delimiter);
-
+export const parseItem = (item) => {
+                                
     const parseCurrency = (item) => {
         let currency = null;
         let symbol = null;
@@ -22,7 +20,6 @@ export const countryCurrency = (data, delimiter, parserProp) => {
             currency = "USD";
             symbol = "$";
         }
-        // console.log([currency, symbol])
         return [currency, symbol];
     };
 
@@ -41,37 +38,29 @@ export const countryCurrency = (data, delimiter, parserProp) => {
         return item.name.common;
     };
 
-    const parseItem = (item) =>{
-        let country = parseCountry(item);
-        // let symbol = parse
-        let currency = parseCurrency(item);
-        let language = parseLanguage(item);
-        // console.log(currency, symbol);
+    let country = parseCountry (item);
+    let currency = parseCurrency(item);
+    let language = parseLanguage(item);
 
-        return {country, currency, language};
-        // return {country, currency, symbol, language};
-    };
+    return {country, currency, language};
+
+};
+
+export const countryCurrency = (data, delimiter, parserProp) => {
 
     const parseData = (data) => {
         let temp = [];
         temp = data.slice(0, delimiter);
         let parsed = temp.map((item) => {
-            // console.log(item);
             const {country, currency, language} = parseItem(item);  
             return {"country":country, "currency":currency[0], "symbol":currency[1], "language":language};
         });
-        // console.log(parsed);
         return parsed;
     };
 
     const checkCurrent = (parsed) => {
-        // console.log("Checking~");
-        // console.log(parsed.slice(0, 6));
         
         if(!parsed.find(({country}) => country === parserProp[0].name.common )){
-            // console.log("Not found");
-            // console.log("currency parsing starts here");
-            // console.log(parserProp[0]);
             const  {country, currency, language} = parseItem(parserProp[0]);
 
             let insert = {
@@ -80,11 +69,7 @@ export const countryCurrency = (data, delimiter, parserProp) => {
             }
     // Inserts current location at start of list
             parsed = [insert, ...parsed];
-                    }
-    // return parsed;
-  
-    
-        // console.log(parsed[0], Object.keys(parsed[0]));
+        }
         return parsed;
     };  
     console.log("in helpers");
@@ -108,9 +93,14 @@ export const  generateOptions = async (country) =>{
     return res;
 };
 
+export const sentenceCase =  (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export const capitalizeGuests = (arr) => {
     arr.forEach((val) => {
-      val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
+        val[0] = sentenceCase(val[0]);
+    //   val[0] = val[0].charAt(0).toUpperCase() + val[0].slice(1);
     });
     const string = arr.map((val) => val.join(" ")).join();
     return string;
@@ -121,10 +111,16 @@ export const filterGuests = (obj) => {
 };
 
 export const formatGuests = (obj) => {   
+    console.log("in format guests");
+    console.log(obj);
     const filtered = filterGuests(obj);
+    console.log("filtered");
+    console.log(filtered);
 
     if (filtered.length !== 0) {
       const string = capitalizeGuests(filtered);
+      console.log("caplitalized");
+      console.log(string);
       return string;
     } 
     else {
@@ -132,7 +128,7 @@ export const formatGuests = (obj) => {
     };
 };
 
-export const stringifyGuests = (obj) =>{
+export const stringifyGuests = (obj) => {
     const string = formatGuests(obj);
     return string;
 };
