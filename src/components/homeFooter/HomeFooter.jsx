@@ -10,7 +10,7 @@ import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
 function HomeFooter() {
-  const{ geoContext} = useContext(GeoContext);  
+  const{geoContext} = useContext(GeoContext);  
 
  return (
     
@@ -19,7 +19,8 @@ function HomeFooter() {
         <div className="footerGroup">
           <ul>
             <li>
-
+              {console.log("In homefooter")}
+              {console.log(data)}
               <button className="footerBtn">2022 Airbnb, Inc</button>
             </li>
             <hr />
@@ -45,7 +46,7 @@ function HomeFooter() {
               <span className="locationIcon">
                 <FiGlobe className="globeBtn" />
               </span>
-              {/* <span className="locationLanguage">English</span> */}
+
               <span className="languageCode">{"language" in geoContext ? `${geoContext.language}` : "English"}</span>
             </div>
             <div className="currency">
