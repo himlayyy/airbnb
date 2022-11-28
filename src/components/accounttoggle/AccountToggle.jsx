@@ -19,7 +19,7 @@ function AccountToggle() {
   const [modalOptions, setModalOptions] = useState();
   
   // const countryCurrencyParser = countryCurrency;
-  const {geoContext, updateContext} = useContext(GeoContext);
+  const {data, geoContext, updateContext} = useContext(GeoContext);
 
   const navigate =  useNavigate();
 
@@ -46,6 +46,8 @@ function AccountToggle() {
 
  
   useEffect(() => {
+    console.log("DATAAAAAA");
+    console.log(data);
 
     const getCountryOptions = async () => {
       const endpoints = [
