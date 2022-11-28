@@ -18,7 +18,7 @@ function Home() {
 
       <div className="home page-padding center">
         <StayScroller />
-       <Destinations/>
+        <Destinations/>
       </div>
         <HomeFooter/>
     </>
