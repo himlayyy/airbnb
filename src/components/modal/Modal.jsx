@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import {sentenceCase} from "../../helpers/helpers";
 import "./modal.css";
 
 import {IoCloseCircle} from "react-icons/io5";
@@ -71,7 +72,7 @@ function Modal(props) {
         <div className="modalSection modalTabs">
           {Object.keys(modalContents).length === 1 ? (
             <>
-              <div className="modalTab">{modalContents[0].name}</div>
+              <div className="modalTab">{sentenceCase(modalContents[0].name)}</div>
             </>
           ) : (
             <>
@@ -84,7 +85,7 @@ function Modal(props) {
                     }}
                     key={index}
                   >
-                    {option.name}
+                    {sentenceCase(option.name)}
                   </h3>
                 </div>
               ))}
