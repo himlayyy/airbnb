@@ -46,8 +46,6 @@ function AccountToggle() {
 
  
   useEffect(() => {
-    console.log("DATAAAAAA");
-    console.log(data);
 
     const getCountryOptions = async () => {
       const endpoints = [
@@ -69,14 +67,6 @@ function AccountToggle() {
       }
       const parsed = await countryCurrency(result.countries, 50, result.current);
 
-      // const currencyOptions = await parsed.map(
-      //   ({ country, currency, symbol }) => ({
-      //     country,
-      //     currency,
-      //     symbol
-      //   })
-      // );
-
       const currencyOptions = await parsed.map(
         (item) => {
           if (item.current){
@@ -89,14 +79,6 @@ function AccountToggle() {
       );
       const currencyTab = new Tab("currency", currencyOptions);
 
-      console.log(currencyTab);
-
-      // const languageOptions = await parsed.map(() => ({
-      //   country,
-      //   language,
-      //   current,
-      // }));
-
       const languageOptions = await parsed.map((item) => {
         if(item.current){
           return {country: item.country, language: item.language, current: item.current}
@@ -108,24 +90,13 @@ function AccountToggle() {
 
       const languageTab = new Tab("language", languageOptions);
 
-      console.log(languageTab.options);
-
-      // console.log("creating modal options....");
-      // console.log(languageOptions);
-      // console.log(currencyOptions);
-
-      // console.log(Object.keys(languageOptions));
-      // console.log(Object.keys(currencyOptions));
-
       setModalOptions([currencyTab, languageTab]);
-      console.log("Modal options loaded!");
       setLoaded(() => !loaded);
     };
 
     if (openModal) {
       getCountryOptions();
     }
-
   }, [openModal]);
 
   return (
@@ -141,7 +112,6 @@ function AccountToggle() {
         >
           <FiGlobe size={"1.5em"} />
         </button>
-        {/* <div className="accountContainer"> */}
         <button className="accountBtn" onClick={() => setClicked(!clicked)}>
           <div>
             <IoMenu size={"2em"} />
@@ -150,7 +120,6 @@ function AccountToggle() {
             <MdAccountCircle size={"2.5em"} />
           </div>
         </button>
-        {/* {console.log(countryCurrency)} */}
         {clicked && (
           <div className="accountDetails">
             <>
@@ -168,7 +137,7 @@ function AccountToggle() {
           </div>
         )}
         
-        {openModal && modalOptions && (
+        {/* {openModal && modalOptions && (
               <Modal
                 modalContents={modalOptions}
                 openModal={setOpenModal}
@@ -176,9 +145,9 @@ function AccountToggle() {
                 prompt={"Choose a "}
                 modalCallback={modalCallback}
               />          
-        )}
+        )} */}
 
-        {/* {openModal && (          
+        {openModal && (          
           <Suspense fallback={<div>Loading</div>}>
             {modalOptions && (
               <Modal
@@ -186,10 +155,11 @@ function AccountToggle() {
                 openModal={setOpenModal}
                 optionType={"radio"}
                 prompt={"Choose a "}
-              />
+                modalCallback={modalCallback}
+              />       
             )}
           </Suspense>
-        )} */}
+        )}
 
         
       </div>
