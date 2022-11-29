@@ -13,11 +13,6 @@ function SearchBar({setSearchTab}) {
   const {search} = useContext(SearchContext);
   const { country, datesString, guestsString} = search;
 
-  useEffect(() =>{
-    console.log("Context contents");
-    console.log(search);
-  },[])
-
   return (
     <>     
           <div className="search">
@@ -30,7 +25,6 @@ function SearchBar({setSearchTab}) {
               >
                 Where to?
               </div>
-              { console.log(search)}
               <div className="searchItems">
                 <button
                   className="staysGroup searchItem"
@@ -45,8 +39,6 @@ function SearchBar({setSearchTab}) {
                   className="experiencesGroup searchItem"
                   onClick={() => setSearchTab("btn2")}
                 >
-                  {/* {datesString.start && datesString.end === undefined ? "Any week" : `${datesString.start} - ${datesString.end}`} */}
-                  {/* {datesString === null ? "Any week" : `${datesString.start} - ${datesString.end}`} */}
                   {datesString === null ? "Any week" : "Dili null"}
                 </button>
                 <hr />
