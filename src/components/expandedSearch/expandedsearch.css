@@ -243,6 +243,10 @@
   border:1px solid var(--dark-grey);
 
 }
+.guestBtns .plus {
+	color: rgb(176, 176, 176);
+	border-color: rgb(176, 176, 176);
+}
 .guestBtns .plus:disabled,
 .guestBtns .minus:disabled{
   color:var(--bg-grey);
