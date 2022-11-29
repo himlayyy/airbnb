@@ -19,8 +19,6 @@ function HomeFooter() {
         <div className="footerGroup">
           <ul>
             <li>
-              {console.log("In homefooter")}
-              {console.log(data)}
               <button className="footerBtn">2022 Airbnb, Inc</button>
             </li>
             <hr />
