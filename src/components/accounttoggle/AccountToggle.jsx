@@ -46,7 +46,6 @@ function AccountToggle() {
 
  
   useEffect(() => {
-    let toggled = true;
 
     const getCountryOptions = async () => {
       const endpoints = [
@@ -90,19 +89,13 @@ function AccountToggle() {
       });
 
       const languageTab = new Tab("language", languageOptions);
-      
-      if(toggled){
-        setModalOptions([currencyTab, languageTab]);
-        setLoaded(() => !loaded);
-      }
+
+      setModalOptions([currencyTab, languageTab]);
+      setLoaded(() => !loaded);
     };
 
     if (openModal) {
       getCountryOptions();
-    }
-    return () =>{
-      toggled = false;
-
     }
   }, [openModal]);
 
