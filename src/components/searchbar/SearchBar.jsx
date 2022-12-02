@@ -39,9 +39,7 @@ function SearchBar({setSearchTab}) {
                   className="experiencesGroup searchItem"
                   onClick={() => setSearchTab("btn2")}
                 >
-                  {datesString === null ? "Any week" : `${datesString?.start} - ${datesString?.end}`}
-                  {console.log("Dates String")}
-                  {console.log(datesString)}
+                  {datesString === null ? "Any week" : "Dili null"}
                 </button>
                 <hr />
                 <button
