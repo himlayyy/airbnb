@@ -17,10 +17,12 @@ function List(props) {
     return temp;
   }
   useEffect(() =>{
+    
     if(data){
       const sortedCountries = sortCountries(data);
       setCountries(sortedCountries);
-    }
+    };
+    
   }, [data])
   return (
     <>
