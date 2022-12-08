@@ -8,15 +8,17 @@ function Login() {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [form, setForm] = useState("login");
 
   const signUp  = ()=>{
     if (!name) alert("Please enter name");
     registerWithEmailAndPassword(name, email, password)
   };
 
-  const logIn = () =>{
-    
-  };
+  const login = () => {
+    console.log(login);
+  }
+  
 
   useEffect(() =>{
     document.title = "Log In / Sign-Up - Airbnb";
@@ -26,20 +28,28 @@ function Login() {
     <div className="login">
       <div className="login-container">
       <span className="login-header">
-        <h4>Login or Sign-up</h4>
+        {/* <h4> */}
+          <button  disabled={form === "login"}onClick={() => setForm("login")}>Login </button>
+           or 
+          <button disabled={form === "signup"}  onClick={() => setForm("signup")}> Sign-Up</button>
+        {/* </h4> */}
       </span>
       <div className="login-content">
         <h3>Welcome to Airbnb</h3>
         <form className="signUp-content">
-          <label for="login_name">Name</label>
-          <input 
-            type="text"
-            className="login_name_field"
-            value = {name}
-            onChange = {(e) => setName(e.target.value)}
-            placeholder = "Name"
-            id="login_name"
-          />
+          {form === "signup" &&
+            <>
+              <label for="login_name">Name</label>
+              <input 
+              type="text"
+              className="login_name_field"
+              value = {name}
+              onChange = {(e) => setName(e.target.value)}
+              placeholder = "Name"
+              id="login_name"
+              />
+            </>
+        }
           
           <label for="login_email">Email</label>
           <input 
@@ -60,13 +70,18 @@ function Login() {
             placeholder="Password"
             id="login_password"
             />
-
+          
+          {form === "login" ? <button className="login_btn login_google body-text pointer" onClick={login}>
+            Log In
+          </button>
+          : 
           <button className="login_btn login_google body-text pointer" onClick={signUp}>
             Sign-Up
           </button>
-          <button className="login_btn login_google body-text pointer" onClick={logIn}>
-            Log In
-          </button>
+          }
+
+          
+          
         </form>
         
       </div>
