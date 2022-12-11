@@ -130,10 +130,14 @@ function AccountToggle() {
         {clicked && (
           <div className="accountDetails">
             <>
-              <div className="accountSignUp accountToggleHover bold-text" onClick={()=> navigate("/login")}>
+              <div className="accountSignUp accountToggleHover bold-text" onClick={()=> {
+                setClicked(!clicked);
+                navigate("/login",{state : {form:"signup"}})}}>
                 Sign Up
               </div>
-              <div className="accountLogIn accountToggleHover" onClick={()=> navigate("/login")}>Log In </div>
+              <div className="accountLogIn accountToggleHover" onClick={()=> {
+                setClicked(!clicked);   
+                navigate("/login", {state : {form:"login"}})}}>Log In </div>
               <div className="thin-separator"></div>
               <div className="hostHome accountToggleHover">Host your home</div>
               <div className="hostExperience accountToggleHover">
