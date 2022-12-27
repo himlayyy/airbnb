@@ -7,7 +7,7 @@ import {
     createUserWithEmailAndPassword,
     sendPasswordResetEmail,
     signOut,
-    connectAuthEmulator
+    AuthErrorCodes
 } from "firebase/auth";
 import {
     getFirestore,
@@ -28,11 +28,32 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const db = getFirestore(app);
 
 const googleProvider = new GoogleAuthProvider();
 // connectAuthEmulator(auth, "http://localhost:9099");
+
+const authErrorMessage = (error) => {
+    if(error === AuthErrorCodes.INVALID_DISPLAY_NAME){
+        return("Name cannot be blank");
+    }
+    else if(error === AuthErrorCodes.INVALID_EMAIL){
+        return("Invalid email");
+    }
+};
+
+export const loginWithEmailAndPassword = async (email, password) => {
+    try{
+        const user = await signInWithEmailAndPassword(auth, email, password);
+        console.log(user);
+        console.log("Logged in!");
+
+    }catch(err){
+        console.log(err.message);
+        return err;
+    }
+};
 
 export const registerWithEmailAndPassword = async (name, email, password) => {
     try{
@@ -43,13 +64,22 @@ export const registerWithEmailAndPassword = async (name, email, password) => {
             name, 
             authProvider:"local",
             email,
+
         });
+
         console.log("Registered!");
-    }catch(err){
-        console.error(err);
-        alert(err.message);
+        return "success";
+    }catch(error){
+        console.log(error.message);
+        let err = authErrorMessage(error.message);
+        return err;
     }
 };
+
+export const logOut = () =>{
+    signOut(auth);
+};
+
 
 // export const logout = () => {
     
