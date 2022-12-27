@@ -47,7 +47,7 @@ function GeoContextProvider(props){
             };
 
             }catch(err){
-                console.err(err);
+                console.log(err);
             }  
         };
 

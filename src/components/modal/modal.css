@@ -80,8 +80,12 @@
     background-color: var(--airbnb-color);
     color: white;
 }
+.portal-content.modalContainer {
+    width: fit-content;
+    height: fit-content;
+}
+.portal-content .buttonBottom{
+    align-self:center;
+}
 
-/* label input[type="radio"]:checked + div {
-    background-color: pink;
-} */
 

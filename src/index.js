@@ -7,17 +7,20 @@ import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import { GeoContextProvider } from "./context/Geolocation";
 import { SearchContextProvider } from "./context/SearchContext";
+// import { AuthContextProvider } from "./context/AuthContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GeoContextProvider>
-      <SearchContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </SearchContextProvider>
-    </GeoContextProvider>
+    {/* <AuthContextProvider> */}
+      <GeoContextProvider>
+        <SearchContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </SearchContextProvider>
+      </GeoContextProvider>
+      {/* </AuthContextProvider> */}
   </React.StrictMode>
 );
 
