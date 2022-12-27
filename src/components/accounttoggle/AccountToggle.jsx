@@ -3,6 +3,8 @@ import Modal from "../modal/Modal";
 import { countryCurrency } from "../../helpers/helpers";
 import { GeoContext} from "../../context/Geolocation";
 import { useNavigate } from "react-router-dom";
+import Portal from "../Portal";
+
 import useFetch from "../../hooks/useFetch";
 import axios from "axios";
 
@@ -10,11 +12,15 @@ import "./accounttoggle.css";
 import { MdAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import { FiGlobe } from "react-icons/fi";
+import {auth} from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 
 function AccountToggle() {
   const [clicked, setClicked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [openPortal, setOpenPortal] = useState(false);
 
   const [modalOptions, setModalOptions] = useState();
   
@@ -22,6 +28,7 @@ function AccountToggle() {
   const {data, geoContext, updateContext} = useContext(GeoContext);
 
   const navigate =  useNavigate();
+  const [user, loading, error] = useAuthState(auth);
 
   function Tab(name, options) {
     this.name = name;
@@ -43,7 +50,7 @@ function AccountToggle() {
   // console.log(geolocation)
 
   // const {data, loading, error} = useFetch(`https://restcountries.com/v3.1/name/${geolocation.country}?fields=name,languages,currencies`);
-
+  
  
   useEffect(() => {
     let toggled = true;
@@ -116,47 +123,60 @@ function AccountToggle() {
           onClick={() => {
             setOpenModal(!openModal);
           }}
-        >
-          <FiGlobe size={"1.5em"} />
-        </button>
-        <button className="accountBtn" onClick={() => setClicked(!clicked)}>
-          <div>
-            <IoMenu size={"2em"} />
+        > 
+        <FiGlobe size={"1.5em"} /> 
+        </button> 
+        <button className="accountBtn"
+          onClick={() => setClicked(!clicked)}> 
+          <div> 
+            <IoMenu size={"2em"} /> 
+          </div> 
+          <div> 
+            <MdAccountCircle size={"2.5em"} /> 
           </div>
-          <div>
-            <MdAccountCircle size={"2.5em"} />
-          </div>
-        </button>
-        {clicked && (
-          <div className="accountDetails">
+          </button>
+          {clicked && ( 
+          <div className="accountDetails"> <> 
+          {user === null ? (
             <>
-              <div className="accountSignUp accountToggleHover bold-text" onClick={()=> {
-                setClicked(!clicked);
-                navigate("/login",{state : {form:"signup"}})}}>
-                Sign Up
-              </div>
-              <div className="accountLogIn accountToggleHover" onClick={()=> {
-                setClicked(!clicked);   
-                navigate("/login", {state : {form:"login"}})}}>Log In </div>
-              <div className="thin-separator"></div>
-              <div className="hostHome accountToggleHover">Host your home</div>
-              <div className="hostExperience accountToggleHover">
-                Host an experience
-              </div>
-              <div className="help accountToggleHover">Help</div>
+              <div className="accountSignUp accountToggleHover bold-text" 
+              onClick={()=> { 
+              setClicked(!clicked);
+              navigate("/signup");}
+              }>
+              Sign Up
+            </div>
+            <div className="accountLogIn accountToggleHover" onClick={()=> {
+              setClicked(!clicked);   
+              navigate("/login");}}>
+              Log In 
+            </div>
+          </>) : 
+          (<>
+            <div className="accountSignOut accountToggleHover"  onClick = {() => setOpenPortal(!openPortal)}>
+              SIgnOut
+              {/* <h4>Are you sure you want to sign out?</h4> */}
+            </div>
+            
+          </>)}
+
+          {openPortal && (
+            <Portal handleClose={() => {
+              setClicked(!clicked);
+              setOpenPortal(!openPortal);}} openPortal={openPortal}/>
+              // </Portal>
+            )
+           }
+           
+            <div className="thin-separator"></div>
+            <div className="hostHome accountToggleHover">Host your home</div>
+            <div className="hostExperience accountToggleHover">
+              Host an experience
+            </div>
+            <div className="help accountToggleHover">Help</div>
             </>
           </div>
-        )}
-        
-        {/* {openModal && modalOptions && (
-              <Modal
-                modalContents={modalOptions}
-                openModal={setOpenModal}
-                optionType={"radio"}
-                prompt={"Choose a "}
-                modalCallback={modalCallback}
-              />          
-        )} */}
+          )}
 
         {openModal && (          
           <Suspense fallback={<div>Loading</div>}>
