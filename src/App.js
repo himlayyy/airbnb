@@ -1,11 +1,11 @@
 import React from "react";
 import {Route, Routes} from "react-router-dom";
 import Header from "./components/header/Header";
-// import Navbar from "./components/navbar/Navbar";
 import Home from "./pages/home/Home";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Page2 from "./pages/page2/Page2";
-import Login from "./pages/login/Login";
+import SignUp from "./pages/authform/signup/SignUp";
+import Login from "./pages/authform/login/Login";
 
 import './App.css';
 
@@ -20,12 +20,12 @@ function App() {
      
     <div className="App">
       <Header />
-      {/* <Navbar /> */}
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/search" element={<SearchResult />}/>
           <Route path="/page-2" element={<Page2 />} />
           <Route path="/login" element={<Login/> } />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
     </div>
   );
