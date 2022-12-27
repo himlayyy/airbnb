@@ -17,17 +17,6 @@
     border-bottom:1px solid var(--border-grey);
     padding:20px;
   }
-.login-header button{
-  border:none;
-  background-color:transparent;
-  color:var(--airbnb-color);
-  font-size:16px;
-  font-weight:bold;
-}
-.login-header button:hover{
-  cursor:pointer;
-  text-decoration:underline;
-}
 .login-header button:disabled{
   color:black;
   font-weight:normal;
@@ -67,4 +56,15 @@ input:focus-visible
   color:white;
   background-image:linear-gradient( to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100% );
   border: none;  
+}
+.switch-form{
+  border:none;
+  background-color:transparent;
+  color:var(--airbnb-color);
+  font-size:16px;
+  font-weight:bold;
+}
+.switch-form:hover{
+  cursor:pointer;
+  text-decoration:underline;
 }
