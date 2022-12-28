@@ -1,0 +1,39 @@
+.roomDetails-subheading{
+    align-items:center;
+    background-color:pink;
+ }
+ .subheading-right{
+     display: flex;
+ }
+ .subheading-right > *{
+     background: transparent;
+     padding: 12px;
+     border-radius: 22px;
+     border: none;
+     cursor: pointer;
+ }
+ .subheading-right button {text-align: center;display: flex;align-items: center;}
+ .accountToggleHover:hover,
+ .subheading-right > *:hover{
+     background-color: rgb(247,247,247);
+ }
+ .roomsDetails-heading{
+    border:1px solid black;
+    background-color:yellow;
+     display:flex;
+     flex-direction:column;
+ }
+ .roomDetails-subheading{
+ /*     background-color:pink; */
+     display:flex;
+     flex-direction:row;
+     justify-content:space-between;
+ }
+ .subheading-left{
+     display:flex;
+     gap:10px;
+ }
+ .roomGallery{
+    height:50vh;
+ }
+ 
