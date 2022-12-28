@@ -479,3 +479,17 @@ font-size:15px;
   }
   
 }
+
+.button_effect{
+  transition: 0.5s;
+  background-size: 200% auto;
+  background-image:linear-gradient( to right, rgb(230, 30, 77) 0%, rgb(227, 28, 95) 50%, rgb(215, 4, 102) 100% );
+}
+.button_effect:hover{
+  background-position: right center;
+  transform: scale(1.01);
+  background-image: linear-gradient(90deg, hsla(356, 92%, 70%, 1) 0%, hsla(343, 100%, 66%, 1) 25%, hsla(346, 100%, 64%, 1) 50%, hsla(349, 100%, 61%, 1) 75%, hsla(349, 94%, 55%, 1) 100%);
+}
+.button_effect:active{
+  transform: translateY(4px);
+}

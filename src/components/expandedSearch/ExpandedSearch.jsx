@@ -383,7 +383,7 @@ function ExpandedSearch({ active, closeExpanded}) {
               )}
 
               <div
-                className="searchItem searchOption searchButton pointer"
+                className="searchItem searchOption searchButton pointer button_effect"
                 onClick={(e) => {
                   e.stopPropagation();
                   closeExpanded();                  

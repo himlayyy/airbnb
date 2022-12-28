@@ -24,7 +24,7 @@ function Login(){
       errors.push("Missing Password");
     };
     
-    if(err.length !== 0){
+    if(errors.length !==0){
       setErr((prevState) => [...prevState, ...errors]);
     }
     else{
@@ -33,7 +33,9 @@ function Login(){
   };
 
   const login = () => {
-    loginWithEmailAndPassword(email, password);
+    let res = loginWithEmailAndPassword(email, password);
+    console.log(res);
+    
   };
 
   useEffect(() => {
@@ -63,7 +65,7 @@ function Login(){
           <label forHTML="login_email">Email</label>
           <input 
             type="email"
-            className="login_email_field"
+            className="login_email_field authInput"
             value = {email}
             onChange = {(e) => setEmail(e.target.value)}
             placeholder = "Email"
@@ -73,13 +75,13 @@ function Login(){
           <label forHTML="login_password">Password</label>
           <input 
             type="password"
-            className="login_password_field"
+            className="login_password_field authInput"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             id="login_password"
             />
-          <button className="login_btn login_google body-text pointer" onClick={(e) => 
+          <button className="login_btn login_google body-text pointer button_effect" onClick={(e) => 
               { 
                 e.preventDefault();
                 checkFields();
