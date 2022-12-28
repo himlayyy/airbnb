@@ -161,7 +161,7 @@ function Modal(props) {
             </>
           )}
         </div>
-        <button className="buttonBottom" onClick={() => {
+        <button className="buttonBottom button_effect" onClick={() => {
           openModal(!openModal);
           modalCallback(optionGroup);}
           }>Save</button>
