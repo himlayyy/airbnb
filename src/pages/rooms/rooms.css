@@ -1,39 +1,249 @@
+.roomsPage{
+  max-width:1440px;
+  margin:auto;
+}
 .roomDetails-subheading{
     align-items:center;
-    background-color:pink;
- }
- .subheading-right{
-     display: flex;
- }
- .subheading-right > *{
-     background: transparent;
-     padding: 12px;
-     border-radius: 22px;
-     border: none;
-     cursor: pointer;
- }
- .subheading-right button {text-align: center;display: flex;align-items: center;}
- .accountToggleHover:hover,
- .subheading-right > *:hover{
-     background-color: rgb(247,247,247);
- }
- .roomsDetails-heading{
-    border:1px solid black;
-    background-color:yellow;
-     display:flex;
-     flex-direction:column;
- }
- .roomDetails-subheading{
- /*     background-color:pink; */
-     display:flex;
-     flex-direction:row;
-     justify-content:space-between;
- }
- .subheading-left{
-     display:flex;
-     gap:10px;
- }
- .roomGallery{
+    text-align:center;
+}
+.subheading-right{
+    display: flex;
+}
+.subheading-right > *{
+    background: transparent;
+    padding: 12px;
+    border-radius: 22px;
+    border: none;
+    cursor: pointer;
+}
+.subheading-right button {
+    text-align: center;display: flex;align-items: center;
+}
+.accountToggleHover:hover,
+.subheading-right > *:hover{
+    background-color: rgb(247,247,247);
+}
+.roomsDetails-heading{
+
+    display:flex;
+    flex-direction:column;
+}
+.roomDetails-subheading{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+.subheading-left{
+    display:flex;
+    gap:10px;
+}
+.roomGallery{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
+    position:relative;
     height:50vh;
- }
- 
+}
+.roomGallery .destinationImg{
+    border-radius:0;
+    transition:.5s;
+}
+.roomGallery .destinationImg:hover{
+    filter:brightness(50%);
+}
+
+.roomGallery .destinationImg:first-child{
+    border-top-left-radius:16px;
+    border-bottom-left-radius:16px;
+  
+   grid-column-start: 1;
+    grid-column-end:3;
+    grid-row-start:1;
+    grid-row-end:3;
+}
+.roomGallery .destinationImg:nth-child(3){
+    border-top-right-radius:16px;
+}
+.roomGallery .destinationImg:last-of-type {
+    border-bottom-right-radius: 16px;
+}
+
+  
+.roomGallery button{
+    font-size:18px;
+    padding:10px 20px;
+    background-color:var(--grey-hover4);
+    border:1px solid black;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    position:absolute;
+    bottom:20px;
+    right:20px;
+}
+.roomDetails-details-container{
+    display:flex;
+    gap:100px;
+}
+.roomsDetails-lists{
+    min-width:0;
+    display:flex;
+    flex-direction:column;
+    flex-basis:60%;
+    gap:10px;
+}
+.roomsDetails-lists > *{
+    border-bottom:1px solid var(--grey-hover2);
+    margin:10px 0px;
+  }
+.room-details{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.room-details .subheading-left > *{
+    margin:0px;
+}
+.room-details .subheading-right > *{
+padding:0px;
+}
+.roomsDetails-lists .subheading-left{
+    display: flex;
+    flex-direction: column;
+}
+.roomsDetails-lists .subheading-left ul{
+    display:flex;
+    padding:0px;
+    gap:5px;
+}
+.subheading-left ul li{
+    list-style: none;  
+}
+.hostPic{
+    clip-path: circle();
+    width:80px;
+    height:auto;  
+}
+.roomsDetails-booking{
+    flex-basis:40%;
+}
+.roomType-scroller{
+    min-width:0;
+    flex:1;
+}
+.roomType-scroller .slick-slider{
+    min-width:0;
+}
+
+.slideItem.roomType-slideItem {
+    padding:20px;
+    flex-grow:1;
+    border:1px solid black;
+    border-radius:8px;
+    align-items:start;
+
+}
+.amenities{
+    flex-direction: column;
+    align-items: flex-start;
+}
+.amenities ul{
+
+    padding:0;
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    grid-gap:10px;grid-column-gap: 30px;
+}
+.amenities ul li{
+   list-style:none  
+}
+
+/* .roomsDetails-booking .searchOptions{
+    
+} */
+.roomsDetails-booking .searchOptionsContainer{
+    width:100%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+    border-radius:8px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions{
+    padding:20px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .dates:hover,
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests:hover{
+    background-color:transparent;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer:hover{
+    background-color:var(--grey-hover2);
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions{
+    display:flex;
+    flex-direction: column;
+    background-color:white;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions > *{
+  /*   border:1px solid var(--grey-hover2) */
+    border:0;
+    
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .dates{
+    width:100%;
+    border-radius:0;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .dates .date{
+    border-radius:0;
+    border:1px solid var(--grey-hover2);
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .dates .date:first-child{
+    border-top-left-radius:8px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .dates .date:last-child{
+    border-top-right-radius:8px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests{
+    padding:0px;
+    border-radius:0;
+    flex-direction:column;
+    gap:20px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests > *{
+    border:0px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests,
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer,
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer input{
+    box-sizing:border-box;
+    width:100%;
+  }
+  
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer{
+    padding:10px 20px ;
+    border:1px solid var(--grey-hover2);
+    border-bottom-left-radius:8px;
+    border-bottom-right-radius:8px; 
+  }
+  
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer input
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests .guestPickerContainer label{
+    background-color: yellow;
+    border:0px;
+    padding:0px;
+  }
+  .roomsDetails-booking .searchOptionsContainer .searchOptions .guests  .searchButton{
+    padding:10px;
+    border-radius:8px;
+  }
+  .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent{
+     border:1px solid var(--grey-hover2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+  }
+  .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent.dateSelectorContainer{
+    left:20px;
+    top: 149px;
+  }
+  .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent.guestSelectorContainer{
+    top:210px;
+  }
+  
+
