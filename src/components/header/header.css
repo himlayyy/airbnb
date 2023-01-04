@@ -11,6 +11,8 @@
     padding-bottom:0px;
     justify-content: space-between;
     align-items: flex-start;
+    margin:auto;
+    max-width:1440px;
     margin-top:20px;
 }
 .headerCenter{
