@@ -1,4 +1,4 @@
-import { initializeApp, intializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
   getAuth,
@@ -10,13 +10,17 @@ import {
   AuthErrorCodes,
 } from "firebase/auth";
 import {
+  initializeFirestore,
   getFirestore,
   query,
+  getDoc,
   getDocs,
   collection,
   where,
   addDoc,
+  onSnapshot
 } from "firebase/firestore";
+import { GiCootieCatcher } from "react-icons/gi";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC6vu78v_j-A_rB98vfBqghI_f56j4MxeE",
@@ -29,7 +33,10 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-const db = getFirestore(app);
+// const db = getFirestore(app);
+const db = initializeFirestore(app, {
+  experimentalAutoDetectLongPolling:true
+});
 
 const googleProvider = new GoogleAuthProvider();
 // connectAuthEmulator(auth, "http://localhost:9099");
@@ -77,3 +84,31 @@ export const logOut = () => {
   signOut(auth);
 };
 
+export const getRoomsInCountry = async (country) => {
+  try{
+    let rooms = [];
+    console.log(country);
+   
+    console.log("Fetched");
+
+    const querySnapshot = await getDocs(collection(db, country));
+    console.log("querySnapshot");
+    console.log(querySnapshot);
+    querySnapshot.forEach((doc) => {
+      // console.log(doc.data(), doc.id)
+      // rooms.push(doc.data());
+      rooms.push({...doc.data(), id:doc.id})
+    });
+    
+    // roomsInCountry.forEach((doc) => {
+    //   console.log(roomsInCountry.data())
+    //   console.log(doc.data())
+    // });
+
+    return rooms;
+  }
+  catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+}
