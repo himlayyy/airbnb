@@ -32,10 +32,21 @@ function GeoContextProvider(props){
         const  geocode = async (position) => {
 
             try{
-                let location = await axios
-                    .get(`https://geocode.xyz/${position.coords.latitude},${position.coords.longitude}?json=1&auth=554138311287701401525x115708`)
-                    .then((res) => res.data.country);
-            
+                // Reverse geocode to get current country
+                
+                // let location = await axios
+                //     .get(`http://api.positionstack.com/v1/reverse?access_key=230b2be842e46ac2b0d069089d87009d&query=${position.coords.latitude},${position.coords.longitude}&limit=1`)
+                //     .then((res) => res.data.data[0].country)
+                //     .catch(error => {
+                //         console.log(error);
+                //         return "Philippines"});
+                let location = "philippines";
+
+                    // let location = await axios
+                    // .get(`http://api.positionstack.com/v1/reverse?access_key=&query=${position.coords.latitude},${position.coords.longitude}&limit=1`)
+                    // .then((res) => res.data.data[0].country);
+                
+                //Get currenty country's currency and language
                 let res = await axios.get(`https://restcountries.com/v3.1/name/${location}?fields=name,currencies,languages`)
                 .then((res) => res.data[0]);
             
