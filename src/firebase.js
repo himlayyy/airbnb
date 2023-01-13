@@ -231,36 +231,36 @@ const addImgRefsToDoc = async (docRef, imgArr) => {
   }
 };
 
-export const createDocImgFolderAndUpload = async (country) => {
-  try{
-    let docsIdArr = [];
-    const roomsInCountryImgsFolderRef = ref(storage, `images/${country}`);
-    // const imagesRef = ref(storage, "images/country/")
-    const docs = await getDocs(collection(db, country));
-    docs.forEach((doc) => docsIdArr.push(doc.id));
+// export const createDocImgFolderAndUpload = async (country) => {
+//   try{
+//     let docsIdArr = [];
+//     const roomsInCountryImgsFolderRef = ref(storage, `images/${country}`);
+//     // const imagesRef = ref(storage, "images/country/")
+//     const docs = await getDocs(collection(db, country));
+//     docs.forEach((doc) => docsIdArr.push(doc.id));
 
-    docsIdArr.forEach((id) => {
-      let imgArr = [];
-      const roomFolderRef = ref(roomsInCountryImgsFolderRef, `${id}`);
-      roomsIdObj[id].forEach((img, i) =>
-        {
-          const imgInFolderRef = ref(roomFolderRef, `0${i+1}`);
+//     docsIdArr.forEach((id) => {
+//       let imgArr = [];
+//       const roomFolderRef = ref(roomsInCountryImgsFolderRef, `${id}`);
+//       roomsIdObj[id].forEach((img, i) =>
+//         {
+//           const imgInFolderRef = ref(roomFolderRef, `0${i+1}`);
           // const imgStorageRef =  uploadFile(imgInFolderRef, img);
           // console.log(`Image ref: ${imgStorageRef}`);
           // imgArr.push(imgStorageRef);
 
-          uploadFile(imgInFolderRef, img).then((url ) => imgArr.push(url));
+//           uploadFile(imgInFolderRef, img).then((url ) => imgArr.push(url));
 
-        }
-      );
+//         }
+//       );
       
       // console.log(imgArr);
       // Promise.all(imgArr);
-      console.log(imgArr);
-      addImgRefsToDoc(id, imgArr);
-    });
-  }catch(err){
-    console.log(err);
-  }
-};
+//       console.log(imgArr);
+//       addImgRefsToDoc(id, imgArr);
+//     });
+//   }catch(err){
+//     console.log(err);
+//   }
+// };
 
