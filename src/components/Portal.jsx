@@ -21,8 +21,9 @@ function Portal({children, openPortal, handleClose}) {
       <div className="portal modalOverlay"
       ref={nodeRef}>
         <div className="portal-content modalContainer">
-        <button className="buttonTop" onClick={handleClose}><IoCloseCircle size={"2.5em"}/></button>
-        <h4>Are you sure you want to sign out?</h4>
+        <button className="buttonTop" onClick={handleClose}>
+        <IoCloseCircle size={"2.5em"}/></button>
+        {/*<h4>Are you sure you want to sign out?</h4>
          <button className="buttonBottom"
          onClick={() => {
             logOut();
@@ -30,7 +31,8 @@ function Portal({children, openPortal, handleClose}) {
             navigate("/");
           }}
           >
-            Sign out</button>
+            Sign out</button>*/}
+            {children}
          </div>
       </div>
 
