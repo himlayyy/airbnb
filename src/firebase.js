@@ -30,7 +30,7 @@ import {
   getDownloadURL
 } from "firebase/storage";
 import { GiCootieCatcher } from "react-icons/gi";
-import {docsArray, roomsIdObj}  from "./new";
+// import {docsArray, roomsIdObj}  from "./new";
 
 const firebaseConfig = { apiKey: "AIzaSyC6vu78v_j-A_rB98vfBqghI_f56j4MxeE",
 authDomain: "airbnb-clone-4289d.firebaseapp.com",
