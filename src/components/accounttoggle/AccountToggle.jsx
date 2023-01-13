@@ -12,7 +12,7 @@ import "./accounttoggle.css";
 import { MdAccountCircle } from "react-icons/md";
 import { IoMenu } from "react-icons/io5";
 import { FiGlobe } from "react-icons/fi";
-import {auth} from "../../firebase";
+import { auth, logOut } from "../../firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 
 
@@ -160,13 +160,7 @@ function AccountToggle() {
             
           </>)}
 
-          {openPortal && (
-            <Portal handleClose={() => {
-              setClicked(!clicked);
-              setOpenPortal(!openPortal);}} openPortal={openPortal}/>
-              // </Portal>
-            )
-           }
+       
            
             <div className="thin-separator"></div>
             <div className="hostHome accountToggleHover">Host your home</div>
@@ -177,6 +171,22 @@ function AccountToggle() {
             </>
           </div>
           )}
+
+          {openPortal && (
+              <Portal handleClose={() => {
+                setClicked(!clicked);
+                setOpenPortal(!openPortal)}} openPortal={openPortal}>
+                  <h4>Are you sure you want to sign out?</h4>
+                  <button className="buttonBottom"
+                  onClick={() => {
+                      logOut();
+                      setClicked(!clicked);
+                      setOpenPortal(!openPortal);
+                      navigate("/");
+                  }}>Sign out</button>
+              </Portal>
+            )
+          }
 
         {openModal && (          
           <Suspense fallback={<div>Loading</div>}>
