@@ -47,6 +47,7 @@
 .roomGallery .destinationImg{
     border-radius:0;
     transition:.5s;
+    min-height:0;
 }
 .roomGallery .destinationImg:hover{
     filter:brightness(50%);
@@ -83,8 +84,9 @@
     right:20px;
 }
 .roomDetails-details-container{
+    margin-top: 20px;
     display:flex;
-    gap:100px;
+    gap:50px;
 }
 .roomsDetails-lists{
     min-width:0;
@@ -97,6 +99,9 @@
     border-bottom:1px solid var(--grey-hover2);
     margin:10px 0px;
   }
+
+
+
 .room-details{
     display:flex;
     justify-content: space-between;
@@ -107,6 +112,10 @@
 }
 .room-details .subheading-right > *{
 padding:0px;
+}
+.room-details:nth-child(1),
+.room-details.roomType-scroller{
+  padding:10px 0px;
 }
 .roomsDetails-lists .subheading-left{
     display: flex;
@@ -165,11 +174,28 @@ padding:0px;
 .roomsDetails-booking .searchOptionsContainer{
     width:100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.18);
-    border-radius:8px;
+    border:none;
+    border-radius:0px;
+
   }
-  .roomsDetails-booking .searchOptionsContainer .searchOptions{
+  .roomsDetails-booking-container .searchOptionsContainer .searchOptions{
+   border:none;
+  border-radius:0px;
+  box-shadow:0 0 0 0;
+}
+  
+  /*   Starts here */
+  .roomsDetails-booking-container {
+    padding: 20px;
+    border: 1px solid var(--border-grey);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.18);
+}
+  /* End  */
+
+/*   .roomsDetails-booking .searchOptionsContainer .searchOptions{
     padding:20px;
-  }
+  } */
   .roomsDetails-booking .searchOptionsContainer .searchOptions .dates:hover,
   .roomsDetails-booking .searchOptionsContainer .searchOptions .guests:hover{
     background-color:transparent;
@@ -245,5 +271,22 @@ padding:0px;
   .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent.guestSelectorContainer{
     top:210px;
   }
+
+.portal-content.modalContainer {
+    height:90vh;
+    
+}
+.roomGallery-all{
+   
+    overflow-y:scroll;
+    overflow-x: hidden;
+}
+.roomGallery-all-container{
+    margin:0px 100px;
+    display:grid;
+    grid-gap:10px;
+   grid-template-columns:repeat(2, 1fr);
+    
+}
   
 
