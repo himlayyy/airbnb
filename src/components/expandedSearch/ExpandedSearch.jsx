@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { useNavigate, useSearchParams, Navigate } from "react-router-dom";
+import { useNavigate, useSearchParams, Navigate, createSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
 import List from "../list/List";
@@ -44,13 +44,13 @@ function ExpandedSearch({ active, closeExpanded}) {
 
   // const [toSearch, setToSearch] = useState(false);
 
-  const { updateSearchContext } = useContext(SearchContext);
+  const { search, updateSearchContext } = useContext(SearchContext);
 
   // const {datesString} = searchContext.search;
 
   const [country, setCountry] = useState("");
 
-  // const [searchParams, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
 
   // const [searchClicked, setSearchClicked] = useState(false);
 
@@ -128,7 +128,9 @@ function ExpandedSearch({ active, closeExpanded}) {
   }
   const goSearch = () => {
     updateContext();
-    navigate("/search");
+    console.log(search.country);
+    // setSearchParams({country:search.country,startDate:search.dates.startDate,endDate:search.dates.endDate,guests:search.guests, })
+    navigate({pathname: `/search`, search: `?${createSearchParams({country:`${country}`, sort:"date", order:"newest"})}`});
   };
 
   return (

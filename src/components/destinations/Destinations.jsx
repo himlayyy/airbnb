@@ -5,20 +5,7 @@ import { GeoContext } from "../../context/Geolocation";
 
 import "./destinations.css";
 
-function Destinations() {
-  const [rooms, setRooms] = useState([]);
-  const { geoContext } = useContext(GeoContext);
-
-  useEffect(() => {
-    if (geoContext.country) {
-      console.log(geoContext.country.toLowerCase());
-      let roomsInCountry = getRoomsInCountry(
-        geoContext.country.toLowerCase()
-      ).then((rooms) => setRooms(rooms));
-      // setRooms(roomsInCountry);
-      console.log(rooms);
-    }
-  }, [geoContext.country]);
+function Destinations({rooms, country}) {
  
   return (
     <>
@@ -26,7 +13,7 @@ function Destinations() {
         <div className="destinationItems">
           {console.log(rooms)}
           {rooms.length !==0 && rooms.map(({roomName,rating,roomPrice, id, images}) => {
-            return <DestinationItem roomName={roomName} rating={rating}  price={roomPrice} id={id} country={geoContext.country} images={images}/>
+            return <DestinationItem roomName={roomName} rating={rating}  price={roomPrice} id={id} country={country} images={images}/>
           } )}
           
         </div>

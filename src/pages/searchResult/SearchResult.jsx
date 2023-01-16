@@ -4,6 +4,8 @@ import {  useSearchParams, useLocation } from "react-router-dom";
 import Destinations from "../../components/destinations/Destinations";
 import StayScroller from "../../components/stayScroller/StayScroller";
 import StayFilter from "../../components/stayFilter/StayFilter";
+import NotFound from "../../components/notfound/NotFound";
+import { getRoomsInCountry }  from "../../firebase";
 
 import axios from "axios";
 import Map, {Marker} from "react-map-gl";
@@ -13,11 +15,14 @@ import "./searchresult.css";
 
 
 function SearchResult() {
+  const [rooms, setRooms] = useState([]);
   const [viewState, setViewState] = useState({
     latitude:0,
     longitude:0,
     zoom:13
   });
+
+  const [ searchParams ] = useSearchParams();
   const [width,setWidth] = useState(window.innerWidth);
 
   const [openDestinations, setOpenDestinations] = useState(false);
@@ -26,9 +31,12 @@ function SearchResult() {
   const {search} = useContext(SearchContext);
   const {country, dates, guests} = search;
 
-  // const mapboxAccessToken = process.env.REACT_APP_MAPBOX_KEY;
+  const url = useLocation();
 
+  // const mapboxAccessToken = process.env.REACT_APP_MAPBOX_KEY;
   const mapboxAccessToken = "pk.eyJ1IjoiZGVtYXVyaWVyIiwiYSI6ImNsYWpoOG84ZDBkNTgzb3BqOGFtZmlxd2MifQ.l3c6CXayb4EtdxMHehsCOQ"
+
+  // const mapboxAccessToken = ""
  
   useEffect(() =>{
     const handleWindowResize = () => setWidth(window.innerWidth);
@@ -43,9 +51,10 @@ function SearchResult() {
     console.log(isMobile);
     console.log(width);
 
-  },[width])
+  },[width]);
   
   useEffect(() =>{
+    const country = searchParams.get("country").toLowerCase();
     const getCoordinates = async (country) => {
       const endpoint = `https://restcountries.com/v3.1/name/${country}?fields=latlng`;
       try{
@@ -63,6 +72,10 @@ function SearchResult() {
       setViewState({latitude:lat, longitude:long});
       console.log(viewState);
     });
+
+    let roomsInCountry = getRoomsInCountry(
+        country.toLowerCase()
+      ).then((rooms) => setRooms(rooms));
   },[country]);
 
    return (
@@ -97,16 +110,15 @@ function SearchResult() {
               </button>
               <StayFilter />
             </div>
-            {isMobile ?
-              (<div className={`destination-container ${openDestinations ? "open" : "close" }`}>
+
+              {rooms.length !== 0 ?
+                (<div className={`destination-container ${isMobile ? `${openDestinations ? 'open' : 'close'}` :""}`}>
+                    <Destinations rooms={rooms} country={country}/>
+                </div>)
+                :
+                (<NotFound result={country}/> )
+              }
                 
-                  <Destinations />
-              
-              </div>) :
-              (
-                <Destinations />
-              ) 
-            }    
           </div>
         </div>
       </div>
