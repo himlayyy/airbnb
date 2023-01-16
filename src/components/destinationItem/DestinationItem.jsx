@@ -90,33 +90,25 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
     <div className="destinationItem">
       
       <div className="destinationGal" id={id}>
-        <Slider {...settings}>
-          {images.map((image,i) => <img
-              className="destinationImg"
-              src= {image}
-              alt={`destAltImg${i+1}`}
-            />)}
-            
-       
-          
-          {/* <img className = "destinationImg" src="https://a0.muscache.com/im/pictures/miso/Hosting-34113796/original/4756e699-f474-4ca7-8b77-06b12715a6cb.jpeg?im_w=720" alt="destImg3" />
-          <img className = "destinationImg"  src="https://a0.muscache.com/im/pictures/miso/Hosting-34113796/original/fca892a4-3481-4ad1-9f92-404feaa42e9f.jpeg?im_w=720" alt="destImg4" />
-          <img className = "destinationImg" src="https://a0.muscache.com/im/pictures/miso/Hosting-34113796/original/36d8007a-0de5-439d-9fec-1c2d7b53a147.jpeg?im_w=720" alt="destImg5" />
-          <img className = "destinationImg" src="https://a0.muscache.com/im/pictures/miso/Hosting-34113796/original/f95b0a2e-0272-469e-a56c-433b9cc4ffdb.jpeg?im_w=720" alt="destImg6" /> */}
-          {/* <div className="galBtns">
-            <button className="galBtn" id="leftBtn">
-              {`<`}
+      
+      {images && 
+        (<>
+          <Slider {...settings}>
+                    {images.map((image,i) => <img
+                        className="destinationImg"
+                        src= {image}
+                        alt={`destAltImg${i+1}`} />
+                    )}
+          </Slider>
+          <div className="galBtns">
+            <button className="galBtn">
+              <IoHeartOutline className="heartBtn" />
             </button>
-            <button className="galBtn" id="rightBtn">
-              {`>`}
-            </button>
-          </div> */}
-        </Slider>
-        <div className="galBtns">
-          <button className="galBtn">
-            <IoHeartOutline className="heartBtn" />
-          </button>
-        </div>
+          </div>
+          </>
+        )
+      }
+
       </div>
 
       <div className="destinationDetails">
