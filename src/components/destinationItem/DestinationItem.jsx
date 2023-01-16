@@ -90,8 +90,7 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
     <div className="destinationItem">
       
       <div className="destinationGal" id={id}>
-      
-      {images && 
+        {images && 
         (<>
           <Slider {...settings}>
                     {images.map((image,i) => <img
