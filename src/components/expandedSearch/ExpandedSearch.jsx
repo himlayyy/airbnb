@@ -7,6 +7,9 @@ import React, {
 } from "react";
 import { SearchContext } from "../../context/SearchContext";
 import useOutsideClick from "../../hooks/useOutsideClick";
+import ExpandedDestinations from "../../components/expandedSearch/ExpandedDestinations";
+import ExpandedDates from "../../components/expandedSearch/ExpandedDates";
+import ExpandedGuests from "./ExpandedGuests";
 import { useNavigate, useSearchParams, Navigate, createSearchParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
 
@@ -139,7 +142,7 @@ function ExpandedSearch({ active, closeExpanded}) {
       {tabClicked && (
         <div className="searchOptionsContainer">
           <div className="searchOptions">
-            <div
+            {/* <div
               className={`destination searchOption pointer ${
                 active === "btn1" ? "activeTab" : ""
               }`}
@@ -226,7 +229,6 @@ function ExpandedSearch({ active, closeExpanded}) {
                     </span>
                   </div>
                   <div className="popOutColumn popOutScroll countries">
-                    {/* Start here */}
                     {continent !== "" ? (
                       <Suspense fallback={<div>Loading</div>}>
                         <List
@@ -241,9 +243,11 @@ function ExpandedSearch({ active, closeExpanded}) {
                   </div>
                 </div>
               </>
-            )}
+            )} */}
 
-            <div className="dates searchOption pointer">
+            <ExpandedDestinations active={""} callback={(() => console.log("expanded destinations callback"))}  />
+            <ExpandedDates />
+            {/* <div className="dates searchOption pointer">
               {active === "btn2" ? (
                 <>
                   <div
@@ -295,8 +299,8 @@ function ExpandedSearch({ active, closeExpanded}) {
                   </div>
                 </>
               )}
-            </div>
-            {openWhen && (
+            </div> */}
+            {/* {openWhen && (
               <>
                 <div className="tabPopout popOutContent dateSelectorContainer"
                 
@@ -325,14 +329,14 @@ function ExpandedSearch({ active, closeExpanded}) {
                   />
                 </div>
               </>
-            )}
+            )} */}
 
             <div
               className={`guests searchOption pointer ${
                 active === "btn3" ? "activeTab" : ""
-              }`}
-            >
-              <div
+              }`}>
+                <ExpandedGuests />
+              {/* <div
                 className="guestPickerContainer"
                 onClick={() => setOpenWho(!openWho)}
               >
@@ -382,9 +386,9 @@ function ExpandedSearch({ active, closeExpanded}) {
                     })}
                   </div>
                 </>
-              )}
+              )} */}
 
-              <div
+              {/* <div
                 className="searchItem searchOption searchButton pointer button_effect"
                 onClick={(e) => {
                   e.stopPropagation();
@@ -394,7 +398,7 @@ function ExpandedSearch({ active, closeExpanded}) {
               >
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
