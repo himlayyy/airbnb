@@ -142,6 +142,15 @@ function ExpandedSearch({ active, closeExpanded}) {
       {tabClicked && (
         <div className="searchOptionsContainer">
           <div className="searchOptions">
+
+            <ExpandedDestinations active={""} callback={(() => console.log("expanded destinations callback"))}  />
+            <ExpandedDates />
+            <div
+              className={`guests searchOption pointer ${
+                active === "btn3" ? "activeTab" : ""
+              }`}>
+                <ExpandedGuests />
+            </div>
             {/* <div
               className={`destination searchOption pointer ${
                 active === "btn1" ? "activeTab" : ""
@@ -245,8 +254,7 @@ function ExpandedSearch({ active, closeExpanded}) {
               </>
             )} */}
 
-            <ExpandedDestinations active={""} callback={(() => console.log("expanded destinations callback"))}  />
-            <ExpandedDates />
+            
             {/* <div className="dates searchOption pointer">
               {active === "btn2" ? (
                 <>
@@ -331,11 +339,10 @@ function ExpandedSearch({ active, closeExpanded}) {
               </>
             )} */}
 
-            <div
-              className={`guests searchOption pointer ${
-                active === "btn3" ? "activeTab" : ""
-              }`}>
-                <ExpandedGuests />
+           {/* <div className={`guests searchOption pointer ${
+              active === "btn3" ? "activeTab" : ""
+            }`}>
+               <ExpandedGuests /> */}
               {/* <div
                 className="guestPickerContainer"
                 onClick={() => setOpenWho(!openWho)}
@@ -398,8 +405,9 @@ function ExpandedSearch({ active, closeExpanded}) {
               >
                 <IoSearchSharp size={"1.5em"} />
                 <span className="body-text">Search</span>
-              </div> */}
-            </div>
+              </div>
+            </div> */}
+            
           </div>
         </div>
       )}
