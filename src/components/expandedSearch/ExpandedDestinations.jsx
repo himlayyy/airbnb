@@ -8,7 +8,9 @@ function ExpandedDestinations({active="", callback}){
   const [country, setCountry] = useState("");
 
   const handleCountry = (props) => {
+    console.log("in handleCountry ", props);
     setCountry(props);
+      callback(props);
     // updateSearchContext("country", props);
     setOpenWhere(!openWhere);
   };

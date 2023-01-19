@@ -3,7 +3,7 @@ import { format } from "date-fns";
 import { DateRange } from "react-date-range";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
-function ExpandedDates({ active="" }) {
+function ExpandedDates({ active="", disabledDates=[], callback }) {
   const [openWhen, setOpenWhen] = useState(false);
   const [dates, setDates] = useState([
     {
@@ -13,11 +13,16 @@ function ExpandedDates({ active="" }) {
     },
   ]);
 
+  const handleDates = (datesArr) => {
+    setDates(datesArr);
+    callback(datesArr[0]);
+  }
+
   const closeTabPopout = () =>{
     setOpenWhen(!openWhen);
   }
 
-  const ref = useOutsideClick(closeTabPopout);
+  // const ref = useOutsideClick(closeTabPopout);
 
   return (
     <>
@@ -82,8 +87,11 @@ function ExpandedDates({ active="" }) {
           >
             <DateRange
               editableDateInputs={true}
+              disabledDates={disabledDates}
               onChange={(item) => {
-                setDates([item.selection]);
+                handleDates([item.selection])
+                // setDates([item.selection]);
+
                 // updateSearchContext("dates", {
                 //   startDate: dates[0].startDate,
                 //   endDate: dates[0].endDate,
@@ -95,7 +103,7 @@ function ExpandedDates({ active="" }) {
               }}
               moveRangeOnFirstSelection={false}
               ranges={dates}
-              ref={ref}
+              // ref={ref}
             />
           </div>
         </>

@@ -1,33 +1,47 @@
-import React, { useState } from 'react';
-import { formatGuests } from '../../helpers/helpers';
+ import React, { useState, useEffect } from 'react';
+import { formatGuests, filterGuests, getTotalGuests } from '../../helpers/helpers';
 import { BiMinus, BiPlus } from "react-icons/bi";
 
-function ExpandedGuests({active=""}) {
-    const [openWho, setOpenWho] = useState(false);
-    const [guests, setGuests] = useState({
-        adults: 0,
-        children: 0,
-        infants: 0,
-        pets: 0,
-      });
-    const guestOptions = [
-    { type: "Adults", info: "Ages 13 and above" },
-    { type: "Children", info: "Ages 13 below" },
-    { type: "Infants", info: "Under 2" },
-    { type: "Pets", info: "Support pets" },
-    ];
+function ExpandedGuests({active="", maxGuests=null, callback}) {
+  const [openWho, setOpenWho] = useState(false);
+  const [guests, setGuests] = useState({
+      adults: 0,
+      children: 0,
+      infants: 0,
+      pets: 0,
+    });
+  const guestOptions = [
+  { type: "Adults", info: "Ages 13 and above" },
+  { type: "Children", info: "Ages 13 below" },
+  { type: "Infants", info: "Under 2" },
+  { type: "Pets", info: "Support pets" },
+  ];
+  const [totalGuests, setTotalGuests] = useState(0);
 
-    const handleSetGuests = (opt, op) => {
-        setGuests((prev) => {
-          return {
-            ...prev,
-            [opt]: op === "m" ? guests[opt] - 1 : guests[opt] + 1,
-          };
-        });
-        
-        // updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
-        // updateSearchContext("guestsString", formatGuests(guests));
-      };
+  const handleSetGuests = (opt, op) => {
+      setGuests((prev) => {
+        return {
+          ...prev,
+          [opt]: op === "m" ? guests[opt] - 1 : guests[opt] + 1,
+        };
+      });
+
+      
+      // updateSearchContext("guests", Object.fromEntries(filterGuests(guests)));
+      // updateSearchContext("guestsString", formatGuests(guests));
+  };
+
+  const handleGuests = (opt, op) => {
+    handleSetGuests(opt, op);
+  };
+
+  useEffect(() => {
+    callback(Object.fromEntries(filterGuests(guests)));
+    setTotalGuests(() => getTotalGuests(guests));
+    console.log(totalGuests);
+
+  } ,[guests]);
+
   return (
     <>
         <div
@@ -75,6 +89,7 @@ function ExpandedGuests({active=""}) {
                             <button
                               className="plus"
                               onClick={() => handleSetGuests(opt, "p")}
+                              disabled = {maxGuests !== null && totalGuests >= maxGuests}
                             >
                               <BiPlus size={"1.5em"} />
                             </button>

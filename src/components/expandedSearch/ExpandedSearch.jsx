@@ -36,28 +36,18 @@ import "react-date-range/dist/theme/default.css"; // theme css file
 
 // function ExpandedSearch() {
 
-function ExpandedSearch({ active, closeExpanded}) {
+// function ExpandedSearch({ active, closeExpanded}) {
+function ExpandedSearch({active, closeExpanded,props}){
   const [tabClicked, setTabClicked] = useState(true);
 
   const [openWhere, setOpenWhere] = useState(false);
   const [openWhen, setOpenWhen] = useState(false);
-  const [openWho, setOpenWho] = useState(false);
 
+  const [openWho, setOpenWho] = useState(false);
+  const [country, setCountry] = useState("");
   const [continent, setContinent] = useState("region/asia");
 
-  // const [toSearch, setToSearch] = useState(false);
-
   const { search, updateSearchContext } = useContext(SearchContext);
-
-  // const {datesString} = searchContext.search;
-
-  const [country, setCountry] = useState("");
-
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  // const [searchClicked, setSearchClicked] = useState(false);
-
-  
 
   const [dates, setDates] = useState([
     {
@@ -78,6 +68,8 @@ function ExpandedSearch({ active, closeExpanded}) {
     dates: {},
     guests: {},
   });
+
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const navigate = useNavigate();
 
@@ -113,7 +105,7 @@ function ExpandedSearch({ active, closeExpanded}) {
     setOpenWhen(!openWhen);
   }
 
-  const ref = useOutsideClick(closeTabPopout);
+  // const ref = useOutsideClick(closeTabPopout);
  
 
   const updateContext = () =>{
@@ -136,13 +128,32 @@ function ExpandedSearch({ active, closeExpanded}) {
     navigate({pathname: `/search`, search: `?${createSearchParams({country:`${country}`, sort:"date", order:"newest"})}`});
   };
 
+  useEffect((console.log(props)),[]);
   return (
     <>
-      {query.destinations}
-      {tabClicked && (
+     <div className="searchOptionsContainer">
+        <div className="searchOptions">
+          <p>Hello</p>
+           {/*{tabClicked && 
+            ({props})
+              {props}
+            }*/}
+       {/* {
+          tabClicked &&
+          {props}
+        }*/}
+       {/*{console.log(props)}*/}
+        </div>
+      </div>
+     
+    </>
+  );
+}
+
+export default ExpandedSearch;
+{/* {tabClicked && (
         <div className="searchOptionsContainer">
           <div className="searchOptions">
-
             <ExpandedDestinations active={""} callback={(() => console.log("expanded destinations callback"))}  />
             <ExpandedDates />
             <div
@@ -150,8 +161,24 @@ function ExpandedSearch({ active, closeExpanded}) {
                 active === "btn3" ? "activeTab" : ""
               }`}>
                 <ExpandedGuests />
-            </div>
-            {/* <div
+                <div
+                className="searchItem searchOption searchButton pointer button_effect"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  closeExpanded();                  
+                  goSearch();
+                }}
+              >
+                <IoSearchSharp size={"1.5em"} />
+                <span className="body-text">Search</span>
+              </div>
+            </div> 
+          </div>
+        </div>
+      )
+    }*/}
+
+{/* <div
               className={`destination searchOption pointer ${
                 active === "btn1" ? "activeTab" : ""
               }`}
@@ -407,12 +434,3 @@ function ExpandedSearch({ active, closeExpanded}) {
                 <span className="body-text">Search</span>
               </div>
             </div> */}
-            
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
-
-export default ExpandedSearch;
