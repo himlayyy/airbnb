@@ -17,17 +17,22 @@ import { CgScreen } from "react-icons/cg";
 import { IoWaterOutline } from "react-icons/io";
 import { TbHanger } from "react-icons/tb";
 import { MdIron } from "react-icons/md";
+import { IoSearchSharp } from "react-icons/io5";
+import { eachDayOfInterval, differenceInDays } from "date-fns";
 
 // src\components\searchbar\SearchBar.jsx
 // src\pages\rooms\Rooms.jsx
 
 import Portal from "../../components/Portal";
 
-import { amenitiesIcons, amenitiesLabel } from "../../helpers/helpers";
+import { amenitiesIcons, amenitiesLabel, filterGuests } from "../../helpers/helpers";
 import { getRoomInCountry } from "../../firebase";
 
 import SearchBar from "../../components/searchbar/SearchBar";
 import ExpandedSearch from "../../components/expandedSearch/ExpandedSearch";
+import ExpandedDestinations from "../../components/expandedSearch/ExpandedDestinations";
+import ExpandedDates from "../../components/expandedSearch/ExpandedDates";
+import ExpandedGuests from "../../components/expandedSearch/ExpandedGuests";
 import Slider from "react-slick";
 
 import "./rooms.css";
@@ -194,6 +199,9 @@ function Rooms() {
   const [details, setDetails] = useState({});
   const [clicked, setClicked] = useState(false);
   const [openPortal, setOpenPortal] = useState(false);
+  const [disabledDates, setDisabledDates] = useState([]);
+  const [days, setDays] = useState(0);
+  const [stayCost, setStayCost] = useState(0);
   const params = useParams();
 
   const stringifyRooms = (bedroom) => {
@@ -311,12 +319,51 @@ function Rooms() {
     // ]
   };
 
+
+  const calcStayCost = ({startDate, endDate}) => {
+    console.log(startDate);
+    console.log(endDate);
+    const duration =  setDays(differenceInDays(endDate, startDate));
+    setStayCost( details.roomPrice * duration);
+
+  }
+
   useEffect(() => {
+
+    
+
     console.log("in rooms page");
-    getRoomInCountry(params.country.toLowerCase(), params.id).then((data) => {console.log(data);setDetails(data);});
-    document.title = details.roomName;
-    console.log(details);
+    getRoomInCountry(params.country.toLowerCase(), params.id).then((data) => {setDetails(data)});
+    
+    console.log(details?.bookings)
+    
+    console.log(details?.bookings);
+    // convertToDate(details?.bookings[0]);
+    // console.log(disabledDates);
+
   }, []);
+
+  useEffect(() => {
+
+    const convertToDate = (startDate, endDate) => {
+      setDisabledDates(eachDayOfInterval({start:new Date(startDate), end:  new Date(endDate)}));
+    };
+
+    document.title = details.roomName;
+    if(details.hasOwnProperty("bookings")){
+      console.log(details.bookings[0])
+      const {startDate, endDate} = details.bookings[0]
+      convertToDate(startDate, endDate);
+    };
+
+    setStayCost(() => details.roomPrice * 1);
+
+  },[details])
+
+
+  useEffect(() => {
+    setStayCost(() => details.roomPrice * days);
+  }, [days]);
 
   return (
     <div className="roomsPage page-padding">
@@ -353,7 +400,7 @@ function Rooms() {
             </div>
             </div>
             <div className="roomGallery">
-              {console.log()}
+              {/*{console.log()}*/}
               {details?.images?.slice(0,5).map((url,i) => 
                   <img
                     className="destinationImg"
@@ -362,7 +409,7 @@ function Rooms() {
                   />
                 )
               }
-              {console.log(details.images)}
+              {/*{console.log(details.images)}*/}
               <button onClick = {() => setOpenPortal(!openPortal)}>
                 <TbGridDots />
                 Show all photos
@@ -450,14 +497,27 @@ function Rooms() {
 
             <div className="roomsDetails-booking">
               <div className="roomsDetails-booking-container">
-                Book
-                {details.roomPrice}
-                <ExpandedSearch />
+                {`Book ${details.roomPrice} ${stayCost}`}
+              {/*  <ExpandedSearch />*/}
                  {/*<AccountToggle /> */}
-                
-                <MdOutlineBed size={"32px"} />
-                <MdOutlineSingleBed size={"32px"} />
-                <MdOutlineKingBed size={"32px"} />
+              <div className="searchOptionsContainer">
+                <div className="searchOptions">
+                  <ExpandedDates callback={calcStayCost} 
+                  disabledDates={disabledDates}/>
+                  <ExpandedGuests maxGuests = {details.beds} callback={(guests) => console.log("expanded guests!", guests)} />
+                </div>
+                <div
+                    className="searchItem searchOption searchButton pointer button_effect"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // closeExpanded();                  
+                      // goSearch();
+                    }}
+                  >
+                    <IoSearchSharp size={"1.5em"} />
+                    <span className="body-text">Book</span>
+                  </div>
+              </div>
               </div>
             </div>
           </div>
