@@ -1,6 +1,15 @@
 // so ang flow is:
 import axios from "axios";
 
+import { GiForkKnifeSpoon, GiComb } from "react-icons/gi";
+import { AiOutlineWifi, AiOutlineCar } from "react-icons/ai";
+import { FaSwimmingPool, FaSnowflake } from "react-icons/fa";
+import { CgScreen } from "react-icons/cg";
+import { IoWaterOutline } from "react-icons/io5";
+import { TbHanger, TbLuggage } from "react-icons/tb";
+import { MdIron, MdOutlineBalcony, MdOutlineGrass, MdOutlineBedroomBaby, MdOutlineMicrowave } from "react-icons/md";
+
+
 export const parseItem = (item) => {
                                 
     const parseCurrency = (item) => {
@@ -72,7 +81,6 @@ export const countryCurrency = (data, delimiter, parserProp) => {
         }
         return parsed;
     };  
-    console.log("in helpers");
 
     let parsed = parseData(data);
     let final = checkCurrent(parsed);
@@ -87,7 +95,6 @@ export const  generateOptions = async (country) =>{
         )
         .then((res) => res.data[0].latlng)
          .catch((err) =>{
-            console.log("ERR");
             console.log(err);
           })
     return res;
@@ -132,3 +139,53 @@ export const stringifyGuests = (obj) => {
     const string = formatGuests(obj);
     return string;
 };
+
+export const getTotalGuests = (obj) => {
+    // const guestArr = Object.entries(filterGuests(obj));
+
+    const totalGuests = getSumOfArray(Object.values(obj));
+    console.log(totalGuests);
+    console.log("totalGuests", totalGuests);
+    return totalGuests;
+};
+
+export const getSumOfArray = (array) => {
+    const sum = array.reduce((accumulator, value) => {
+        return accumulator + value
+    },0);
+    console.log(`Total guests: ${sum}`);
+    return sum;
+};
+
+export const amenetiesIcons = [
+    GiForkKnifeSpoon,
+    AiOutlineCar,
+    CgScreen,
+    MdOutlineBalcony,
+    TbLuggage,
+    AiOutlineWifi,
+    FaSwimmingPool,
+    FaSnowflake,
+    MdOutlineGrass,
+    MdOutlineBedroomBaby,
+    MdOutlineMicrowave,
+    IoWaterOutline,
+    TbHanger,
+    MdIron
+];
+
+export const amenetiesLabel = [
+    "Kitchen",
+    "Free parking on premises",
+    "TV",
+    "Patio or balcony",
+    "Luggage dropoff allowed",
+    "Wifi",
+    "Swimming pool",
+    "Airconditioning",
+    "Backyard",
+    "Crib",
+    "Hot water",
+    "Hangers",
+    "Iron"
+];
