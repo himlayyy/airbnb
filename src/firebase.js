@@ -20,7 +20,10 @@ import {
   addDoc,
   onSnapshot,
   writeBatch,
-  doc
+  doc, 
+  updateDoc,
+  arrayUnion,
+  setDoc
 } from "firebase/firestore";
 import {
   ref,
@@ -30,6 +33,7 @@ import {
   getDownloadURL
 } from "firebase/storage";
 import { GiCootieCatcher } from "react-icons/gi";
+import { eachDayOfInterval } from "date-fns";
 // import {docsArray, roomsIdObj}  from "./new";
 
 const firebaseConfig = { apiKey: "AIzaSyC6vu78v_j-A_rB98vfBqghI_f56j4MxeE",
@@ -229,6 +233,71 @@ const addImgRefsToDoc = async (docRef, imgArr) => {
   }catch(err){
     console.log(err);
   }
+};
+
+
+const updateStayDetails = async (details, field, data) => {
+
+}
+
+const getDocAndUpdate = async (docRef, field, data) => {
+  console.log(field);
+  try{
+    console.log("getting doc")
+    const doc = await getDoc(docRef);
+
+    // Check if field exists, if true update field
+    if(Object.keys(doc.data).includes(`${field}`)){
+      await setDoc(docRef, {field: arrayUnion(data)}, {merge:true});
+    }
+    // Field does not exist, create field and add data
+    else{
+       console.log(`${field} does not exist!...creating ${field}`);
+      await setDoc(docRef, {[`${field}`]:[data]}, {merge:true});
+    }
+    console.log("A New Document Field has been added to an existing document");
+
+  }catch(err){
+    console.log("In getDocAndUpdate", err);
+  }
+};
+
+export const bookStay =  async (details, userId) => {
+  console.log("in book stay");
+
+  try{
+
+    // Get matching stay document
+    const q = query(collection(db, "users"), where("uid", "==", userId));
+    const querySnapshot = await getDocs(q);
+    console.log(q);
+
+    // Add booking details to user 
+    try{
+      console.log(querySnapshot)
+      querySnapshot.forEach((res) => {
+        const docRef = doc(db, "users", res.id);
+        getDocAndUpdate(docRef, "bookings", details)
+      }); 
+    }catch(err){
+      console.log(err)
+    }
+
+    // Add booking details to stay
+    try{
+      const docRef = doc(db, details.country, details.stayId);
+      const data = details.stayDates;
+      getDocAndUpdate(docRef, "bookings", data);
+    }catch(err){
+      console.log("Error in adding booking details to stay", err);
+    }
+
+  }catch(err){
+    console.log("Error in adding booking details", err);
+  }
+
+  // Add booking details to stay
+  
 };
 
 // export const createDocImgFolderAndUpload = async (country) => {
