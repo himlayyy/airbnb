@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { format } from "date-fns";
+import { add, format } from "date-fns";
 import { DateRange } from "react-date-range";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
@@ -8,7 +8,7 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: add(new Date(),{days:1}),
       key: "selection",
     },
   ]);
