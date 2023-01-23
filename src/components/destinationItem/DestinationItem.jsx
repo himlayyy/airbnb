@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
+import { v4 as uuidv4 } from 'uuid';
+
 import "./destinationItem.css";
 
 import { IoHeartOutline } from "react-icons/io5";
@@ -96,6 +98,7 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
                     {images.map((image,i) => <img
                         className="destinationImg"
                         src= {image}
+                        key={uuidv4()}
                         alt={`destAltImg${i+1}`} />
                     )}
           </Slider>

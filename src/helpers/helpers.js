@@ -3,7 +3,7 @@ import axios from "axios";
 
 import { GiForkKnifeSpoon, GiComb } from "react-icons/gi";
 import { AiOutlineWifi, AiOutlineCar } from "react-icons/ai";
-import { FaSwimmingPool, FaSnowflake } from "react-icons/fa";
+import { FaSwimmingPool, FaSnowflake, FaDatabase } from "react-icons/fa";
 import { CgScreen } from "react-icons/cg";
 import { IoWaterOutline } from "react-icons/io5";
 import { TbHanger, TbLuggage } from "react-icons/tb";
@@ -156,6 +156,7 @@ export const getSumOfArray = (array) => {
     console.log(`Total guests: ${sum}`);
     return sum;
 };
+
 
 export const amenetiesIcons = [
     GiForkKnifeSpoon,

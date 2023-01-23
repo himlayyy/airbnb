@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { format } from "date-fns";
+import { add, format } from "date-fns";
 import { DateRange } from "react-date-range";
 import useOutsideClick from "../../hooks/useOutsideClick";
 
@@ -8,7 +8,7 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
   const [dates, setDates] = useState([
     {
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: add(new Date(),{days:1}),
       key: "selection",
     },
   ]);
@@ -82,7 +82,6 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
             onClick={(e) => {
               e.stopPropagation();
               closeTabPopout();
-              // setOpenWhen(!openWhen);
             }}
           >
             <DateRange
@@ -90,20 +89,9 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
               disabledDates={disabledDates}
               onChange={(item) => {
                 handleDates([item.selection])
-                // setDates([item.selection]);
-
-                // updateSearchContext("dates", {
-                //   startDate: dates[0].startDate,
-                //   endDate: dates[0].endDate,
-                // });
-                // updateSearchContext("datesString", {
-                //   start: format(dates[0].startDate, "MMM d"),
-                //   end: format(dates[0].endDate, "MMM d"),
-                // });
               }}
               moveRangeOnFirstSelection={false}
               ranges={dates}
-              // ref={ref}
             />
           </div>
         </>
