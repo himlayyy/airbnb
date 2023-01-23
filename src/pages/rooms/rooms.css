@@ -269,8 +269,8 @@ padding:0px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.18);
   }
   .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent.dateSelectorContainer{
-    left:20px;
-    top: 149px;
+    top:64px;
+    left:0px;
   }
   .roomsDetails .roomDetails-details-container .roomsDetails-booking .searchOptionsContainer .searchOptions .tabPopout.popOutContent.guestSelectorContainer{
     top:210px;

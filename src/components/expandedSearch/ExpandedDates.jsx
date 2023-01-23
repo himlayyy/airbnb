@@ -82,7 +82,6 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
             onClick={(e) => {
               e.stopPropagation();
               closeTabPopout();
-              // setOpenWhen(!openWhen);
             }}
           >
             <DateRange
@@ -90,20 +89,9 @@ function ExpandedDates({ active="", disabledDates=[], callback }) {
               disabledDates={disabledDates}
               onChange={(item) => {
                 handleDates([item.selection])
-                // setDates([item.selection]);
-
-                // updateSearchContext("dates", {
-                //   startDate: dates[0].startDate,
-                //   endDate: dates[0].endDate,
-                // });
-                // updateSearchContext("datesString", {
-                //   start: format(dates[0].startDate, "MMM d"),
-                //   end: format(dates[0].endDate, "MMM d"),
-                // });
               }}
               moveRangeOnFirstSelection={false}
               ranges={dates}
-              // ref={ref}
             />
           </div>
         </>

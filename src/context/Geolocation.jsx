@@ -34,17 +34,12 @@ function GeoContextProvider(props){
             try{
                 // Reverse geocode to get current country
                 
-                // let location = await axios
-                //     .get(`http://api.positionstack.com/v1/reverse?access_key=230b2be842e46ac2b0d069089d87009d&query=${position.coords.latitude},${position.coords.longitude}&limit=1`)
-                //     .then((res) => res.data.data[0].country)
-                //     .catch(error => {
-                //         console.log(error);
-                //         return "Philippines"});
-                let location = "philippines";
-
-                    // let location = await axios
-                    // .get(`http://api.positionstack.com/v1/reverse?access_key=&query=${position.coords.latitude},${position.coords.longitude}&limit=1`)
-                    // .then((res) => res.data.data[0].country);
+                let location = await axios
+                    .get(`http://api.positionstack.com/v1/reverse?access_key=230b2be842e46ac2b0d069089d87009d&query=${position.coords.latitude},${position.coords.longitude}&limit=1`)
+                    .then((res) => res.data.data[0].country)
+                    .catch(error => {
+                        console.log(error);
+                        return "Philippines"});
                 
                 //Get currenty country's currency and language
                 let res = await axios.get(`https://restcountries.com/v3.1/name/${location}?fields=name,currencies,languages`)
