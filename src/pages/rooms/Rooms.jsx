@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
 import { auth } from "../../firebase"
@@ -19,6 +19,7 @@ import Portal from "../../components/Portal";
 
 import { formatGuests } from "../../helpers/helpers";
 import { getRoomInCountry, bookStay } from "../../firebase";
+import { GeoContext } from "../../context/Geolocation";
 
 import ExpandedDates from "../../components/expandedSearch/ExpandedDates";
 import ExpandedGuests from "../../components/expandedSearch/ExpandedGuests";
@@ -67,7 +68,7 @@ function PrevArrow(props) {
   );
 };
 
-function Rooms(){
+function Rooms() {
   const [details, setDetails] = useState({});
   const [clicked, setClicked] = useState(false);
   const [openPortal, setOpenPortal] = useState(false);
@@ -85,6 +86,7 @@ function Rooms(){
 
   const params = useParams();
   const navigate = useNavigate();
+  const geoContext = useContext(GeoContext);
 
   const stringifyRooms = (bedroom) => {
     let arr = [];
@@ -154,7 +156,6 @@ function Rooms(){
 
   useEffect(() => {
     getRoomInCountry(params.country.toLowerCase(), params.id).then((data) => { setDetails(data) });
-    console.log(details?.bookings)
   }, []);
 
   useEffect(() => {
@@ -180,7 +181,6 @@ function Rooms(){
       setMaxGuests(details.guests);
     };
     setStayCost(() => details.roomPrice * 1);
-
   }, [details]);
 
   return (
@@ -200,8 +200,9 @@ function Rooms(){
                       {details.rating}
                     </span>
                   </div>
-                  <a className="reviews">{details.reviews} Reviews</a>
-                  <div className="destinationLocation">{details.location}</div>
+                  <a className="reviews body-text">{details.reviews} Reviews</a>
+                  {details?.location && <div className="destinationLocation">{details.location[0].address}</div>}
+                  {/**/}
                 </div>
                 <div className="subheading-right">
                   <button>
@@ -301,7 +302,13 @@ function Rooms(){
 
             <div className="roomsDetails-booking">
               <div className="roomsDetails-booking-container">
-                {`Book ${details.roomPrice} ${stayCost}`}
+                <div className="bookings-header">
+                  <span className="roomPrice">{`${geoContext.symbol}${details.roomPrice} night`}</span>
+                  <span className="ratingScore body-text">
+                    {details.rating}
+                  </span>
+                  <a className="reviews">{details.reviews} Reviews</a>
+                </div>
                 <div className="searchOptionsContainer">
                   <div className="searchOptions">
                     <ExpandedDates disabledDates={disabledDates} callback={handleSelectedDates}
@@ -370,8 +377,8 @@ function Rooms(){
           navigate("/");
           ;
         }}
-          openPortal={openPortal}>
-
+          openPortal={openPortal}
+          containerClass={"booking-confirmation"}>
           <h4>Stay booked!</h4>
           <div>
             <ul>
@@ -382,13 +389,13 @@ function Rooms(){
               <li><b>Duration:</b> {noOfDaysStaying} </li>
               <li>{formatGuests(guestsStaying)} guests for {stayCost}</li>
             </ul>
-            <button className="buttonBottom"
-              onClick={() => {
-                setClicked(!clicked);
-                setOpenPortal(!openPortal);
-                navigate("/");
-              }}>Okay</button>
           </div>
+          <button className="buttonBottom"
+            onClick={() => {
+              setClicked(!clicked);
+              setOpenPortal(!openPortal);
+              navigate("/");
+            }}>Okay</button>
         </Portal>)}
     </div>
   );
