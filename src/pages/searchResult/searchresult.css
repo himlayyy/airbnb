@@ -19,10 +19,27 @@
   width: 60vw;
 }
 
-.destinations-results .destinations .destinationItems {
+.searchPage .destinations-results .destinations .destinationItems{
   height: 100vh;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
 }
+.searchPage .destinations-results .destinations .destinationItems .destinationItem{
+  flex-basis: 250px;
+  flex-grow: 1;
+  margin: 10px;
+  min-width: 250px;
+}
+.searchPage .destinations-results .destinations .destinationItems .destinationItem .destinationGal{
+  height:unset;
+}
+.searchPage .destinations-results .destinations .destinationItems .destinationItem .destinationGal .destinationImg{
+  border-radius: 8px;
+  object-fit: cover;
+  width: 100%;
+}
+
 .destination-container {
   overflow-y: scroll;
 }
@@ -40,4 +57,44 @@
 .mapboxgl-ctrl-bottom-right {
   position: absolute;
   bottom: 50px;
+}
+
+/*Markers and pop-up styles*/
+.mapboxgl-popup-content{
+  background-color:transparent;
+  width:fit-content;
+  margin:0;
+  padding:0px;
+  box-shadow:none;
+}
+.mapboxgl-popup-close-button{
+  top:15px;
+  right:15px;
+  border-radius:50%;
+  background-color:var(--airbnb-color);
+  color:white;
+  padding: 0 4px 2px 4px;
+}
+.mapboxgl-popup-close-button:hover{
+  color:var(--airbnb-color);
+  background-color:white;
+}
+.mapboxgl-popup-content .destinationItem{
+  background-color:transparent;
+}
+.mapboxgl-popup-content .destinationGal{
+  background-color:white;
+  margin-bottom:0px;
+  border-bottom-left-radius:0px;
+  border-bottom-right-radius:0px;  
+}
+.mapboxgl-popup-content .destinationImg{
+  width:250px;
+  height:auto;  
+}
+.mapboxgl-popup-content .destinationItem .destinationDetails{
+  padding:0 5px;
+  background-color:white;
+  border-bottom-left-radius:8px;
+  border-bottom-right-radius:8px;
 }
