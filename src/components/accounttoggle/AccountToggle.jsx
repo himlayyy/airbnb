@@ -154,14 +154,9 @@ function AccountToggle() {
           </>) : 
           (<>
             <div className="accountSignOut accountToggleHover"  onClick = {() => setOpenPortal(!openPortal)}>
-              SIgnOut
-              {/* <h4>Are you sure you want to sign out?</h4> */}
+              Sign out
             </div>
-            
           </>)}
-
-       
-           
             <div className="thin-separator"></div>
             <div className="hostHome accountToggleHover">Host your home</div>
             <div className="hostExperience accountToggleHover">
@@ -175,7 +170,9 @@ function AccountToggle() {
           {openPortal && (
               <Portal handleClose={() => {
                 setClicked(!clicked);
-                setOpenPortal(!openPortal)}} openPortal={openPortal}>
+                setOpenPortal(!openPortal)}} 
+                openPortal={openPortal}
+                containerClass={"auth-confirmation"}>
                   <h4>Are you sure you want to sign out?</h4>
                   <button className="buttonBottom"
                   onClick={() => {
