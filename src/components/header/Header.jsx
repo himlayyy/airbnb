@@ -33,21 +33,12 @@ function Header() {
   const [activeBtn, setActiveBtn] = useState("btn1");
   const [staysClicked, setStaysClicked] = useState(false);
   const [expClicked, setExpClicked] = useState(false);
-  // const [openExpanded, setOpenExpanded] = useState(false);
   const [closeSearch, setCloseSearch] = useState(false);
 
   // End
-
-
-  // const [country, setCountry] = useState("");
   const navigate = useNavigate();
 
   const { updateSearchContext } = useContext(SearchContext);
-
-  
-  // const promptClicked = () =>{
-  //   setOpenExpanded(!openExpanded);
-  // };
 
   const reducer = (state, action) => {
     switch (action.type){
@@ -73,9 +64,7 @@ function Header() {
   }
 
   const [state, dispatch] = useReducer(reducer, intialState);
-
-
-  const handleSelectedCountry = (country) => {
+ const handleSelectedCountry = (country) => {
     dispatch({
       type:"selected_country",
       selectedCountry: country
@@ -95,31 +84,35 @@ function Header() {
       selectedGuests: guests
     })
   }
-  // const handleSelectedDates = (dates) => {
-  //   console.log(dates);
-  // }
-
-  // const logCountry = (country) =>{
-  //   setCountry(country);
-  // };
 
   const updateContext = () =>{
     updateSearchContext("country", state.country);
-    updateSearchContext("guests", Object.fromEntries(filterGuests(state.guests)));
-    updateSearchContext("guestsString", formatGuests(state.guests));
-    updateSearchContext("dates", {
-      startDate: state.dates.startDate,
-      endDate: state.dates.endDate,
-    });
-    updateSearchContext("datesString", {
-      start: format(state.dates.startDate, "MMM d"),
-      end: format(state.dates.endDate, "MMM d"),
-    });
+    if(Object.keys(state.guests).length !== 0){
+      updateSearchContext("guests", Object.fromEntries(filterGuests(state.guests)));
+       updateSearchContext("guestsString", formatGuests(state.guests));
+    }
+    else{
+      console.log("no entered dates");
+    }
+    if(Object.keys(state.dates).length !== 0){
+      console.log(state.dates);
+      updateSearchContext("dates", {
+        startDate: state.dates.startDate,
+        endDate: state.dates.endDate,
+      });
+      updateSearchContext("datesString", {
+        start: format(state.dates.startDate, "MMM d"),
+        end: format(state.dates.endDate, "MMM d"),
+      });
+    }
+    else{
+      console.log("no entered guests");
+    }
   }
 
   const goSearch = () => {
     updateContext();
-    navigate({pathname: `/search`, search: `?${createSearchParams({country:`${state.country}`, sort:"date", order:"newest"})}`});
+    navigate({pathname: `/search`, search: `?${createSearchParams({country:`${state.country}`})}`});
   };
 
   // Original header functions

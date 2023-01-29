@@ -11,11 +11,9 @@ function Destinations({rooms, country}) {
     <>
       <div className="destinations">
         <div className="destinationItems">
-          {console.log(rooms)}
           {rooms.length !==0 && rooms.map(({roomName,rating,roomPrice, id, images}) => {
             return <DestinationItem roomName={roomName} rating={rating}  price={roomPrice} id={id} country={country} images={images}/>
           } )}
-          
         </div>
       </div>
     </>

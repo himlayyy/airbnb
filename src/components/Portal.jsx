@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { logOut } from '../firebase';
 import {IoCloseCircle} from "react-icons/io5";
 
-function Portal({children, openPortal, handleClose}) {
+function Portal({children, openPortal, handleClose, containerClass=""}) {
     const nodeRef = useRef(null);
     const navigate = useNavigate();
 
@@ -18,24 +18,15 @@ function Portal({children, openPortal, handleClose}) {
     }, [handleClose]);
   return (
     <PortalComponent wrapperId="react-portal-wrapper">
-      <div className="portal modalOverlay"
+      <div className= "portal modalOverlay"
       ref={nodeRef}>
-        <div className="portal-content modalContainer">
+        <div className={`portal-content modalContainer ${containerClass}`}>
         <button className="buttonTop" onClick={handleClose}>
-        <IoCloseCircle size={"2.5em"}/></button>
-        {/*<h4>Are you sure you want to sign out?</h4>
-         <button className="buttonBottom"
-         onClick={() => {
-            logOut();
-            handleClose();
-            navigate("/");
-          }}
-          >
-            Sign out</button>*/}
+          <IoCloseCircle size={"2.5em"}/>
+        </button>
             {children}
          </div>
       </div>
-
     </PortalComponent>
   )
 }
