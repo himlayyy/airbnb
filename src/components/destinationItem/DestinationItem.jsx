@@ -90,13 +90,12 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
   
   return (
     <div className="destinationItem">
-      
       <div className="destinationGal" id={id}>
-        {images && 
+        {images.length < 1 ? 
         (<>
           <Slider {...settings}>
                     {images.map((image,i) => <img
-                        className="destinationImg"
+                        className="destinationImg lazyLoad"
                         src= {image}
                         key={uuidv4()}
                         alt={`destAltImg${i+1}`} />
@@ -109,8 +108,11 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
           </div>
           </>
         )
-      }
-
+        :
+        (<img className="destinationImg lazyLoad"
+              src= {images[0]}
+              key={uuidv4()}
+              alt={`destAltImg${1}`} />) }
       </div>
 
       <div className="destinationDetails">
@@ -118,14 +120,6 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
           <span className="destinationName " onClick={() => navigate(`/rooms/${country.toLowerCase()}/${id}`)} >
 
      {roomName}
-          {/*<span className="destinationName"?
-          <Link to="/rooms">
-          {roomName}
-          </Link>
-            <a href="/" className="body-text" 
-              onClick={() => {
-                console.log("ir DestinationItem");
-                navigate("/login")}}>{roomName}</a>*/}
           </span>
           <div className="destinationRating">
             <span className="ratingIcon">
@@ -134,10 +128,6 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
             <span className="ratingScore body-text">{rating}</span>
           </div>
         </div>
-        <div className="destinationDistance body-text light-text">
-          In KMS         
-        </div>
-        <div className="destinationAvailability body-text light-text">Dates</div>
         <div className="destinationPrice body-text">
           <b>{price}</b> night
         </div>
