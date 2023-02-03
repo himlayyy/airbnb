@@ -91,7 +91,7 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
   return (
     <div className="destinationItem">
       <div className="destinationGal" id={id}>
-        {images.length < 1 ? 
+        {images?.length < 1 ? 
         (<>
           <Slider {...settings}>
                     {images.map((image,i) => <img
