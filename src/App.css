@@ -20,17 +20,17 @@ html,body, button { font-family: "Inter","Montserrat", sans-serif;
   html { font-family: 'Inter var', sans-serif; }
 }
 ::-webkit-scrollbar {
-  width: 12px;               /* width of the entire scrollbar */
+  width: 8px;               /* width of the entire scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-  background: white;        /* color of the tracking area */
+  background: var(--bg-grey);
+  border-radius:10px;/* color of the tracking area */
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--scroll-bar);    /* color of the scroll thumb */
   border-radius: 20px;       /* roundness of the scroll thumb */
-  border: 3px solid var(--bg-grey);  /* creates padding around scroll thumb */
 }
 html,
 .destinationItems,
@@ -653,3 +653,27 @@ font-size:15px;
 .button_effect:active{
   transform: translateY(4px);
 }
+
+/*Home page settings*/
+@media(max-width:587px){
+  .home .destinationImg{
+    width:100%;
+    height:auto;
+  }
+}
+@media(max-width:743px){
+  .home .destinationItems{
+    display:flex;
+    flex-wrap: wrap;
+  }
+}
+@media(min-width:744px) and (max-width:952px){
+  .home .destinationItems{
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+/*@media(max-width:1203px){
+  .destinationImg{
+    height:200px;
+  }
+}*/
