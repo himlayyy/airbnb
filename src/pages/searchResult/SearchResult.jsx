@@ -116,7 +116,8 @@ function SearchResult() {
     };
     
     getCoordinates(country).then(res=> {
-      let [lat, long] = Object.values(res[0])[2];
+      // let [lat, long] = Object.values(res[0])[2];
+      let [lat, long] = res[0].latlng;
       console.log(lat, long);
       setViewState({latitude:lat, longitude:long});
       console.log(viewState);
