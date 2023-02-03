@@ -1,34 +1,25 @@
 .destinationItem{
    height:fit-content;
-    /* margin:10px 0px; */
     margin:10px;
     flex-grow:1; 
     box-sizing:border-box;
-    /* border:1px solid; */
-    /* height:300px; */
     flex-basis:250px;
-    min-width:250px;
+    min-width:200px;
     
 }
 .destinationGal{
     position:relative;
     margin-bottom:3px;
-    /* display:flex; */
   height:50%;
   border-radius:8px;
   overflow:hidden;
 }
 .destinationImg{
-  
-/*     height:AUTO;
-    width:300px; */
   height:300px;
     object-fit:cover;
-
 }
 .galBtns{    
     position:absolute;
-   
     top:10px;
     right:5px;  
 }
