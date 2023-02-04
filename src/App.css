@@ -229,8 +229,11 @@ font-size:15px;
   .destination :last-child{
     padding-bottom:5px;
   }
-  .guests > *{
+  /*.guests > *{
     padding-left:20px;
+  }*/
+  .guests > *{
+    padding-left:10px;
   }
   .guests:first-child{
     padding-top: 5px;
