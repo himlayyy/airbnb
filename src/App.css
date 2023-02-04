@@ -190,7 +190,8 @@ font-size:15px;
   }
   .searchOptions{
     flex-direction:column;
-    align-items:flex-start;
+/*    align-items:flex-start;*/
+    align-items: center;
     gap: 10px;
     padding: 10px 5px;
     margin-right:0px;
@@ -229,8 +230,11 @@ font-size:15px;
   .destination :last-child{
     padding-bottom:5px;
   }
-  .guests > *{
+  /*.guests > *{
     padding-left:20px;
+  }*/
+  .guests > *{
+    padding-left:10px;
   }
   .guests:first-child{
     padding-top: 5px;
