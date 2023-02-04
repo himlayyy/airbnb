@@ -361,8 +361,9 @@ function Rooms() {
       {showLogin && (
         <Portal handleClose={() => {
           setClicked(!clicked);
-          setShowLogin(!showLogin);
-        }} openPortal={openPortal}>
+          setShowLogin(!showLogin);}} 
+          openPortal={openPortal}
+          containerClass={"auth-confirmation"}>
 
           <h4>Log-in or sign-up to book a stay</h4>
           <button className="buttonBottom"

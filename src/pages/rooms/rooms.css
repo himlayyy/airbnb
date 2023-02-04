@@ -305,7 +305,7 @@ padding:0px;
     grid-gap:10px;
    grid-template-columns:repeat(2, 1fr);   
 }
-.portal-content.modalContainer.booking-confirmation {
+.portal-content.modalContainer.booking-confirmation{
   height: fit-content;
   text-align:center;
 }
