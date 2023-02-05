@@ -51,5 +51,13 @@ The front end is built with React and the database and authentication is handled
 
 ![Airbnb clone mobile view](https://user-images.githubusercontent.com/24460065/216811829-b797d221-3a7b-46ee-b7be-825161673cdb.png)
 *Airbnb clone mobile view*
+![Untitled](https://user-images.githubusercontent.com/24460065/216816245-d76e2eb7-5849-4782-9e11-421063672b9c.png)
+
+![Untitled](https://user-images.githubusercontent.com/24460065/216816271-015a212c-f0ae-4a8f-a5e0-2644e47f11f0.png)
+
+![image](https://user-images.githubusercontent.com/24460065/216816657-954226ab-124f-4c8c-8199-121bf6e07bf9.png)
+
+
+![Untitled](https://user-images.githubusercontent.com/24460065/216816332-a79f71ed-e14e-4a2c-9de3-eda0f8a70cfa.png)
 
 
