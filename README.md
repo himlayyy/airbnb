@@ -4,20 +4,18 @@
 
 ![image](https://user-images.githubusercontent.com/24460065/216766115-55e022d1-2751-486d-9dd5-241d5059dc62.png)
 
-*Airbnb clone*
-
 A clone of the Airbnb site with limited features. 
 
 The front end is built with React and the database and authentication is handled by Firebase. 
 
 
-### APIs:
+### 📚 APIs:
 
 - RESTCountries
 - Position Stack
 - Mapbox
 
-### Dependencies
+### 📚 Dependencies
 
 - React Router
 - react-map-gl
@@ -28,21 +26,21 @@ The front end is built with React and the database and authentication is handled
 - date-fns
 - uuid
 
-## Features
+## ✨ Features
 
 - Account creation, log-in & sign-up
 - Room booking
 - Curated stays on home page based on user location
 - Search results page with the selected country's availale stays on a map. Each marker is interactive. Clicking on a marker links to the stay's room page
 
-> Only Philippines and Spain have listings!
+> ❗ Only Philippines and Spain have listings!
 
 - Home page stay listings are based on user's location using geolocation
 - Disabled dates in date picker based on selected room's current bookings
 - Number of guests is limited to selected room's maximum gusest capacity
 - Booking is limited to logged-in users
 
-## Todo list
+## 🔜 Todo list
 
 1. Implement stay filtering:
     + In homepage with stay scroller
@@ -53,8 +51,9 @@ The front end is built with React and the database and authentication is handled
 4. Enable Google account and social media sign-up 
 5. Send booking confirmation email
 6. Error handling when RESTCountries goes down
+7. Clean up code
 
-## Screenshots
+## 📸 Screenshots
 
 ![Airbnb clone homepage](https://user-images.githubusercontent.com/24460065/216766115-55e022d1-2751-486d-9dd5-241d5059dc62.png)
 
@@ -110,6 +109,8 @@ The front end is built with React and the database and authentication is handled
 *Booking confirmation pop-up showing booking details*
 
 ![Dates in date picker are diasbled when it conflicts with a room's booked dates. Adding guests is disabled in guest picker when it exceeds max guest capacity](https://user-images.githubusercontent.com/24460065/216823449-999e72c7-ca30-4c31-bb03-99357b3998fa.png)
+
+*Dates in date picker are diasbled when it conflicts with a room's booked dates. Adding guests is disabled in guest picker when it exceeds max guest capacity*
 
 
 
