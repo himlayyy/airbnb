@@ -190,7 +190,8 @@ font-size:15px;
   }
   .searchOptions{
     flex-direction:column;
-    align-items:flex-start;
+/*    align-items:flex-start;*/
+    align-items: center;
     gap: 10px;
     padding: 10px 5px;
     margin-right:0px;
@@ -229,8 +230,11 @@ font-size:15px;
   .destination :last-child{
     padding-bottom:5px;
   }
-  .guests > *{
+  /*.guests > *{
     padding-left:20px;
+  }*/
+  .guests > *{
+    padding-left:10px;
   }
   .guests:first-child{
     padding-top: 5px;
@@ -259,6 +263,7 @@ font-size:15px;
     margin-top: 5px;
   }
   .guestSelectorContainer{
+    margin:auto;
     margin-bottom:7px;
   }
   .searchItem.searchOption.searchButton{
@@ -269,6 +274,9 @@ font-size:15px;
   }
 
   /* guestPicker mobile styles */
+  .guests.searchOption.pointer{
+    padding-left:0px;
+  }
   .guests.searchOption.pointer:hover{
     background-color: transparent;
   }
@@ -451,6 +459,10 @@ font-size:15px;
   .roomsDetails-heading-container{
     display:flex;
     flex-direction:column;
+  }
+  .roomDetails-subheading{
+    flex-direction: column-reverse;
+    align-items: flex-start;
   }
   .roomDetails-details-container{
     flex-direction:column;

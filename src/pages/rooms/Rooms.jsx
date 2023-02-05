@@ -156,6 +156,8 @@ function Rooms() {
 
   useEffect(() => {
     getRoomInCountry(params.country.toLowerCase(), params.id).then((data) => { setDetails(data) });
+    console.log("geocontext");
+    console.log(geoContext);
   }, []);
 
   useEffect(() => {
@@ -247,7 +249,7 @@ function Rooms() {
                 </div>
                 <div className="subheading-right">
                   {/*<img src={details.hostPic} className="hostPic" />*/}
-                  <img src="https://a0.muscache.com/im/pictures/user/bcdf359a-cbbf-4530-996b-ed8646baf340.jpg?im_w=240" alt={`${details.hostName}-pic`} className="hostPic" />
+                  <img src={details.hostPic} alt={`${details.hostName}-pic`} className="hostPic" />
                 </div>
               </div>
 
@@ -303,9 +305,16 @@ function Rooms() {
             <div className="roomsDetails-booking">
               <div className="roomsDetails-booking-container">
                 <div className="bookings-header">
-                  <span className="roomPrice">{`${geoContext.symbol}${details.roomPrice} night`}</span>
+                  <span className="roomPrice">{`${geoContext.geoContext.symbol}${details.roomPrice} night`}</span>
                   <span className="ratingScore body-text">
-                    {details.rating}
+                    <div className="destinationRating">
+                    <span className="ratingIcon">
+                      <AiFillStar />
+                    </span>
+                    <span className="ratingScore body-text">
+                      {details.rating}
+                    </span>
+                  </div>
                   </span>
                   <a className="reviews">{details.reviews} Reviews</a>
                 </div>
@@ -352,8 +361,9 @@ function Rooms() {
       {showLogin && (
         <Portal handleClose={() => {
           setClicked(!clicked);
-          setShowLogin(!showLogin);
-        }} openPortal={openPortal}>
+          setShowLogin(!showLogin);}} 
+          openPortal={openPortal}
+          containerClass={"auth-confirmation"}>
 
           <h4>Log-in or sign-up to book a stay</h4>
           <button className="buttonBottom"
