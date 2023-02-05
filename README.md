@@ -2,7 +2,7 @@
 
 **[airbnb-clone-4289d.web.app ](https://airbnb-clone-4289d.web.app )**
 
-![Airbnb clone homepage](https://user-images.githubusercontent.com/24460065/216766115-55e022d1-2751-486d-9dd5-241d5059dc62.png)
+![image](https://user-images.githubusercontent.com/24460065/216766115-55e022d1-2751-486d-9dd5-241d5059dc62.png)
 
 *Airbnb clone*
 
