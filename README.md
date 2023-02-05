@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Airbnb Clone
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<p>A clone of the Airbnb site with limited features </p>
 
-## Available Scripts
+The front end is built with React and the database and authentication is handled by Firebase. 
 
-In the project directory, you can run:
+## Features:
 
-### `npm start`
+- Geolocation ish
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Screenshots
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Home page
 
-### `npm test`
+- Search results
+![Untitled](https://user-images.githubusercontent.com/24460065/216811967-dac7352a-0615-4156-8176-987dc7f480c0.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Room page
 
-### `npm run build`
+- Currency & Language selector
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Account sign-up and log-in
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Airbnb clone homepage](https://user-images.githubusercontent.com/24460065/216766115-55e022d1-2751-486d-9dd5-241d5059dc62.png)
 
-### `npm run eject`
+![Airbnb clone search results page](https://user-images.githubusercontent.com/24460065/216766442-bd846cb8-d589-4089-98a6-6da776aee4fe.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+![Airbnb clone room page](https://user-images.githubusercontent.com/24460065/216766454-e2e6b63d-9cda-4265-908d-25a4f9304cc6.png)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Airbnb clone room gallery pop-up](https://user-images.githubusercontent.com/24460065/216766484-51cd4ac1-1da2-49ba-9759-790198759918.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+![Airbnb clone currency selector pop-up](https://user-images.githubusercontent.com/24460065/216766499-f37c4e69-e622-4396-88dc-28a5212328f0.png)
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Airbnb clone language selector pop-up](https://user-images.githubusercontent.com/24460065/216766511-9c5534c4-8308-4ec9-8b3e-837e73f6c638.png)
 
-## Learn More
+![Airbnb clone sign-up page](https://user-images.githubusercontent.com/24460065/216766559-d8cb8218-c066-4165-a9da-0a11eecd5285.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Airbnb clone log-in page](https://user-images.githubusercontent.com/24460065/216766662-d78b3e1f-b520-445a-980b-39772676df12.png)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![Airbnb clone mobile view](https://user-images.githubusercontent.com/24460065/216811829-b797d221-3a7b-46ee-b7be-825161673cdb.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
