@@ -60,4 +60,21 @@ The front end is built with React and the database and authentication is handled
 
 ![Untitled](https://user-images.githubusercontent.com/24460065/216816332-a79f71ed-e14e-4a2c-9de3-eda0f8a70cfa.png)
 
+![Untitled](https://user-images.githubusercontent.com/24460065/216818105-52d58f80-d652-4ab0-8e6a-814e14fb8fc3.png)
+
+![image](https://user-images.githubusercontent.com/24460065/216818355-ee1f3df5-9a1b-45a0-9d4d-bfb42ab0816b.png)
+
+![image](https://user-images.githubusercontent.com/24460065/216818429-08447fad-234a-43c4-8e09-47a807a15d38.png)
+
+![image](https://user-images.githubusercontent.com/24460065/216818508-96929c02-2426-4c89-ac0d-4f804645dc25.png)
+
+
+![Untitled](https://user-images.githubusercontent.com/24460065/216823449-999e72c7-ca30-4c31-bb03-99357b3998fa.png)
+
+
+
+
+
+
+
 
