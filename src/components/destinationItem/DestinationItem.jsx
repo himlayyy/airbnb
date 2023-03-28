@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import Slider from "react-slick";
 
@@ -8,7 +8,8 @@ import "./destinationItem.css";
 
 import { IoHeartOutline } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
-import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsArrowUpCircleFill } from 'react-icons/bs';
+
+import { GeoContext } from "../../context/Geolocation";
 
 function NextArrow(props) {
   const [nextHovering, setNextHovering] = useState(false);
@@ -77,6 +78,9 @@ function PrevArrow(props) {
 function DestinationItem({id, country, images, roomName="roomName", rating=3, price=400
 }) {
 
+   const{geoContext} = useContext(GeoContext);  
+
+
   const navigate =  useNavigate();
 
   const settings = {
@@ -135,7 +139,7 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
           </div>
         </div>
         <div className="destinationPrice body-text">
-          <b>{price}</b> night
+          <b>{geoContext.symbol}{price} /night</b> 
         </div>
       </div>
     </div>
