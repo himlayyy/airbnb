@@ -43,6 +43,16 @@
     right:10px;
     z-index:2;
 }
+/*.slick-arrow,
+.slick-prev,
+.slick-next,
+.slick-prev:hover,
+.slick-next:hover,
+
+{
+    border-radius:50% !important;
+    background-color: transparent !important;
+}*/
 
 .slick-dots{
     position:absolute;

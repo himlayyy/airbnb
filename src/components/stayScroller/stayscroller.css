@@ -63,7 +63,8 @@
 .slick-next:before{
     color:black;
 } */
-.slick-arrow{
+
+.sliderContainer .slick-arrow{
     background-color:#ffff !important;
   }
   .slick-arrow::before{

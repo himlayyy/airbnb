@@ -8,6 +8,7 @@ import "./destinationItem.css";
 
 import { IoHeartOutline } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill, BsArrowUpCircleFill } from 'react-icons/bs';
 
 function NextArrow(props) {
   const [nextHovering, setNextHovering] = useState(false);
@@ -31,12 +32,15 @@ function NextArrow(props) {
         position: "absolute",
         right: "5px",
         zIndex: 2,
-        opacity: nextHovering ? 1 : 0.025,
+        backgroundColor: "transparent !important",
+        borderRadius: "50%",
+        opacity: nextHovering ? 1 : 0.5,
       }}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-    />
+     />
+    
   );
 }
 
@@ -58,8 +62,10 @@ function PrevArrow(props) {
         ...style,
         position: "absolute",
         left: "5px",
+        backgroundColor: "transparent !important",
+        borderRadius: "50%",
         zIndex: 2,
-        opacity: prevHovering ? 1 : 0.025,
+        opacity: prevHovering ? 1 : 0.5,
       }}
       onClick={onClick}
       onMouseEnter={handleMouseEnter}
@@ -91,11 +97,11 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
   return (
     <div className="destinationItem">
       <div className="destinationGal" id={id}>
-        {images?.length < 1 ? 
+        {images?.length > 1 ? 
         (<>
           <Slider {...settings}>
                     {images.map((image,i) => <img
-                        className="destinationImg lazyLoad"
+                        className="destinationImg"
                         src= {image}
                         key={uuidv4()}
                         alt={`destAltImg${i+1}`} />
@@ -137,3 +143,6 @@ function DestinationItem({id, country, images, roomName="roomName", rating=3, pr
 }
 
 export default DestinationItem;
+
+
+
