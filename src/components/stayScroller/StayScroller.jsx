@@ -214,7 +214,7 @@ function StayScroller() {
     
     <>
       <div className="stay">
-        <div className="sliderContainer">
+        <div className="sliderContainer" key={uuidv4()}>
           <Slider {...settings}>
             {menuItems.map((menuItem, idx) => {
               const Icon = menuIcons[idx];
