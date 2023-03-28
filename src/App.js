@@ -6,6 +6,7 @@ import SearchResult from "./pages/searchResult/SearchResult";
 // import Page2 from "./pages/page2/Page2";
 import SignUp from "./pages/authform/signup/SignUp";
 import Login from "./pages/authform/login/Login";
+import NotFound from "./pages/notfound/NotFound";
 
 import Rooms from "./pages/rooms/Rooms";
 // import Empty from "./pages/Empty";
@@ -30,6 +31,7 @@ function App() {
           <Route path="/search" element={<SearchResult />}/>
           <Route path="/login" element={<Login/> } />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="*" element={<NotFound />} />
           {/* <Route path="/empty" element={<Empty />} /> */}
         </Routes>
     </div>
