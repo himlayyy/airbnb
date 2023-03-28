@@ -41,7 +41,9 @@ function AccountToggle() {
 
     // updateContext({key:"currency", value:obj.currency.currency})
 
-    updateContext([{key:"currency", value:obj.currency.currency},{key:"language", value:obj.language.language}]);
+    updateContext([{key:"currency", value:obj.currency.currency},
+                  {key:"symbol", value:obj.currency.symbol},
+                  {key:"language", value:obj.language.language}]);
 
     // geolocation.currency = obj.currency.currecy
 
