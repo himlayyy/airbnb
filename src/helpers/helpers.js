@@ -118,16 +118,16 @@ export const filterGuests = (obj) => {
 };
 
 export const formatGuests = (obj) => {   
-    console.log("in format guests");
-    console.log(obj);
+//     console.log("in format guests");
+//     console.log(obj);
     const filtered = filterGuests(obj);
-    console.log("filtered");
-    console.log(filtered);
+    // console.log("filtered");
+    // console.log(filtered);
 
     if (filtered.length !== 0) {
       const string = capitalizeGuests(filtered);
-      console.log("caplitalized");
-      console.log(string);
+      // console.log("caplitalized");
+      // console.log(string);
       return string;
     } 
     else {
@@ -144,8 +144,8 @@ export const getTotalGuests = (obj) => {
     // const guestArr = Object.entries(filterGuests(obj));
 
     const totalGuests = getSumOfArray(Object.values(obj));
-    console.log(totalGuests);
-    console.log("totalGuests", totalGuests);
+    // console.log(totalGuests);
+    // console.log("totalGuests", totalGuests);
     return totalGuests;
 };
 
@@ -153,7 +153,7 @@ export const getSumOfArray = (array) => {
     const sum = array.reduce((accumulator, value) => {
         return accumulator + value
     },0);
-    console.log(`Total guests: ${sum}`);
+    // console.log(`Total guests: ${sum}`);
     return sum;
 };
 
